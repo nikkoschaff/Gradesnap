@@ -1,0 +1,34 @@
+<%= form_for(@student) do |f| %>
+  <% if @student.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
+
+      <ul>
+      <% @student.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if @student.course_id == nil %>
+    <%= f.hidden_field :course_id, :value => @course.id  %>
+  <% else %>
+    <%= f.hidden_field :course_id, :value => @student.course_id  %>
+  <% end %>
+
+
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+    <%= f.label :middle_name %><br />
+    <%= f.text_field :middle_name %>
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+
+
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

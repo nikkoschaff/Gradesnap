@@ -1,0 +1,18 @@
+<div class="bodyWrapper">
+  <div class="container">
+    <h1>Image Viewer</h1>
+    <p>
+    <% unless params[:student_id] == nil %>
+      Student:
+      <%= link_to "#{params[:student_name]}", :action => 'show', :controller => 'students', :id => params[:student_id] %>
+  <% else %>
+    (Key Image)
+  <% end %>
+    </p>
+    <% filename = Scansheet.find(params[:id]).image.path.split("/").last %>
+    <% path = "/assets/uploads/scansheet/image/#{params[:id]}/#{filename}" %>
+    <%= image_tag(path) %>
+
+    <%= link_to "Back", :action => 'show', :controller => 'stats', :id => assignmentFromScansheetId.id, :code => 2 %>
+  </div>
+</div>

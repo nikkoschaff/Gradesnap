@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gradesnap: The Future Of Grading</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <link href="http://fonts.googleapis.com/css?family=Tienne" media="screen" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+	<% if session[:user] == nil %>
+		<%= render 'prelogins/main' %>
+	<% else %>
+      	<p class="dashBoardUser">
+		<%= render 'shared/loginNave' %>
+	<% end %>
+
+<%= yield %>
+
+</body>
+
+<footer>
+	<%= render 'shared/footer' %>
+</footer>
+
+</html>

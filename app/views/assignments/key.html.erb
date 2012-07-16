@@ -1,0 +1,13 @@
+<div class="bodyWrapper">
+  <div class="container">
+	<h1>Enter the key</h1>
+
+	<p class="keyExpo">Add and upload one file as the key.  If multiple files are uploaded, the last one to be uploaded will be selected as the key, and all others will be deleted</p>
+
+	<%= render 'form-scankey' %>
+
+	<%= form_tag('/assignments/key') do  -%>
+		<%= submit_tag 'Next', :assignment_id => @assignment.id %>
+	<% end %>
+	</div>
+</div>

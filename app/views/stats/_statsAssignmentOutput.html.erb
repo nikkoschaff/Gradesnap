@@ -1,0 +1,100 @@
+<% if @assignment %>
+
+      <ul class="exporting">
+        <li>
+        <%= link_to 'View students and grades',:action => 'new',:controller => 'excelsheets' %>
+        </li>
+      </ul>
+  <%= "Assignment: " + @assignment.name %>
+  <% if flash[:assignment] %>
+  <%= "Flash assignment: " + flash[:assignment]%>
+  <% end %>
+
+  <div class="studentResults">
+    <p>
+    <%= link_to "(Key Image)", :action => 'show', :controller => 'scansheets', :id => @assignment.answer_scansheet.id, :student_name => "(Key Image)" %>
+
+    <!-- TODO set to work for student names and CORRECT link to student ID -->
+    <h2>Student Results</h2>
+    <% @assignmentstudents = AssignmentStudents.where("assignment_id=?",@assignment.id) %>
+    <% @assignmentstudents.each do |student| %>
+      <%= link_to "#{student.id}", :action => 'show', :controller => 'students' %>  
+      <%= "Grade: #{student.grade}" %>
+      <% sd = studentFromScansheetId %>
+      <%= link_to "Image", :action => 'show', :controller => 'scansheets', :id => student.scansheet_id, :student_name => "#{sd.first_name} #{sd.middle_name} #{sd.last_name}", :student_id => sd.id %>
+    <% end %>
+  </div>
+
+  <!-- Error report if any files could not be read -->
+  <div class="unreadables">
+      <% unreadables = unreadableFiles(@assignment) %>
+      <% errs = errorsHash %>
+      <% if unreadables.size > 0 %>
+        <p>The following files were unreadable:</p>
+        <% unreadableCount = 0 %>
+        <% unreadables.each { |key,value| %>
+          <%= key %> 
+          <%= errs[value] %><br />
+          <% unreadableCount += 1 %>
+        <% } %>
+      <% end %>
+  </div><br />
+
+
+  <% keyString = @assignment.answer_key %> 
+  <% gradeArray = @assignment.grades %>
+  <% studentStringArray = @assignment.studentStringArray %>  
+  <% Rails.logger.info("keystring #{keyString}") %>
+  <% Rails.logger.info("Grade array #{gradeArray}") %>
+  <% Rails.logger.info("student string #{studentStringArray}") %>
+  <!-- Handling to ensure that the given information exists for stats -->
+  <% unless keyString == "" or gradeArray == [] or studentStringArray == [] then %>
+
+    <% accuracyArray = answerAccuracy( studentStringArray, keyString) %>
+    <% answerKeyArray = formatAnswerFromArray(keyString) %>
+    <% incorrectAccuracy = incorrectAnswerAccuracy(studentStringArray,keyString) %>
+    <% gradeDist = gradeDistribution(gradeArray) %>
+    <% theMean = (mean(gradeArray) * 100).round(2) %>
+    <% theMedian = (median(gradeArray) * 100).round(2) %>
+    <% theMode = mode(gradeArray) %>
+    <div class="datStats">
+      <p><%= "Mean: #{theMean}%" %></p>
+      <p><%= "Median: #{theMedian}%"  %><br /></p>
+      <p><%= "Mode: #{theMode.first} - #{(theMode.second * 100).round(2)}%" %><br /></p>
+      <p><%= "Number of A's #{ gradeDist["A"] }" %><br /></p>
+      <p><%= "Number of B's #{ gradeDist["B"] }"%><br /></p>
+      <p><%= "Number of C's #{ gradeDist["C"] }" %><br /></p>
+      <p><%= "Number of D's #{ gradeDist["D"] }" %><br /></p>
+      <p><%= "Number of F's #{ gradeDist["F"] }" %><br /></p>
+    </div>
+    <% count = 0 %>
+
+    <% @assignment.num_questions.times do %> 
+      <% avgScore = (accuracyArray[count] * 100).round(2) %>
+      <% incAnsKey = incorrectAccuracy[count].keys[0]  %>
+      <% incAnsVal = (incorrectAccuracy[count][incAnsKey] * 100).round(2) %>
+      <% incKeyStr = incAnsKey.to_a.join %>
+
+	<div class="number">
+		<span><%= "Question number:  #{count+1}" %></span>
+		<br />
+		<br />
+      	<%= "Correct Answer: '#{answerKeyArray[count]}'" %>
+      	<br/>
+      	<%= "Average score for question: #{avgScore}%"%>
+      	<br/>
+      	<%= "Most incorrect answer: '#{incKeyStr}'"%>
+      	<br/>
+      	<%= "Most incorrect answer frequency: #{incAnsVal}%"%>
+      	<br/>
+      <% count +=1 %>
+    </div>
+    <% end %>
+  <% end %>
+
+
+
+<% else %>
+    <p>No data recieved to analyze.  Check to see if the tests were uploaded 
+        properly and try again.</p>
+<% end %>

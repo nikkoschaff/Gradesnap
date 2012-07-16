@@ -1,0 +1,13 @@
+<h1>Select Assignment</h1>
+
+		
+<div>
+	<%= form_for(@assignment, :url => 'stats_m') do |f| %>	
+
+	<%= collection_select(:course_id, :name,Assignment.all.to_a, :id, :name, {:include_blank => true}) %>
+
+	<%= f.submit "Submit" %>
+	<% end %>
+	<% flash[:assignment] = @assignment%>
+	<% flash.keep %>
+</div>

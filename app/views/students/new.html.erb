@@ -1,0 +1,12 @@
+<div class="bodyWrapper">
+  <div class="container">
+		<h1>New student</h1>
+
+		<%#if flash[:course].num_students > 0 then %>
+		<%= render 'form' %>
+		<%# end %>
+
+		<%= link_to 'Back', :action => "show", :controller => "courses", 
+		:id => @course.id %>
+	</div>
+</div>

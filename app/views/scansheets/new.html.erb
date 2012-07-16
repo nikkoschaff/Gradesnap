@@ -1,0 +1,16 @@
+<div class="bodyWrapper">
+	<div class="container">
+		<div class="up">
+		<h1>Image Uploader</h1>
+		<p>Now that you have successfully uploaded your key please select the images of the tests you want to grade.</p>
+	  	</div>
+
+		<div class="upLoader">
+			<%= render 'form-scansheet' %>
+				<div class="btn">
+					<%= link_to 'Submit',	:action => 'show', 	:controller => 'stats',
+					:id => flash[:assignment_id], :code => 2 %>
+				</div>
+		</div>
+	</div>
+</div>

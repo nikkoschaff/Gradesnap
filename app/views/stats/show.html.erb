@@ -1,0 +1,27 @@
+<div class="bodyWrapper">
+    <div class="container">
+       	<div class="mid">
+			<div class="midText">
+				<div class="dashBoard">
+					<div class="statisticalStuff">
+						<% case flash[:code] %>
+							<% when "1" %>
+						    	<%= render 'statsCourseOutput' %>
+							<% when "2" %>
+						    	<%= render 'statsAssignmentOutput' %>
+							<% when "3" %>
+						    	<%= render 'statsStudentOutput' %>
+							<% else %>
+								<h1>No course, student, or assignment selected</h1>
+						<% end %>
+					</div>
+				</div>
+            	<%= link_to 'Back', :action => 'index', :controller => 'stats' %>
+            </div>
+        </div>
+    </div>    
+</div>
+
+
+
+

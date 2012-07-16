@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  code: 
+  teacher_id: 
+  tablename: MyString
+  row_id: 
+  resolved: false
+
+two:
+  code: 
+  teacher_id: 
+  tablename: MyString
+  row_id: 
+  resolved: false

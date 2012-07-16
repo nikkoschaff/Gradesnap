@@ -1,0 +1,30 @@
+<div class="bodyWrapper">
+  <div class="container">
+
+    <h1>Listing excelsheets</h1>
+
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Num q</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+
+    <% @excelsheets.each do |excelsheet| %>
+      <tr>
+        <td><%= excelsheet.name %></td>
+        <td><%= excelsheet.num_q %></td>
+        <td><%= link_to 'Show', excelsheet %></td>
+        <td><%= link_to 'Edit', edit_excelsheet_path(excelsheet) %></td>
+        <td><%= link_to 'Destroy', excelsheet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+    </table>
+
+    <br />
+
+    <%= link_to 'New Excelsheet', :action => "import", :controller => "excelsheets" %>
+  </div>
+</div>

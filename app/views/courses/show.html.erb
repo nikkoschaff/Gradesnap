@@ -1,0 +1,45 @@
+<div class="bodyWrapper">
+        <div class="container">
+                <p id="notice"><%= notice %></p>
+
+                <p>
+                  <b>Name:</b>
+                  <%= @course.name %>
+                </p>
+
+                <p>
+                        <b>Class Average:</b>
+                        <%= mean(@course.courseGrades) %>
+                </p>
+
+                <p>
+                        <b>Class Median:</b>
+                        <%= median(@course.courseGrades) %>
+                </p>
+
+                <p>
+                        <b>Class Mode:</b>
+                        <%= mode(@course.courseGrades) %>
+                </p>
+                <p>
+
+                        <b>Students:</b><p>
+                        <% @students = Student.where("course_id=?", @course.id).to_a %>
+                        <% @students.each do  |student| %>
+                        <p>
+                      <tr>
+                        <td><%= link_to "#{student.first_name}  #{student.middle_name}  #{student.last_name}", student %></td>
+                  <b>Current grade:</b>
+                  <%= student.grade %>
+                      </tr>
+                    </p>
+                        <% end %>
+                </p>
+
+
+                <%= link_to 'Back', courses_path %> |
+                <%= link_to 'Edit', edit_course_path(@course) %> |
+                <%= link_to 'Add student', :action => 'new', :controller => 'students', :course => @course.id %>
+        </div>
+</div>
+~           

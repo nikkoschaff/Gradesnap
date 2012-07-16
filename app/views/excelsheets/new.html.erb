@@ -1,0 +1,31 @@
+<div class="bodyWrapper">
+  <div class="container">
+    
+    <h1>New excelsheet</h1>
+    <p>
+      Download:
+        <%= link_to "CSV", "new.csv" %> |
+        <%= link_to "Excel", "new.xls" %>
+    </p>
+    <% if @students %>
+
+      <table border="1">
+        <tr>
+          <th>Student</th>
+          <th>Grade</th>
+        </tr>
+        <% counter = 1 %>
+        <% @students.each do |s| %>
+          <tr>
+            <td><%= @student_names[counter] %></td>
+            <td><%= s.grade %></td>
+          </tr>
+          <% counter += 1 %>
+        <% end %>
+
+      </table>
+
+    <% end %>
+    <%= link_to 'Back', excelsheets_path %>
+  </div>
+</div>

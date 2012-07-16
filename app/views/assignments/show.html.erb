@@ -1,0 +1,31 @@
+<div class="bodyWrapper">
+  <div class="container">
+	<p id="notice"><%= notice %></p>
+        <p>
+        <b>Name:</b>
+        <%= @showHash[:assignment].name %>
+        </p>
+
+        <p>
+        <b>Average:</b>
+        <%= mean(@showHash[:assignment].grades) * 100 %>%
+        </p>
+        <b>Students:</b><p>
+        <% @showHash[:students].size.times do  |sindex| %>
+	        <p>
+	        <tr>
+	        <td><%= link_to "#{@showHash[:students][sindex].first_name}  #{@showHash[:students][sindex].middle_name}  #{@showHash[:students][sindex].last_name}", @showHash[:students][sindex] %></td>
+	          <b>Grade recieved:</b>
+	          <%= @showHash[:assignmentstudents][sindex].grade * 100 %>%
+	        </tr>
+	        </p>
+        <% end %>
+        </p>
+
+
+        <%= link_to 'Back', :action => 'index', :controller => 'assignments' %>
+        <!-- Currently empty until detailed editing features placed in -->
+        <!-- <%= link_to 'Edit', edit_course_path(@assignment) %> | -->
+  </div>
+</div>
+

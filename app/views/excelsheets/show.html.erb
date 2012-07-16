@@ -1,0 +1,20 @@
+<div class="bodyWrapper">
+  	<div class="container">
+
+		<p id="notice"><%= notice %></p>
+
+		<p>
+		  <b>Name:</b>
+		  <%= @excelsheet.name %>
+		</p>
+
+		<p>
+		  <b>Num q:</b>
+		  <%= @excelsheet.num_q %>
+		</p>
+
+
+		<%= link_to 'Edit', edit_excelsheet_path(@excelsheet) %> |
+		<%= link_to 'Back', excelsheet_path %>
+	</div>
+</div>
