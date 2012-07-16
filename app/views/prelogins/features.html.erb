@@ -1,7 +1,186 @@
-<div class="bodyWrapper">
-	<div class="container">
-        	<%= render "betabutton" %>
-        	<%= render 'featBody' %>
-	</div>
-</div>
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <button type="button"class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li><%= link_to 'Home',    :action => 'index',    :controller => 'prelogins' %></li>
+            <li><%= link_to 'Features',    :action => 'features',    :controller => 'prelogins' %></li>
+            <li><%= link_to 'About Us',    :action => 'about',    :controller => 'prelogins' %></li>
+            <li><%= link_to 'Sign Up',    :action => 'sign',    :controller => 'prelogins' %></li>
+            <li><%= link_to 'Contact',    :action => 'contact',    :controller => 'prelogins' %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <ul class="signUp">
+      <li>
+        <form class="form-inline">
+          <input type="text" class="input-small" placeholder="Username"/>
+          <input type="password" class="input-small" placeholder="Password"/>
+          <button type="submit" class="btn" style="font-family: 'Quicksand', sans-serif; color: #111111;">Sign in</button>
+        </form>
+      </li>
+    </ul>
+  </div>
+  <div class="logo">
+    <div class="container">
+      <%= image_tag('/assets/logo.png') %>
+      <%= image_tag('/assets/current.png' , :class =>'pull-right fux' ) %></div>
+  </div>
+  <!-- end navbar -->
+  <div class="datHeader">
+    <div class="container">
+      <div class="alert alert-info">
+       <strong>Features that YOU want because YOU helped build it.</strong>
+      </div>
+    </div>
+  </div>
+<!-- end body container -->
+<div class="lowerBody">
+  <div class="container">
+    <div class="rowMover">
+      <div class="row">
+        <div class="span4">
+          <p class="headerP">Grading</p>
+          <p>
+            Grading is split into two very simple parts:</p>
+            <p><strong>The Image &amp; The Processing</strong></p>
+          </p>
+          <p>
+            <h3 class="fuxYes">The Image</h3>
+            <p class="thatPee">• The image is simply your students answer keys.<p>
+             <p class="thatPee">• After downloading and printing off Gradesnaps free answer sheets. Administer you test to the students.</p>
+             <p class="thatPee">• Once collected take the tests and scan them in using any conventional scanner. Gradesnap was made to be resourcful. </p>
+              <p class="thatPee">• Becuase we don't tie you down to hardware feel free to obtain an image however you like, including cell phone camers, digital camers, large flat bed scanners, and fast rapid pace scanners.</p>
+          </p>
+        </div>
+        <!-- -->
+        <div class="span4">
+          <p class="headerP"> &nbsp;</p>
+         <p>
+            <p>The next part is the easy part.</p>
+            <p><strong> The actual 'grading' of your tests.</strong></p>
+          </p>
+             <h3 class="fuxYes">The Processing</h3>
+            <p class="thatPee">• Now that you have your images you are now ready to grade.<p>
+             <p class="thatPee">• Use your computer or one that is available to you and log onto Gradesnap.com.</p>
+             <p class="thatPee">• Once logged in go ahead and create a new test. This will allow you to choose which image you want to use as the 'answer key'. </p>
+              <p class="thatPee">• Once the answer key is chosen you can then upload your tests to Gradesnap. This is a very fast efficient process. The tests should load quickly and the next step is to simply click grade.</p>
+              <p class="thatPee">• Gradensnaps extremely fast image processing will grade your tests in under a second per sheet.</p>
+          </p>
+        </div>
+        <!-- -->
+        <div class="span4">
+          <p class="headerP"> &nbsp;</p>
+             <p>
+            <p>Now you're done!</p>
+            <p><strong> Go ahead and take a load off you deserve it!</strong></p>
+          </p>
+          <h3 class="fuxYes">The Result</h3>
+             <p class="thatPee">• Now you'll have your tests statistics readily available to you.<p>
+             <p class="thatPee">• Anything from most frequently chosen wrong answer to the average score.</p>
+             <p class="thatPee">• Gradesnap provides teachers with graphs, alerts, and many other features that automate the grading process.</p>
+              <p class="thatPee">• We are the one stop shop for all grading and statistical software.</p>
+          </p>
+        </div>
+        <!-- -->
+        <!--/row--> </div>
+    </div>
+  </div>
+  <div class="bodyWrapperM">
+    <div class="container"></div>
+    <div class="row">
+      <div class="span4">
+        <p class="headerPB">
+          Creating What You Want
+        <p class="B">
+          Gradesnap was created from one simple idea. Make grading multiple choice tests quick. That has been our focus through the creating process. 
+        </p>
+      </div>
+      <!-- -->
+      <div class="span4">
+        <p class="headerPB">
+          The Future Continues
+        <p class="B">
+          Gradesnap will continue to roll our features as we hear what you want out of our software. We are currently working on hand written answer recognition.
+        </p>
+      </div>
+      <!-- -->
+      <div class="span4">
+        <p class="headerPB">
+          Tell Us
+        <p class="B">
+         As always we want to hear from you. Please go <a href="">here</a> and fill out a feedback form. In the form feel free to say whatever you like.
+        </p>
 
+      </div>
+      <!-- -->
+      <!--/row--> </div>
+  </div>
+</div>
+<!-- footer -->
+<div class="footerWrapper">
+  <div class="container">
+    <div class="row">
+      <div class="span4">
+        <p class="headerPBW">Community</p>
+        <p class="B">
+          <ul>
+            <li>
+              <a href="#">Forums</a>
+            </li>
+            <li>
+              <a href="#">Contact</a>
+            </li>
+            <li>
+              <a href="#">Send Feedback</a>
+            </li>
+          </ul>
+        </p>
+      </div>
+      <!-- -->
+      <div class="span4">
+        <p class="headerPBW">Site Links</p>
+        <p class="B">
+          <ul>
+            <li>
+              <a href="#">Home</a>
+            </li>
+            <li>
+              <a href="#">Features</a>
+            </li>
+            <li>
+              <a href="#">About Us</a>
+            </li>
+            <li>
+              <a href="#">Contact</a>
+            </li>
+            <li>
+              <a href="#">Sign Up</a>
+            </li>
+          </ul>
+        </p>
+      </div>
+      <!-- -->
+      <div class="span4">
+        <p class="headerPBW">Gradesnap</p>
+        <p class="BW">
+          Gradesnap LLC
+          <br />
+          125 Tech Park Drive
+          <br />
+          Rochester NY, 14623
+        </p>
+      </div>
+      <!-- -->
+      <!--/row--> </div>
+      <p class="center">
+        Copyright Gradesnap LLC 2012
+      </p>
+  </div>
+</div>
