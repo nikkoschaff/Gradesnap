@@ -30,5 +30,11 @@ class IssuesController < ApplicationController
 
   end
 
+  def resolve
+    @issue = Issue.find(params[:id])
+    pagename = issueCodeToPagename(@issue.code)
+    render "#{pagename}"
+  end
+
 
 end
