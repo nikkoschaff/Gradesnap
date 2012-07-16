@@ -1,6 +1,6 @@
 module IssuesHelper
 
-
+=begin
 	def issueCodeToPagename
 		code = params[:code]
 		pages = Hash.new()
@@ -8,7 +8,7 @@ module IssuesHelper
 		pages[2] => "nameverify"
 		pages[code]
 	end
-
+=end
 
 	def prepAnswerverify
 
