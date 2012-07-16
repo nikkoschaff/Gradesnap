@@ -73,11 +73,11 @@ class PreloginsController < ApplicationController
   end
 
   def features
-	render "features"
+	  render "features"
   end
 
   def legal
-	render "legal"
+	  render "legal"
   end
 
   def index

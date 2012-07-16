@@ -5,7 +5,7 @@ class Issue < ActiveRecord::Base
 		 :tablename,
 		 :teacher_id
 
-	validates :code, :presence => true, :numericality => :only_integer => true
+	validates :code, :presence => true, :numericality => { :only_integer => true }
 	validates :resolved, :presence => true
 	validates :row_id, :presence => true
 	validates :tablename, :presence => true
