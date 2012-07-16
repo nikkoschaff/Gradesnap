@@ -40,7 +40,7 @@ Gradesnap::Application.routes.draw do
   match '/features' => 'prelogins#features'
   match '/about' => 'prelogins#about'
   match '/contact' => 'prelogins#contact'
-  match '/sign' => 'prelogins#sign'
+  match '/signup' => 'prelogins#signup'
   match '/forgot_password' => 'prelogins#forgot_password'
   match '/legal' => 'prelogins#legal'  
 
