@@ -10,4 +10,6 @@ class Issue < ActiveRecord::Base
 	validates :row_id, :presence => true
 	validates :tablename, :presence => true
 	validates :teacher_id, :presence => true
+
+
 end

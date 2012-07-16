@@ -1,8 +1,10 @@
 <div class="bodyWrapper">
   <div class="container">
   	<h1>All Issues</h1>
+  	<% count = 0 %>
   	<%= @issues.each do |issue| %>
-  		<%  %>
+  		<%= link_to "Issue ##{count}", :action => 'resolve', :controller => 'issues', :id => issue.id %>
+  		<% count += 1 %>
   	<% end %>
   </div>
 </div>
