@@ -11,29 +11,23 @@ class IssuesController < ApplicationController
 
   def index
     @issues = Issue.where("teacher_id=?",session[:user].teacher_id)
-    Student.all.to_a.each { |s| 
-    	Rails.logger.info(s.first_name)
- 	Rails.logger.info(s.middle_name)
-	Rails.logger.info(s.last_name) 
-   }
-	Rails.logger.info(Student.all.to_a.size)
     respond_to do |format|
       format.html #index.html.erb
     end
   end
 
   def create
-
+    #leave empty
   end
 
   def new
-
+    #leave empty
   end
 
   def resolve
     @issue = Issue.find(params[:id])
-    pagename = issueCodeToPagename(@issue.code)
-    render "#{pagename}"
+    @showHash = prepAnswerverify(@issue)
+    render "#{@showHash[:pagename]}"
   end
 
 

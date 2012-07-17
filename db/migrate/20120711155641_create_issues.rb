@@ -6,6 +6,7 @@ class CreateIssues < ActiveRecord::Migration
       t.string :tablename
       t.integer :row_id
       t.boolean :resolved
+      t.string :name
 
       t.timestamps
     end

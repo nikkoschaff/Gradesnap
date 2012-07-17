@@ -9,26 +9,16 @@
         <div class="nav-collapse collapse">
           <ul class="nav">
             <li><img src="/assets/logo.png"></li>
-            <li class="divider-vertical"></li>
             <li>
               <%= link_to 'Home',    :action => 'dashboard',    :controller => 'sessions' %></li>
             </li>
-             <li class="divider-vertical"></li>
             <li><%= link_to 'Assignments', :action => 'index', :controller => 'assignments' %> </li>
-            <li class="divider-vertical"></li>
-            
             <li><%= link_to 'Statistics',	 :action => 'index', :controller => 'stats' %> </li>
-            <li class="divider-vertical"></li>
-
             <li><%= link_to "Issues (#{currentIssueCount})",  :action => 'index', :controller => 'issues' %> </li>
-            <li class="divider-vertical"></li>
-
             <li class="">
               <li><%= link_to 'My Account',	 :action => 'myaccount', :controller => 'sessions' %> </li>
             </li> 
-            <li class="divider-vertical"></li>
             <li><%= link_to 'Logout',		 :action => 'logout', :controller => 'sessions' %></li>
-            <li class="divider-vertical"></li>
           </ul>
         </div>
       </div>

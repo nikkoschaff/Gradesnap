@@ -9,9 +9,7 @@
 		(Key Image)
 	<% end %>
   	</p>
-  	<% filename = Scansheet.find(params[:id]).image.path.split("/").last %>
-  	<% path = "/assets/uploads/scansheet/image/#{params[:id]}/#{filename}" %>
-  	<%= image_tag(path) %>
+  	<%= image_tag(@showHash[:path]) %>
 
   	<%= link_to "Back", :action => 'show', :controller => 'stats', :id => assignmentFromScansheetId.id, :code => 2 %>
   </div>

@@ -150,8 +150,10 @@ class Scansheet < ActiveRecord::Base
   def translateAllAmbig( completeFillArr )
     ambigStr = ""
     ansArr = []
+    index = 0
     completeFillArr.each { |fillArr|
-      ansArr.push( translateAmbigRow( fillArr ) )
+      ansArr.push( "#{index}#{translateAmbigRow( fillArr )}" )
+      index += 1
     }
     ambigStr = ansArr.join("~")
     ambigStr

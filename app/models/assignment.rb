@@ -118,8 +118,10 @@ class Assignment < ActiveRecord::Base
     strResults = formatAnswersToSimple( sheet.translateAllAnswers(decResults) )
     strAmbig = sheet.translateAllAmbig( decResults )
     unless strAmbig == "" then
+      course = Course.find(self.course_id)
+      teacher_id = Teacher.find(course.teacher_id)
       ambigIssue = Issue.new( :code => 1, :resolved => false,
-       :row_id => sheet.id, :tablename => "Scansheet", :teacher_id => session[:user].teacher_id )
+       :row_id => sheet.id, :tablename => "Scansheet", :teacher_id => teacher_id )
       ambigIssue.save
     end
 
@@ -133,8 +135,10 @@ class Assignment < ActiveRecord::Base
     grade = gradeStudent( strResults, self.answer_key )  
     # If found, then handle data from here.
     unless theStudent == nil then
+      course = Course.find(self.course_id)
+      teacher_id = Teacher.find(course.teacher_id)
       nameIssue = Issue.new( :code => 2, :resolved => false,
-       :row_id => sheet.id, :tablename => "Scansheet", :teacher_id => session[:user].teacher_id )
+       :row_id => sheet.id, :tablename => "Scansheet", :teacher_id => teacher_id )
       nameIssue.save
       @newAssignmentStudent = AssignmentStudents.new({ :assignment_id => self.id,
         :student_id => theStudent.id, :scansheet_id => sheet.id,
@@ -172,8 +176,7 @@ class Assignment < ActiveRecord::Base
     else 
       Rails.logger.info("*** No path found: #{path}")
       return keystr
-    end    
-
+    end   
 
     iproc = Imgproc.new
     decResultsArr = iproc.readFiles(scanarr,Integer(self.num_questions),false)
@@ -186,8 +189,10 @@ class Assignment < ActiveRecord::Base
       strResults = sheet.translateAllAnswers(decKey).join("~")
       strAmbig = sheet.translateAllAmbig( decKey )
       unless strAmbig == "" then
+        course = Course.find(self.course_id)
+        teacher_id = Teacher.find(course.teacher_id)
         ambigIssue = Issue.new( :code => 1, :resolved => false,
-         :row_id => sheet.id, :tablename => "Scansheet", :teacher_id => session[:user].teacher_id )
+         :row_id => sheet.id, :tablename => "Scansheet", :teacher_id => teacher_id )
         ambigIssue.save
       end
 
