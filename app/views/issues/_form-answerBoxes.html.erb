@@ -1,0 +1,8 @@
+<% @showHash[:ambiguous_answers].each do |key,value| %>
+	<p>
+	<%= label_tag "#{key+1}" %>
+	<%= form_tag "#{value}" %>
+	</p>
+<% end %>
+
+
