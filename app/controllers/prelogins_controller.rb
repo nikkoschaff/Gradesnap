@@ -42,11 +42,13 @@ class PreloginsController < ApplicationController
     reset_session
     if request.post?
      if session[:user] =  User.authenticate(params[:user][:email], params[:user][:password])
+        Rails.logger.info("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
         flash[:message]  = "Login successful"
         #go to dash if log in success
         redirect_to :action => "dashboard", :controller => 'sessions'        
         #redirect_to_stored 
      else
+        Rails.logger.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         render "login"
         flash[:warning] = "Login unsuccessful"
       end

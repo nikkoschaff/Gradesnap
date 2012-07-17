@@ -14,17 +14,15 @@
           <li><%= link_to 'Contact',    :action => 'contact',    :controller => 'prelogins' %></li>
           <li><%= link_to 'Legal',  :action => 'legal',   :controller => 'prelogins' %></li>
           <li><%= link_to 'Registration',    :action => 'registration',    :controller => 'prelogins' %></li>
+          <li><%= link_to 'Login', :action => 'login', :controller => 'prelogins' %></li>
         </ul>
       </div>
     </div>
   </div>
   <ul class="signUp">
     <li>
-      <form class="form-inline">
-        <input type="text" class="input-small" placeholder="Username"/>
-        <input type="password" class="input-small" placeholder="Password"/>
-        <button type="submit" class="btn" style="font-family: 'Quicksand', sans-serif; color: #111111;">Sign in</button>
-      </form>
+
+      <%#= render :partial => 'logMe' %>
     </li>
   </ul>
 </div>
