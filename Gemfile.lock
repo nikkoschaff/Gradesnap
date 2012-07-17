@@ -1,6 +1,5 @@
-GIT
-  remote: git@github.com:nikkoschaff/gs-imgproc.git
-  revision: a44f031f100d827d6d98318ce50808deb3c96048
+PATH
+  remote: /usr/local/rvm/gems/ruby-1.9.3-p194/bundler/gems/gs-imgproc-12911305dd17
   specs:
     gs-imgproc (0.0.10)
 

@@ -17,9 +17,11 @@ module IssuesHelper
   		@scansheet = Scansheet.find(issue.row_id)
   		@showHash[:scansheet] = @scansheet		
 		
-		filename = @scansheet.image.path.split("/").last 
+		filename = @scansheet.image.path.split("/").last
+		# TODO correct output location 
 		iproc = Imgproc.new
-		iproc.prepShowImage("#{@scansheet.image.to_s}")
+		iproc.prepShowImage("#{@scansheet.image.to_s}",
+		 "#{Rails.root}/app/assets/images/uploads/scansheet/image/#{@scansheet.id}/~#{filename}")
   		path = "/assets/uploads/scansheet/image/#{@scansheet.id}/~#{filename}"
   		@showHash[:path] = path
   		
