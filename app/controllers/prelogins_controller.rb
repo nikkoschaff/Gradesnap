@@ -80,6 +80,10 @@ class PreloginsController < ApplicationController
 	  render "legal"
   end
 
+  def registration
+    render 'registration'
+  end
+
   def index
     @user = User.all
     respond_to do |format|

@@ -1,0 +1,17 @@
+<div class="preLogin">
+      <%= form_tag :action=> "login" %>
+      <h3>Login</h3>
+      <h4><% if session[:user] != nil %>
+        <%= session[:user].email %>
+      <% else %>
+        <%=h "There is currently no one logged in" %>
+      <% end %></h4>
+      <label for="user_login">Email:</label><br/>
+      <%= text_field "user", "email", :size => 20 %><br/>
+      <label for="user_password">Password:</label><br/>
+      <%= password_field "user", "password", :size => 20 %><br/>
+      <%= submit_tag "Submit" %>
+      <%= link_to 'Forgot password', :action => 'forgot_password', :controller => 'prelogins' %>
+      <% $end -%>
+    </div>
+  </div>
