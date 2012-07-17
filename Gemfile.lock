@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:nikkoschaff/gs-imgproc.git
-  revision: 30134748c80b366d84c4557bf6b50908fdab5c47
+  revision: a44f031f100d827d6d98318ce50808deb3c96048
   specs:
     gs-imgproc (0.0.10)
 

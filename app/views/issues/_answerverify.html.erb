@@ -1,0 +1,25 @@
+<div class="bodyWrapper">
+  <div class="container">
+  	<h1>Answer Verification</h1>
+
+  	<p>
+  	<% unless @showHash[:student] == nil %>
+  		Student:
+	  	<%= link_to "#{@showHash[:student].first_name}", :action => 'show', :controller => 'students', :id => @showHash[:student].id %>
+    <% else %>
+		  (Key Image)
+    <% end %>
+  	</p>
+
+    <p>Welcome to the Answer Verification page.  If you're here, then it means our algorithm wasn't sure if some of the answer bubbles were filled or not.</p>  
+    <p>We've listed the tricky ones and what we think the answer is.  Set the answer and click the "Done" button when everything is set.</p>
+
+    <div class="image">
+      <%= image_tag(@showHash[:path]) %>
+    </div>
+
+    <%= render :partial => 'form-answerBoxes' %>
+
+  	<%= link_to "Back", :action => 'index', :controller => 'issues' %>
+  </div>
+</div>

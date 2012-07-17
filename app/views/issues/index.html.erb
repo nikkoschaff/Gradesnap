@@ -3,8 +3,8 @@
   	<h1>All Issues</h1>
   	<% count = 0 %>
   	<% unless @issues == [] %>
-	  	<%= @issues.each do |issue| %>
-	  		<%= link_to "#{issue.name}", :action => 'resolve', :controller => 'issues', :id => issue.id %>
+	  	<% @issues.each do |issue| %>
+	  		<%= link_to "#{issue.name}", :action => 'show', :controller => 'issues', :id => issue.id %><br /><br />
 	  		<% count += 1 %>
 	  	<% end %>
 	<% else %>
