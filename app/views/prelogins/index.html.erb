@@ -1,52 +1,5 @@
-<!-- logo partial goes here -->
-<div class="logo">
-  <div class="container">
-    <%= image_tag('/assets/logo.png') %>
-    <%= image_tag('/assets/current.png' , :class =>'pull-right fux' ) %></div>
-</div>
-<!-- END logo partial goes here -->
-<!-- images slider -->
-<div class="bodyWrapper">
-  <div class="container">
-    <div id="myCarousel" class="carousel slide">
-      <div class="carousel-inner">
-        <div class="item active">
-          <%= image_tag('/assets/slide1.png') %>
-          <div class="carousel-caption">
-            <h4>You Teach, We'll Grade</h4>
-            <p>
-              Gradesnap provides teachers with the ability to grade exams from anywhere in the world, all while automatically generating an entire suite of statistics.
-            </p>
-          </div>
-        </div>
-        <div class="item">
-          <%= image_tag('/assets/slide3.png') %>
-          <div class="carousel-caption">
-            <h4>STOP Wasting Time</h4>
-            <p>
-              Gradesnap is a product for teachers. We aim to save you time so you can focus on what you get paid to do, teach.
-            </p>
-          </div>
-        </div>
-        <div class="item">
-          <%= image_tag('/assets/slide2.png') %>
-          <div class="carousel-caption">
-            <h4>Relax With Gradesnap</h4>
-            <p>
-              Because Gradesnap saves you time, you can now focus on what matters to you. Making Grading a snap means making you happy.
-            </p>
-          </div>
-        </div>
-      </div>
-      <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-      <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
-    </div>
-    <div class="alert alert-info"> <strong>The Future Of Grading |</strong>
-      Gradesnap makes grading a one click process...oh yeah we'll calculate all the stats for you too!
-    </div>
-  </div>
-</div>
-<!-- END images slider -->
+<%= render :partial => 'logo' %>
+<%= render :partial => 'slider' %>
 <!-- first row -->
 <div class="lowerBody">
   <div class="container">
