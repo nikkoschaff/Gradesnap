@@ -233,7 +233,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
-  bcrypt-ruby
+  bcrypt-ruby (~> 3.0.0)
   bootstrap-sass
   bson_ext
   capistrano
