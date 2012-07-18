@@ -14,7 +14,6 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'annotate'
   gem 'bootstrap-sass'
-  gem 'bcrypt-ruby'
   gem 'twitter-bootstrap-rails'
   gem 'jbuilder'
   gem 'google-code-prettify-rails'
@@ -41,7 +40,7 @@ gem "jquery-fileupload-rails"
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+ gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

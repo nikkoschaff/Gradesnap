@@ -3,15 +3,36 @@
   <head>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
+  <style type="text/css">
+    body{
+      background-color: #444444;
+      color: #ffffff;
+      font-family: "helvetica neue", arial, sans-serif;
+    }
+    h1{
+      font-weight: 100;
+    }
+.mailText{
+  background-color: #cccccc;
+  color: #333333;
+  padding: 10px;
+  border-radius: 5px;
+}
+  </style>
   <body>
-    <h1>Welcome to gradesnap.com, <%= @user.name %>!</h1>
+
+    <h1>Welcome to Gradesnap Beta!, <%= @user.name %>!</h1>
+  <div class="mailText">
     <p>
-      You have successfully signed up to gradesnap.com,
+      You have successfully signed up as a beta member for Gradesnap. 
+      <br/>
+      <br/>You are awesome!
       your login name is: <%= @user.email %>.<br/>
     </p>
     <p>
       To login to the site, just follow this link: <%= @url %>.
     </p>
     <p>Thanks for joining and have a great day!</p>
+  </div>
   </body>
 </html>

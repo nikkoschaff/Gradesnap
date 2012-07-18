@@ -10,20 +10,7 @@
   <%= "Flash assignment: " + flash[:assignment]%>
   <% end %>
 
-  <div class="studentResults">
-    <p>
-    <%= link_to "(Key Image)", :action => 'show', :controller => 'scansheets', :id => @assignment.answer_scansheet.id, :student_name => "(Key Image)" %>
 
-    <!-- TODO set to work for student names and CORRECT link to student ID -->
-    <h2>Student Results</h2>
-    <% @assignmentstudents = AssignmentStudents.where("assignment_id=?",@assignment.id) %>
-    <% @assignmentstudents.each do |student| %>
-      <%= link_to "#{student.id}", :action => 'show', :controller => 'students' %>  
-      <%= "Grade: #{student.grade}" %>
-      <% sd = studentFromScansheetId %>
-      <%= link_to "Image", :action => 'show', :controller => 'scansheets', :id => student.scansheet_id, :student_name => "#{sd.first_name} #{sd.middle_name} #{sd.last_name}", :student_id => sd.id %>
-    <% end %>
-  </div>
 
   <!-- Error report if any files could not be read -->
   <div class="unreadables">
@@ -75,18 +62,18 @@
       <% incAnsVal = (incorrectAccuracy[count][incAnsKey] * 100).round(2) %>
       <% incKeyStr = incAnsKey.to_a.join %>
 
-	<div class="number">
-		<span><%= "Question number:  #{count+1}" %></span>
-		<br />
-		<br />
-      	<%= "Correct Answer: '#{answerKeyArray[count]}'" %>
-      	<br/>
-      	<%= "Average score for question: #{avgScore}%"%>
-      	<br/>
-      	<%= "Most incorrect answer: '#{incKeyStr}'"%>
-      	<br/>
-      	<%= "Most incorrect answer frequency: #{incAnsVal}%"%>
-      	<br/>
+  <div class="number">
+    <span><%= "Question number:  #{count+1}" %></span>
+    <br />
+    <br />
+        <%= "Correct Answer: '#{answerKeyArray[count]}'" %>
+        <br/>
+        <%= "Average score for question: #{avgScore}%"%>
+        <br/>
+        <%= "Most incorrect answer: '#{incKeyStr}'"%>
+        <br/>
+        <%= "Most incorrect answer frequency: #{incAnsVal}%"%>
+        <br/>
       <% count +=1 %>
     </div>
     <% end %>
@@ -97,18 +84,17 @@
     <h1>Student Results</h1>
 
     <% students = @show_hash_assignment[:students].to_a %>
+    <% ass_students = @show_hash_assignment[:assignmentstudents].to_a %>
+
     <% Rails.logger.info "@stdnts #{@show_hash_assignment[:students].to_a}" %>
-    <% assignmentstudents = AssignmentStudents.where("assignment_id=?",@assignment.id).to_a %>
-    <% Rails.logger.info("@ass_Stdnt  #{assignmentstudents}") %>
+    <% Rails.logger.info("ass_students  #{ass_students}") %>
 
-    <% studentCount = 0 %>
-
-    <% students.each do |student| %>
-      <%= link_to "#{student.first_name} #{student.middle_name} #{student.last_name}",
-        :action => 'show', :controller => 'students' %>  
-      <%= "Grade: #{assignmentstudents[studentCount].grade}" %>
-      <%= link_to "Image", :action => 'show', :controller => 'scansheets', :id => assignmentstudents[studentCount].scansheet_id %>
-      <% studentCount += 1 %>
+    <% ass_students.each do |ass_student| %>
+      <% student = Student.where("id = ?", ass_student.student_id).last %>
+      <%= link_to "#{student.first_name} #{student.middle_name} #{student.last_name}", :action => 'show', :controller => 'students' %>  
+      <%= "Grade: #{ass_student.grade}", :code => "3" %>
+      <%= link_to "Image", :action => 'show', :controller => 'scansheets', :id => ass_student.scansheet_id %>
+      
     <% end %>
   </div>
 

@@ -1,0 +1,89 @@
+<div class="logo">
+  <div class="container">
+    <%= image_tag('/assets/logo.png') %>
+    <%= image_tag('/assets/current.png' , :class =>'pull-right fux' ) %>
+  </div>
+</div>
+<div class="container">
+   <div class="alert alert-info"> <strong>Login |</strong>
+      below to access your dashboard.
+    </div>
+  </div>
+<div class="preLogin">
+  <div class="container">
+      <%= form_tag :action=> "login" %>
+      <h3>Login</h3>
+      <h4><% if session[:user] != nil %>
+        <%= session[:user].email %>
+      <% else %>
+        <%=h "There is currently no one logged in" %>
+      <% end %></h4>
+      <label for="user_login">Email:</label><br/>
+      <%= text_field "user", "email", :size => 20 %><br/>
+      <label for="user_password">Password:</label><br/>
+      <%= password_field "user", "password", :size => 20 %><br/>
+      <%= submit_tag "Submit", :class =>'btn btn-success'%>
+      <div class="forgot">
+        <%= link_to 'Forgot password', :action => 'forgot_password', :controller => 'prelogins' %>
+      </div>
+      <% $end -%>
+    </div>
+  </div>
+  <div class="datHeader">
+    <div class="container">
+       <div class="row">
+        <!-- -->
+         <div class="span4">
+          <p>
+          </p>
+          <p>
+          </p>
+        </div>
+        <!-- -->
+         <div class="span4">
+          <p>
+            <p></p>
+          </p>
+          <p>
+          </p>
+        </div>
+        <!-- -->
+         <div class="span4">
+          <p>
+           
+          </p>
+       
+        </div>
+        <!-- -->
+       </div>
+      </div>
+  </div>
+<div class="datHeader">
+    <div class="container">
+       <div class="row">
+        <!-- -->
+         <div class="span4">
+          <p>
+          </p>
+          <p>
+          </p>
+        </div>
+        <!-- -->
+         <div class="span4">
+          <p>
+            <p></p>
+          </p>
+          <p>
+          </p>
+        </div>
+        <!-- -->
+         <div class="span4">
+          <p>
+           
+          </p>
+       
+        </div>
+        <!-- -->
+       </div>
+      </div>
+  </div>

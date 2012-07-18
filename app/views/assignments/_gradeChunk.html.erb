@@ -1,27 +1,35 @@
-</div>
-<div class="mid">
-  <div class="midText">
-  	<div class="dashBoard">
-		<h1>Assignments</h1>
-				
-		 		<ul class="nav nav-tabs">
-    					<li><%= link_to 'Create new test', :action => 'new', :controller => 'assignments' %></li>
-   				</ul>
-   			<div class="template">
-      			<a href="/assets/template.jpg">Test Template</a><br /><br />
-    		</div>     		
-
-			<p class="welCome">Welcome to the Gradesnap grading dashboard. Here you can create 
-			a new test or edit and existing one.</p>
+<div class="thisDash">
+  <h1>
+    <h1>Assignments</h1><br />
+  </h1>
+  <div class="mainNav">
+    <div class="row">
+      <div class="span4">
+        <ul class="nav nav-tabs nav-stacked">
+          <li><%= link_to 'Create new test', :action => 'new', :controller => 'assignments' %></li>
+          <li><a href="/assets/template.jpg">Test Template</a></li>
+        </ul>
+      </div>
+      <div class="span8">
+        <p class="expoEase">
+          Welcome to the Gradesnap grading dashboard. Here you can create a new test or edit and existing one.
+        </p>
+        <hr class="soften"></div>
+    </div>
+  </div>
+  <div class="ass">
 			<h2>All Assignments:</h2>
 			<% if @assignments == [] %>
-				<p>(You currently have no assignments)
+				(You currently have no assignments)
 			<% else %>
 				<% @assignments.each do |assignment| %>
-					<p><%= link_to "#{assignment.name}", :action => 'show', :controller => 'assignments', :id => assignment.id %>
+				<%= link_to "#{assignment.name}", :action => 'show', :controller => 'assignments', :id => assignment.id %>
 				<% end %>
 			<% end %>
-
-		</div>
-    </div>
+</div>
+  <p class="feedMe">
+    Gradesnap is always looking to improve. Please
+    <%= link_to "contact us", :action =>
+    'contact', :controller => 'prelogins' %> with all of your feedback.
+  </p>
 </div>

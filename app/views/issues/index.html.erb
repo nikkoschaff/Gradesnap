@@ -2,10 +2,14 @@
   <div class="container">
   	<h1>All Issues</h1>
   	<% count = 0 %>
-  	<%= @issues.each do |issue| %>
-  		<%= link_to "Issue ##{count}", :action => 'resolve', :controller => 'issues', :id => issue.id %>
-  		<% count += 1 %>
-  	<% end %>
+  	<% unless @issues == [] %>
+	  	<%= @issues.each do |issue| %>
+	  		<%= link_to "#{issue.name}", :action => 'resolve', :controller => 'issues', :id => issue.id %>
+	  		<% count += 1 %>
+	  	<% end %>
+	<% else %>
+		<h2>{There are currently no issues}</h2>  	
+	<% end %>
   </div>
 </div>
 

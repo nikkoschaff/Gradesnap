@@ -1,21 +1,39 @@
+<div class="thisDash">
+  <h1>
+    Welcome To Your Dashboard<br />
+    <span>| clean | simple | easy</span>
+  </h1>
+  <div class="mainNav">
+    <div class="row">
+      <div class="span4">
+        <ul class="nav nav-tabs nav-stacked">
+          <li class="active">
+            <%= link_to 'Home',    :action =>'dashboard',    :controller => 'sessions' %></li>
+          <li>
+            <%= link_to 'Assignments',  :action =>'index', :controller => 'assignments' %></li>
+          <li>
+            <%= link_to 'Statistics',  :action =>'index', :controller => 'stats' %></li>
+          <li>
+            <%= link_to 'Courses', :action =>'index', :controller => 'courses' %></li>
+          <li>
+            <%= link_to "My Account", :action =>'myaccount', :controller => 'sessions' %></li>
+        </ul>
+      </div>
+      <div class="span8">
+        <p class="welCome">
+          Welcome to your Gradesnap Dashboard. Here you can access all of the features available.
+        </p>
+        <p class="expoEase">
+          Right now you are 'Home'. This is where you will be located everytime you log in. As stated before this gives you
+        access to all of Gradesnap's features. To navigate the site please use either the links in the tabs to the left or 
+        alternatively you can navigate using the navigation bar located at the top of the page.
+        </p>
+        <hr class="soften"></div>
+    </div>
   </div>
-<div class="mid">
-  <div class="midText">
-  	<div class="dashBoard">
-      <h1>Welcome To Your Dashboard</h1>
-		        <ul class="nav nav-tabs">
-    				<li class="active"><%= link_to 'Home',    :action => 'dashboard',    :controller => 'sessions' %></li>
-            		<li><%= link_to 'Assignments',  :action => 'index', :controller => 'assignments' %> </li>
-            		<li><%= link_to 'Statistics',  :action => 'index', :controller => 'stats' %> </li>
-               <li><%= link_to 'Courses', :action => 'index', :controller => 'courses' %></li>
-		<li><%= link_to "My Account", :action => 'myaccount', :controller => 'sessions' %></li>
-   				 </ul>  
-		<p class="welCome">Welcome to your Gradesnap Dashboard. Here you can access all of the features available.</p>
-		<p class="expoEase">Right now you are 'Home'. This is where you will be located everytime you log in. As stated before this gives you
-        access to all of Gradesnap's features. To navigate the site please use either the links in the tabs directly above this or 
-        alternatively you can navigate using the black navigation bar located at the top of the page. </p>
-		<hr class="soften">
-		<p class="feedMe">Gradesnap is always looking to improve. Please <%= link_to "contact us", :action => 'contact', :controller => 'prelogins' %> with all of your feedback.</p>
-		</div>
-  </div>
-  </div>
+  <p class="feedMe">
+    Gradesnap is always looking to improve. Please
+    <%= link_to "contact us", :action =>
+    'contact', :controller => 'prelogins' %> with all of your feedback.
+  </p>
+</div>

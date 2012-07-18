@@ -1,0 +1,39 @@
+<div id="flash">
+  <% if flash[:notice] %>
+    <h3 class="info_box"><%= flash[:notice] %></h3>
+  <% end %>
+  <% if flash[:error] %>
+    <h3 class="error_box"><%= flash[:error] %></h3>
+  <% end %>
+</div>
+
+
+   <div class="preLogin">
+    <h3>Join Gradesnap</h3>
+<%= form_tag :action=> "signup" %>
+
+<br/>
+<%= text_field "user", "name", :size => 20 %><br/>
+<%= flash[:notice] %>
+<label for="user_password"><strong>Enter your teacher name!</strong></label>
+<br/>
+
+
+<%= text_field "user", "email", :size => 20 %><br/>
+<%= flash[:notice] %>
+<label for="user_email"><strong>Email</strong></label><br/>
+
+
+<%= password_field "user", "password", :size => 20 %><br/>
+<%= flash[:notice] %>
+<label for="user_password"><strong>Password</strong></label><br/>
+
+
+<%= password_field "user", "password_confirmation", :size => 20 %><br/>
+<%= flash[:notice] %>
+<label for="user_password_confirmation"><strong>Password Confirmation</strong></label><br/>
+
+<%= submit_tag "submit", :class =>'btn btn-success'%>
+<% $end -%>
+    </div>
+   </div>
