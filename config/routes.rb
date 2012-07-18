@@ -2,10 +2,10 @@ Gradesnap::Application.routes.draw do
   resources :scansheets 
   resources :assignments do
     collection do
-      post 'select_course'
-      post 'select_assignment'
-      get 'select_course'
-      get 'select_assignment'
+      get 'mod'
+      post 'post_mod'
+      get 'make'
+      post 'post_make'
     end
   end
   resources :excelsheets do
@@ -17,6 +17,7 @@ Gradesnap::Application.routes.draw do
   resources :prelogins
   resources :assignments
   resources :notifications
+  resources :assignment_students
   resources :sessions
   resources :shared
   resources :stats

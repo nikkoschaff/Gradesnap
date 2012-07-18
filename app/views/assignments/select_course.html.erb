@@ -1,9 +1,0 @@
-<h3>Select Course</h3>
-
-		
-<div>
-	<%= form_for(@course, :url => 'select_assignment') do |f| %>	
-	<%= select(:name, :course, @course_name_array) %>
-	<%= f.submit "Submit" %>
-	<% end %>
-</div>

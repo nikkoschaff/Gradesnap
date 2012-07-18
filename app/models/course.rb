@@ -12,12 +12,16 @@ class Course < ActiveRecord::Base
   validates :name, :presence => true
 
   def courseGrades
-  	students = Student.where("course_id=?", self.id).to_a
-  	grades = Array.new()
-  	students.each { |student|
-  		grades.push(student.grade)
-  	}
-  	grades
+    students = Student.where("course_id=?", self.id).to_a
+    grades = Array.new()
+    students.each { |student|
+      grades.push(student.grade)
+    }
+    grades
   end
 
+  def courseStudents
+    students = Student.where("course_id=?", self.id).to_a
+  end
+  
 end

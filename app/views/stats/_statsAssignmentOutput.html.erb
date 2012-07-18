@@ -92,7 +92,7 @@
     <% ass_students.each do |ass_student| %>
       <% student = Student.where("id = ?", ass_student.student_id).last %>
       <%= link_to "#{student.first_name} #{student.middle_name} #{student.last_name}", :action => 'show', :controller => 'students' %>  
-      <%= "Grade: #{ass_student.grade}", :code => "3" %>
+      <%= "Grade: #{ass_student.grade}" %>
       <%= link_to "Image", :action => 'show', :controller => 'scansheets', :id => ass_student.scansheet_id %>
       
     <% end %>

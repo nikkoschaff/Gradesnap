@@ -12,7 +12,6 @@ class Assignment < ActiveRecord::Base
                   :students,
                   :course_id
 
-
   # One scansheet (key)
   has_one :answer_scansheet, :class_name => "Scansheet", :dependent => :destroy
 
@@ -292,6 +291,19 @@ class Assignment < ActiveRecord::Base
     showHash[:students] = Student.where("course_id=?",self.course_id)
     showHash[:assignmentstudents] = AssignmentStudents.where("assignment_id=?",self.id)
     showHash
+  end
+
+  def updateAssignmentStudents(assignment_info_hash, id)
+    assignment_info_hash[:students].each{ |s|
+      as = AssignmentStudents.where("student_id=?", s.id).to_a.first
+      if as == nil
+        a = AssignmentStudents.new({
+              :assignment_id => id, 
+              :student_id => s.id,
+              :grade => 0.0 })
+        a.save
+      end
+    }
   end
 
 end

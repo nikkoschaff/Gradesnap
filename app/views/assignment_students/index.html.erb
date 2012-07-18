@@ -1,0 +1,28 @@
+<h1>Listing assignment_students</h1>
+
+<table>
+  <tr>
+    <th>Student</th>
+    <th>Assignment</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @assignment_students.each do |assignment_student| %>
+  <tr>
+    <% stdnt = Student.where("id=?", assignment_student.student_id).first %>
+    <% assgnmnt = Assignment.where("id=?", assignment_student.assignment_id).first %>
+    <td><%= "#{stdnt.first_name}  #{stdnt.middle_name}  #{stdnt.last_name}" %></td>
+    <td><%= assgnmnt.name %></td>
+    <td><%= link_to 'Show', assignment_student %></td>
+    <td><%= link_to 'Edit', edit_assignment_student_path(assignment_student) %></td>
+    <td><%= link_to 'Destroy', assignment_student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Assignment student', new_assignment_student_path %> |
+<%= link_to 'Back to Dash', :action=> 'dashboard', :controller => 'sessions' %>

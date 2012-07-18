@@ -1,0 +1,16 @@
+<%= form_for @assignment, :url => { :action => 'post_make' }  do |f| %>
+	<%= f.error_messages %>
+	<p>
+	<%= f.hidden_field :email, :value => session[:user].email  %>
+
+	<% @teacher_id = session[:user].teacher_id %>
+	<% @courses = Course.where( "teacher_id=?", @teacher_id ) %>	
+	<%= f.label :course_id, "Course" %>
+	<%= f.collection_select(:course_id, @courses, :id, :name, :prompt => "Select Course" ) %>
+
+	<%= f.label :name, "Assignment Name:" %>
+    <%= f.text_field :name %><br />
+    <%= f.label :num_questions, "Number of questions:" %>
+	<%= f.text_field :num_questions %><br />
+	<%= f.submit %>
+<% end %>

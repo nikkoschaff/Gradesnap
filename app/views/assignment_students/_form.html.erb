@@ -1,0 +1,22 @@
+<%= form_for(@assignment_student) do |f| %>
+  <% if @assignment_student.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@assignment_student.errors.count, "error") %> prohibited this assignment_student from being saved:</h2>
+
+      <ul>
+      <% @assignment_student.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :grade %><br />
+    <%= f.text_field :grade, :value => @assignment_student.grade%>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update grade"%>
+  </div>
+<% end %>

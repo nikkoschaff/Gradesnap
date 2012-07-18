@@ -1,0 +1,37 @@
+	<% if @students_hash.empty? %>
+		<p>
+			No students.
+		</p>
+	<% elsif !@students_hash.empty? %>
+
+        <div>
+        <% @students_hash.each do |stdnt, ass_stdnt| %>
+        <%  %>
+        	<%= form_for ass_stdnt, :url => {:action => 'post_mod'} do |s| %>
+	        	<div>
+	        		<% s.hidden_field :ass, :value => ass_stdnt %>
+
+	        		<% Rails.logger.info(":ass1 #{ass_stdnt.grade}") %>
+	        		<%= link_to "#{stdnt.first_name}  #{stdnt.middle_name}  #{stdnt.last_name}", stdnt %>
+	        		<%= s.text_field :grade, :value => ass_stdnt.grade %>
+	        		<% Rails.logger.info(":ass2 #{ass_stdnt.grade}") %>
+
+	        	</div>
+        	<p>
+        	<%= s.submit "Update" %>
+        	<% Rails.logger.info(":ass3 #{ass_stdnt.grade}") %>
+
+        	</p>
+        	<% end %>
+        <% end %>
+        </div>
+
+	<% else %>
+		<p>
+			No Assignment ID came through.
+		</p>
+	<% end %>
+
+
+
+

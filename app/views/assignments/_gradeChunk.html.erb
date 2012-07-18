@@ -6,22 +6,28 @@
 				
 		 		<ul class="nav nav-tabs">
     					<li><%= link_to 'Create new test', :action => 'new', :controller => 'assignments' %></li>
+    					<li><%= link_to 'Create skeleton test', :action => 'make', :controller => 'assignments' %></li>
    				</ul>
    			<div class="template">
       			<a href="/assets/template.jpg">Test Template</a><br /><br />
     		</div>     		
 
 			<p class="welCome">Welcome to the Gradesnap grading dashboard. Here you can create 
-			a new test or edit and existing one.</p>
+			a new test or edit an existing one.</p>
 			<h2>All Assignments:</h2>
 			<% if @assignments == [] %>
 				<p>(You currently have no assignments)
 			<% else %>
 				<% @assignments.each do |assignment| %>
-					<p><%= link_to "#{assignment.name}", :action => 'show', :controller => 'assignments', :id => assignment.id %>
+				<p>
+					<%= "#{assignment.name}" %> 
+								|
+					<%= link_to "View", :action => 'show', :controller => 'assignments', :id => assignment.id %> 
+								|
+					<%= link_to "Edit hardcore", :action => 'index', :controller => 'assignment_students', :id => assignment.id %>
+				</p>	
 				<% end %>
 			<% end %>
-
 		</div>
     </div>
 </div>

@@ -273,13 +273,12 @@ end
   def formatAnswersToSimple( answerArr )
       answerArr.join("~")
   end
-
-
+  
 ### GRADING FUNCTIONS ###
 
  # Grades every student according to the keyString, returns array of grades
  # Param: studentArr - Array of student results (alphabetical)
- # Param: keyString  - String of the assignment key (alphabetical)
+ # Param: keyString - String of the assignment key (alphabetical)
  # Return: Array - Array of grades for each student
  def gradeAll( studentArr, keyString )
     grades = []
@@ -292,7 +291,7 @@ end
 
   # Grades a student according to the keyString, returns grade
   # Param: studentString - String of student results (alphabetical)
-  # Param: keyString  - String of the assignment key (alphabetical)
+  # Param: keyString - String of the assignment key (alphabetical)
   # Return: double - Grade of the student
   def gradeStudent( studentString, keyString )
     # Number of correct answers
@@ -315,7 +314,7 @@ end
   def gradeQuestion(studentAns, keyAns )
     # Value of correctness
       score = 0
-      if studentAns == keyAns  then
+      if studentAns == keyAns then
           score = 1
       end
       score
@@ -345,7 +344,7 @@ end
   # Error code 1 - Image could not be loaded
   # Error code 2 - Unable to find calibration points
   # Error code 3 - Unable to calibrate image
-  # Error code 4 - Calibration produced unreadable image  
+  # Error code 4 - Calibration produced unreadable image
   def errorsHash
     errHash = Hash.new()
     errHash["-1.0"] = "Error code 1 - Unable to find calibration points"
@@ -361,3 +360,29 @@ end
   end
 
 
+
+  # Prepares the show hash either course, assignemnt, or student
+  # Param: code (1, 2, or 3), indicates which model to process
+  # param: model (@course, @student, @assignment), refers to which model to use
+  def showHash(code, model)
+    showHash = Hash.new
+    case code
+      when 1 #course
+        showHash[:course] = model
+        showHash[:students] = Student.where("course_id=?",model.id).to_a
+        showHash[:coursestudents] = Coursestudents.where("course_id=?",model.id).to_a
+        return showHash
+
+      when 2 #assignment
+        showHash[:assignment] = model
+        showHash[:students] = Student.where("course_id=?",model.course_id).to_a
+        showHash[:assignmentstudents] = AssignmentStudents.where("assignment_id=?",model.id).to_a
+        return showHash
+
+      when 3 #student
+        showHash[:student] = model
+        showHash[:assignment] = Assignment.where("email=?", session[:user].email).to_a.last
+        showHash[:assignmentstudents] = AssignemntStudents.where("student_id=?", model.id).to_a
+        return showHash
+    end
+  end

@@ -5,16 +5,22 @@ class StudentsController < ApplicationController
     #courseid = Course.find(params[:courseid])
 
     #Go from teacher to list of students
-    @teacher = Teacher.where("id=?", session[:user].teacher_id).to_a.last
     @students = Array.new
-    @teacher.courses.each{ |course|
-      @students.push(course.courseStudents)
+    @courses = Course.where("teacher_id=?",session[:user].teacher_id).to_a
+    student_ids = Array.new
+    @courses.each{ |c|
+      student_ids.push(c.courseStudents)
     }
-
+    student_ids.each{ |array|
+      array.each{ |student|
+        @students.push(student)
+      }
+    }
+    Rails.logger.info( "syndrome #{@students}")
+    @students.uniq!
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @students }
+      format.html #students.html.erb
     end
   end
 

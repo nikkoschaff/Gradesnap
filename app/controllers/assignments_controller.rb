@@ -8,7 +8,7 @@ class AssignmentsController < ApplicationController
 
   def show
     @assignment = Assignment.find(params[:id])    
-    @showHash = @assignment.prepShowAssignment
+    @show_hash_assignment = showHash(2 , @assignment)
     respond_to do |format|
       format.html #show.html.erb
     end
@@ -88,5 +88,77 @@ class AssignmentsController < ApplicationController
   		format.html
   	end
   end
+
+  # the GET side of the skeleton assignment creation
+  def make
+    @assignment = Assignment.new
+    @courses = Course.where( "teacher_id=?", session[:user].teacher_id )  
+
+    respond_to do |format| 
+      format.html
+    end
+  end
+
+  # the POST side of the skeleton assignment creation
+  def post_make
+    @assignment = Assignment.new(params[:assignment])
+    @assignment.course_id = params[:assignment][:course_id]
+    if @assignment.save
+      @assignment.answer_key = ""
+      @assignment.save
+      flash[:assignment_id] = @assignment.id
+      flash.keep
+      redirect_to :action => 'index', :controller => 'assignments'
+    else 
+      redirect_to :action => 'dashboard', :controller => 'sessions'
+    end
+  end
+
+  #Function handles/begins the assignment modification process
+ # def mod
+ #    @assignment = Assignment.where("id=?", params[:id]).first
+ #   @show_hash_assignment = showHash(2, @assignment)
+ #   if @show_hash_assignment
+ #     #Rails.logger.info( "datas1 #{@show_hash_assignment[:students]}")
+ #
+ #     #update assignment students
+ #     #prevent double entry
+ #     @assignment.updateAssignmentStudents(@show_hash_assignment, params[:id])
+ #
+ #     @show_hash_assignment = showHash(2 , @assignment)
+ #
+ #     #assemble hash {student object => assignment_student object}
+ #     @students_hash = Hash.new
+ #     counter = 0
+ #     #Rails.logger.info( "datas2 #{@show_hash_assignment[:students]}")
+ #     @show_hash_assignment[:students].each{ |s|
+ #       @students_hash[s] = @show_hash_assignment[:assignmentstudents][counter]
+ #      counter += 1
+ #     }
+ #     #Rails.logger.info( "datas3 #{@students_hash}")
+ #    #Rails.logger.info( "hrey#{ @show_hash_assignment[:assignmentstudents]}")
+ #     @ass = AssignmentStudents.new
+ #   end
+ #   respond_to do |format| 
+ #     format.html
+ #   end
+ # end
+
+ # def post_mod
+ #   redirect_to :action => 'dashboard', :controller => 'sessions'
+ # end
+
+ # def update
+ #  Rails.logger.info(":ass4 #{@ass}") 
+ #
+ #   ass = AssignmentStudents.find(@ass.id)
+ #    if ass
+ #      ass.grade = params[:grade]
+ #       ass.save
+ #    end
+ #   
+ #   redirect_to :action => 'index', :controller => 'assignments'
+ #
+ # end
 
 end
