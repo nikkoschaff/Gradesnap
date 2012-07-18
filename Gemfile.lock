@@ -1,8 +1,8 @@
 GIT
-  remote: git@github.com:nikkoschaff/gs-imgproc.git
-  revision: 4b6cc0605faa1dacbb9b21080ee4b729a635d870
+  remote: git@github.com:nikkoschaff/gsimgproc.git
+  revision: 99ae22e2ded02751407717c064665c4af9e4208a
   specs:
-    gs-imgproc (1.0)
+    gsimgproc (0.0.1)
 
 GEM
   remote: https://rubygems.org/
@@ -245,7 +245,7 @@ DEPENDENCIES
   dynamic_form
   fog
   google-code-prettify-rails
-  gs-imgproc (= 1.0)!
+  gsimgproc (= 0.0.1)!
   jbuilder
   jquery-fileupload-rails
   jquery-rails

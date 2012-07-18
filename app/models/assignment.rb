@@ -1,3 +1,4 @@
+require("Imgproc")
 class Assignment < ActiveRecord::Base
   # answer_key is a results string, one big string
   # num_questions is the total number of questions

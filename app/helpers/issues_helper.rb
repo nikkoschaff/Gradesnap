@@ -1,3 +1,4 @@
+require("Imgproc")
 module IssuesHelper
 
 	def issueCodeToPagename(code)
