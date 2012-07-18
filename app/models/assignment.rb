@@ -1,3 +1,4 @@
+require("Imgproc")
 class Assignment < ActiveRecord::Base
   # answer_key is a results string, one big string
   # num_questions is the total number of questions
@@ -112,16 +113,18 @@ class Assignment < ActiveRecord::Base
   # => (if everthing was properly found)
   def organizeDecResults( decResults, studentHashNames, sheet ) 
     # Find values for name and results
-    sheet.ambiguous_answers = ""
     decName = decResults.pop
     name = sheet.translateName( decName )
     strResults = formatAnswersToSimple( sheet.translateAllAnswers(decResults) )
     strAmbig = sheet.translateAllAmbig( decResults )
+    sheet.ambiguous_answers = strAmbig
     unless strAmbig == "" then
+      Rails.logger.info("&*(((*(^&(*^*^&(*&^*&^(&(*%&(*&%(^&(^&*^&*&^*^)))))))))))))}")
       course = Course.find(self.course_id)
       teacher_id = Teacher.find(course.teacher_id)
       ambigIssue = Issue.new( :code => 1, :resolved => false,
-       :row_id => sheet.id, :tablename => "Scansheet", :teacher_id => teacher_id )
+       :row_id => sheet.id, :tablename => "Scansheet", :teacher_id => teacher_id, 
+       :name => "Ambiguous Answers" )
       ambigIssue.save
     end
 
@@ -138,7 +141,8 @@ class Assignment < ActiveRecord::Base
       course = Course.find(self.course_id)
       teacher_id = Teacher.find(course.teacher_id)
       nameIssue = Issue.new( :code => 2, :resolved => false,
-       :row_id => sheet.id, :tablename => "Scansheet", :teacher_id => teacher_id )
+       :row_id => sheet.id, :tablename => "Scansheet", :teacher_id => teacher_id,
+       :name => "Name Not Found" )
       nameIssue.save
       @newAssignmentStudent = AssignmentStudents.new({ :assignment_id => self.id,
         :student_id => theStudent.id, :scansheet_id => sheet.id,
@@ -192,16 +196,17 @@ class Assignment < ActiveRecord::Base
         course = Course.find(self.course_id)
         teacher_id = Teacher.find(course.teacher_id)
         ambigIssue = Issue.new( :code => 1, :resolved => false,
-         :row_id => sheet.id, :tablename => "Scansheet", :teacher_id => teacher_id )
+         :row_id => sheet.id, :tablename => "Scansheet", :teacher_id => teacher_id,
+         :name => "Ambiguous Answers" )
         ambigIssue.save
       end
 
       # Enter and save data for the sheet
+      sheet.ambiguous_answers = strAmbig
       sheet.answers_string = decKey
       sheet.save
       self.answer_scansheet = sheet
       keystr = strResults
-      self.scansheets.delete_all
       self.answer_key = keystr
       self.save      
     end

@@ -1,31 +1,42 @@
+require("Imgproc")
 module IssuesHelper
 
-	def issueCodeToPagename
-		code = params[:code]
-		pages = Hash.new()
-		pages["1"] = "answerverify"
-		pages["2"] = "nameverify"
-		pages[code]
+	def issueCodeToPagename(code)
+		case code
+			when 1
+				return "answerverify"
+			when 2 
+				return "nameverify"
+		end
 	end
 
-	def prepAnswerverify
+	def prepAnswerverify(issue)
 		@showHash = Hash.new()
-		@showHash["issue"] = params[:issue]
-		@showHash["pagename"] = issueCodeToPagename(@showHash[:issue].code)
-		filename = Scansheet.find(params[:id]).image.path.split("/").last 
-  		path = "/assets/uploads/scansheet/image/#{params[:id]}/#{filename}"
-  		@showHash["path"] = path
-  		@scansheet = Scansheet.find(@showHash[:issue].row_id)
-  		@showHash["scansheet"] = @scansheet
+		@showHash[:issue] = issue
+		@showHash[:pagename] = issueCodeToPagename(issue.code)
+  		
+  		@scansheet = Scansheet.find(issue.row_id)
+  		@showHash[:scansheet] = @scansheet		
+		
+		filename = @scansheet.image.path.split("/").last
+		# TODO correct output location 
+		iproc = Imgproc.new
+		iproc.prepShowImage("#{@scansheet.image.to_s}",
+		 "#{Rails.root}/app/assets/images/uploads/scansheet/image/#{@scansheet.id}/~#{filename}")
+  		path = "/assets/uploads/scansheet/image/#{@scansheet.id}/~#{filename}"
+  		@showHash[:path] = path
+  		
   		ambigAnswers = @scansheet.ambiguous_answers.split("~")
   		ambigHash = Hash.new
   		ambigAnswers.each { |amb|
-  			astr = amb.split(",")
-  			k = Integer(astr[0])
-  			v = astr[1,astr.size-1]
-  			ambigHash[k] = v
+  			ambarr = amb.split(" ")
+  			ambigHash[Integer(ambarr[0])] = ambarr[1]
   		}
-  		@showHash["ambiguous_answers"] = ambigHash
+  		@showHash[:ambiguous_answers] = ambigHash
+		
+  		assignmentStudent = AssignmentStudents.where("scansheet_id=?",@scansheet.id).to_a.last
+		@showHash[:student] = Student.find(assignmentStudent.student_id)
+
 		@showHash
 	end
 
@@ -34,14 +45,8 @@ module IssuesHelper
 		# TODO function to make necessary changes
 	end
 
-	def prepNameverify
-		@showHash = Hash.new()
-		@showHash["issue"] = params[:issue]
-		@showHash["pagename"] = issueCodeToPagename(@showHash[:issue].code)
-		filename = Scansheet.find(params[:id]).image.path.split("/").last 
-  		path = "/assets/uploads/scansheet/image/#{params[:id]}/#{filename}"
-  		@showHash["path"] = path
-  		@showHash
+	def prepNameverify(issue)
+		#TODO
 	end
 
 end

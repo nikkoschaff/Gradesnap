@@ -30,11 +30,16 @@ Gradesnap::Application.routes.draw do
 		get 'students'
   	end
   end
+  resources :issues do 
+    collection do 
+      get 'resolve'
+      post 'resolve'
+    end
+  end
+
 
   #prelogin page
   root :to => 'prelogins#index'
-
- 
 
   match '/home' => 'prelogins#index'
   match '/features' => 'prelogins#features'
@@ -57,14 +62,7 @@ Gradesnap::Application.routes.draw do
   match '/stats' => 'stats#index'
 
   #assignments pages
-  match '/assignments/key', to: 'assignments#key'
-  match '/assignments/stats_m', to: 'stats#stats_main', :as => 'statsmain'
-
-  #scan pages
-  match '/scansheets' => 'stats#stats_main'
-
-  #spreadsheet pages
-  match '/spreadsheets' => 'stats#stats_main'
+  match '/assignments/key' => 'assignments#key'
 
   # This is a legacy line that should never be used or it de-RESTs the app
   # match ':controller(/:action(/:id))(.:format)'

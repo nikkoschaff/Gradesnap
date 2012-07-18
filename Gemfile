@@ -25,7 +25,7 @@ gem 'therubyracer', :platform => :ruby
 gem 'passenger'
 gem 'rack'
 gem 'dynamic_form'
-gem 'gs-imgproc', "0.0.10", :git => 'git@github.com:nikkoschaff/gs-imgproc.git'
+gem 'gsimgproc', '0.0.1', :git => 'git@github.com:nikkoschaff/gsimgproc.git'
 gem 'carrierwave'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'carrierwave-sequel', :require => 'carrierwave/sequel'
