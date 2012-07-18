@@ -3,8 +3,8 @@ class StudentsController < ApplicationController
   # GET /students.json
   def index
     #courseid = Course.find(params[:courseid])
-
     #Go from teacher to list of students
+
     @students = Array.new
     @courses = Course.where("teacher_id=?",session[:user].teacher_id).to_a
     student_ids = Array.new
@@ -18,6 +18,7 @@ class StudentsController < ApplicationController
     }
     Rails.logger.info( "syndrome #{@students}")
     @students.uniq!
+
 
     respond_to do |format|
       format.html #students.html.erb

@@ -12,23 +12,28 @@
     <h3>Join Gradesnap</h3>
 <%= form_tag :action=> "signup" %>
 
-<label for="user_password">Enter your teacher name!</label><br/>
+<br/>
 <%= text_field "user", "name", :size => 20 %><br/>
 <%= flash[:notice] %>
+<label for="user_password"><strong>Enter your teacher name!</strong></label>
+<br/>
 
-<label for="user_email">Email</label><br/>
+
 <%= text_field "user", "email", :size => 20 %><br/>
 <%= flash[:notice] %>
+<label for="user_email"><strong>Email</strong></label><br/>
 
-<label for="user_password">Password</label><br/>
+
 <%= password_field "user", "password", :size => 20 %><br/>
 <%= flash[:notice] %>
+<label for="user_password"><strong>Password</strong></label><br/>
 
-<label for="user_password_confirmation">Password Confirmation</label><br/>
+
 <%= password_field "user", "password_confirmation", :size => 20 %><br/>
 <%= flash[:notice] %>
+<label for="user_password_confirmation"><strong>Password Confirmation</strong></label><br/>
 
-<%= submit_tag "submit" %>
+<%= submit_tag "submit", :class =>'btn btn-success'%>
 <% $end -%>
     </div>
    </div>

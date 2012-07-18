@@ -1,12 +1,23 @@
 class IssuesController < ApplicationController
   before_filter :login_required
+  include IssuesHelper
 
   def edit
     #leave empty
   end
 
   def show
-    #leave empty
+    @issue = Issue.find(params[:id])
+    @showHash = Hash.new()
+    case @issue.code
+      when 1
+        @showHash = prepAnswerverify(@issue)
+      when 2
+        @showHash = prepNameverify(@issue)
+    end
+    respond_to do |format|
+      format.html #resolve.html.erb
+    end
   end
 
   def index
@@ -23,12 +34,4 @@ class IssuesController < ApplicationController
   def new
     #leave empty
   end
-
-  def resolve
-    @issue = Issue.find(params[:id])
-    @showHash = prepAnswerverify(@issue)
-    render "#{@showHash[:pagename]}"
-  end
-
-
 end

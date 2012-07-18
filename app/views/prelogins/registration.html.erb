@@ -1,3 +1,4 @@
+  <%= render :partial => 'logo' %>
   <div class="datHeader">
     <div class="container">
        <div class="row">
@@ -10,7 +11,7 @@
           <p>
             Being a beta tester is absolutely free. Sign up as a beta today and be a part of the future of grading.
           </p>
-          <%= button_to 'Sign up for Gradesnap!', :action => 'signup', :class => "btn btn-success", :controller => 'prelogins' %>
+          <button class="btn btn-success bitch"><%= link_to 'Sign up for Gradesnap!', :action => 'signup', :controller => 'prelogins' %></button>
         </div>
         <!-- -->
          <div class="span4">

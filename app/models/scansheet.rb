@@ -125,7 +125,7 @@ class Scansheet < ActiveRecord::Base
   # Return: string - The string value of the resultant bubble
   #
   def translateFromAmbigValue( value, index )
-    ambiguous?(value) ? (('a'..'z').to_a[index]) : (" ")
+    ambiguous?(value) ? (('a'..'z').to_a[index]) : ("")
   end
 
   # translateAmbigRow - Get the full set of letters from an ambig row fill
@@ -137,7 +137,7 @@ class Scansheet < ActiveRecord::Base
     valStr = ""
     index = 0
     valArr.each { |value|
-      valStr += ( translateFromAmbigValue( value, index ) + "," )
+      valStr += ( translateFromAmbigValue( value, index ) )
       index = index + 1
     }
     valStr
@@ -145,14 +145,16 @@ class Scansheet < ActiveRecord::Base
 
 
   # TranslateAmbig - Get ambiguous answers from string of fill values
-  # TODO - only functional for now for usability
   #
   def translateAllAmbig( completeFillArr )
     ambigStr = ""
     ansArr = []
     index = 0
     completeFillArr.each { |fillArr|
-      ansArr.push( "#{index}#{translateAmbigRow( fillArr )}" )
+      result = translateAmbigRow( fillArr )
+      unless result == "" then
+        ansArr.push( "#{index} #{result}" )
+      end
       index += 1
     }
     ambigStr = ansArr.join("~")

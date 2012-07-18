@@ -14,15 +14,13 @@
           <li><%= link_to 'Contact',    :action => 'contact',    :controller => 'prelogins' %></li>
           <li><%= link_to 'Legal',  :action => 'legal',   :controller => 'prelogins' %></li>
           <li><%= link_to 'Registration',    :action => 'registration',    :controller => 'prelogins' %></li>
-          <li><%= link_to 'Login', :action => 'login', :controller => 'prelogins' %></li>
         </ul>
       </div>
     </div>
   </div>
   <ul class="signUp">
-    <li>
-
-      <%#= render :partial => 'logMe' %>
-    </li>
+    <ul class="nav">
+      <li><button class="btn btn-success"><%= link_to 'Login', :action => 'login', :controller => 'prelogins' %></button></li>
+    </ul>
   </ul>
 </div>
