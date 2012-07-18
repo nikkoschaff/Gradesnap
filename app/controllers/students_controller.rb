@@ -3,15 +3,13 @@ class StudentsController < ApplicationController
   # GET /students.json
   def index
     #courseid = Course.find(params[:courseid])
-
     #Go from teacher to list of students
     @teacher = Teacher.where("id=?", session[:user].teacher_id).to_a.last
-    @students = Array.new
+    @students = Array.new()
     @teacher.courses.each{ |course|
-      @students.push(course.courseStudents)
+      morestudents = Student.where("course_id=?",course.id)
+      @students = (@students + morestudents).uniq
     }
-
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @students }

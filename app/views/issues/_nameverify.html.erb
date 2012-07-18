@@ -1,16 +1,28 @@
 <div class="bodyWrapper">
   <div class="container">
-  	<h1>Image Viewer</h1>
-  	<p>
-  	<% unless params[:student_id] == nil %>
-  		Student:
-	  	<%= link_to "#{params[:student_name]}", :action => 'show', :controller => 'students', :id => params[:student_id] %>
-	<% else %>
-		(Key Image)
-	<% end %>
-  	</p>
-  	<%= image_tag(@showHash[:path]) %>
+    <h1>Name Verification</h1>
 
-  	<%= link_to "Back", :action => 'show', :controller => 'stats', :id => assignmentFromScansheetId.id, :code => 2 %>
+    <p>
+    <% unless @showHash[:student] == nil %>
+      Student:
+      <%= link_to "#{@showHash[:student].first_name}", :action => 'show', :controller => 'students', :id => @showHash[:student].id %>
+    <% else %>
+      (Key Image)
+    <% end %>
+    </p>
+
+    <p>Welcome to the Answer Name page.  If you're here, then it means the name read from the sheet doesn't match any of your students in the database.</p>  
+    <p>We've listed the students in the class of this assignment.  Select the student and click the "Done" button when everything is set.  If the student isn't listed you may need to
+      <%= link_to 'Add a new student', :action => 'new', :controller => 'students' %>
+    then return to this page to set things straight</p>
+
+    <div class="image">
+      <%= image_tag(@showHash[:path]) %>
+    </div>
+
+    <%= render :partial => 'form-nameSelect' %>
+
+
+    <%= link_to "Back", :action => 'index', :controller => 'issues' %>
   </div>
 </div>

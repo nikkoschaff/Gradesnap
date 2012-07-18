@@ -10,7 +10,9 @@
       <div class="nav-collapse collapse">
         <ul class="nav">
           <li><%= link_to 'Home',    :action => 'dashboard',    :controller => 'sessions' %></li></li>
+          <li><%= link_to 'Courses', :action => 'index', :controller => 'courses' %></li>
           <li><%= link_to 'Assignments', :action => 'index', :controller => 'assignments' %></li>
+          <li><%= link_to 'Students', :action => 'index', :controller => 'students' %></li>      
           <li><%= link_to 'Statistics',  :action => 'index', :controller => 'stats' %></li>
           <li><%= link_to "Issues (#{currentIssueCount})",  :action => 'index', :controller => 'issues' %></li>
           <li><%= link_to 'My Account',  :action => 'myaccount', :controller => 'sessions' %></li>
