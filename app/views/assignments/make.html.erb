@@ -1,6 +1,10 @@
 <div class="bodyWrapper">
   <div class="container">
-  	<%= render "newMakeChunk" %>
+  	<% if @courses.size > 0 %>
+  	  	<%= render "newMakeChunk" %>
+	<% else %>
+  		<%= render "noCourse" %>
+  	<% end %>
 
   </div>
 </div>

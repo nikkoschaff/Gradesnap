@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 </div>
 <div class="mid">
   <div class="midText">
@@ -15,34 +14,12 @@
 
 			<p class="welCome">Welcome to the Gradesnap grading dashboard. Here you can create 
 			a new test or edit an existing one.</p>
-=======
-<div class="thisDash">
-  <h1>
-    <h1>Assignments</h1><br />
-  </h1>
-  <div class="mainNav">
-    <div class="row">
-      <div class="span4">
-        <ul class="nav nav-tabs nav-stacked">
-          <li><%= link_to 'Create new test', :action => 'new', :controller => 'assignments' %></li>
-          <li><a href="/assets/template.jpg">Test Template</a></li>
-        </ul>
-      </div>
-      <div class="span8">
-        <p class="expoEase">
-          Welcome to the Gradesnap grading dashboard. Here you can create a new test or edit and existing one.
-        </p>
-        <hr class="soften"></div>
-    </div>
-  </div>
-  <div class="ass">
->>>>>>> 44a1334f70d846fc1cb30953312116f75b0ffe9e
+
 			<h2>All Assignments:</h2>
 			<% if @assignments == [] %>
 				(You currently have no assignments)
 			<% else %>
 				<% @assignments.each do |assignment| %>
-<<<<<<< HEAD
 				<p>
 					<%= "#{assignment.name}" %> 
 								|
@@ -54,11 +31,7 @@
 			<% end %>
 		</div>
     </div>
-=======
-				<%= link_to "#{assignment.name}", :action => 'show', :controller => 'assignments', :id => assignment.id %>
-				<% end %>
-			<% end %>
->>>>>>> 44a1334f70d846fc1cb30953312116f75b0ffe9e
+
 </div>
   <p class="feedMe">
     Gradesnap is always looking to improve. Please
