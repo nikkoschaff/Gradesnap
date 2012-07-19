@@ -1,24 +1,15 @@
 <div class="bodyWrapper">
   <div class="container">
-    <h1>Listing courses</h1>
+    <h1 class="">Listing courses</h1>
 
-    <table>
-      <tr>
-        <th>Name</th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
 
     <% @courses.each do |course| %>
-      <tr>
-        <td><%= link_to "#{course.name}", course %></td> | 
-        <td><%= link_to "Statistics", :action => 'show', :controller => 'stats', :id => course.id, :code => "course" %></td>
-      </tr>
+ <%= link_to "#{course.name}", course %>
+     <%= link_to "Statistics", :action => 'show', :controller => 'stats', :id => course.id, :code => "course" %>
+    
     <% end %>
-    </table>
+ 
 
-    <br />
     <%= link_to 'Back', :action => 'dashboard', :controller => "sessions" %> |
     <%= link_to 'New Course', new_course_path %>
 
