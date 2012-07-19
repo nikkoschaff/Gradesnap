@@ -1,0 +1,25 @@
+<%= form_for(@displaysheet) do |f| %>
+  <% if @displaysheet.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@displaysheet.errors.count, "error") %> prohibited this displaysheet from being saved:</h2>
+
+      <ul>
+      <% @displaysheet.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :student %><br />
+    <%= f.text_field :student %>
+  </div>
+  <div class="field">
+    <%= f.label :grade %><br />
+    <%= f.text_field :grade %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -3,14 +3,13 @@
   <div class="midText">
   	<div class="dashBoard">
 		<h1>Assignments</h1>
-				
-		 		<ul class="nav nav-tabs">
-    					<li><%= link_to 'Create new test', :action => 'new', :controller => 'assignments' %></li>
-    					<li><%= link_to 'Create skeleton test', :action => 'make', :controller => 'assignments' %></li>
-   				</ul>
-   			<div class="template">
-      			<a href="/assets/template.jpg">Test Template</a><br /><br />
-    		</div>     		
+ 		<ul class="nav nav-tabs">
+			<li><%= link_to 'Create new test', :action => 'new', :controller => 'assignments' %></li>
+			<li><%= link_to 'Create skeleton test', :action => 'make', :controller => 'assignments' %></li>
+		</ul>
+			<div class="template">
+				<a href="/assets/template.jpg">Test Template</a><br /><br />
+			</div>     		
 
 			<p class="welCome">Welcome to the Gradesnap grading dashboard. Here you can create 
 			a new test or edit an existing one.</p>
@@ -21,11 +20,9 @@
 			<% else %>
 				<% @assignments.each do |assignment| %>
 				<p>
-					<%= "#{assignment.name}" %> 
-								|
-					<%= link_to "View", :action => 'show', :controller => 'assignments', :id => assignment.id %> 
-								|
-					<%= link_to "Edit hardcore", :action => 'index', :controller => 'assignment_students', :id => assignment.id %>
+				<%= link_to "#{assignment.name}", :action => 'show', :controller => 'assignments', :id => assignment.id %> |
+				<%= link_to "Edit", :action => 'index', :controller => 'assignment_students', :id => assignment.id %> |
+				<%= link_to "Statistics", :action => 'show', :controller => 'stats', :id => assignment.id, :code => "assignment" %>
 				</p>	
 				<% end %>
 			<% end %>

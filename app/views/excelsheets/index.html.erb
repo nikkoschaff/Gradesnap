@@ -15,7 +15,6 @@
     <% @excelsheets.each do |excelsheet| %>
       <tr>
         <td><%= excelsheet.name %></td>
-        <td><%= excelsheet.num_q %></td>
         <td><%= link_to 'Show', excelsheet %></td>
         <td><%= link_to 'Edit', edit_excelsheet_path(excelsheet) %></td>
         <td><%= link_to 'Destroy', excelsheet, method: :delete, data: { confirm: 'Are you sure?' } %></td>

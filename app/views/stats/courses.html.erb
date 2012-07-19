@@ -1,9 +1,15 @@
 <div class="bodyWrapper">
     <div class="container">
     	<h1>Stats for Courses</h1>
-    	<% @courses.each do |course| %>
-
-    	<% end %>
-
+		<h2>All Courses:</h2>
+		<% if @courses == [] %>
+			(You currently have no courses)
+		<% else %>
+			<% @courses.each do |course| %>
+			<p>
+			<%= link_to "#{course.name}", :action => 'show', :controller => 'stats', :id => assignment.id, :code => "course" %> 
+			</p>	
+			<% end %>
+		<% end %>
   	</div>
 </div>

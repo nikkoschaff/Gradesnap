@@ -1,6 +1,16 @@
-<% @showHash[:ambiguous_answers].each do |key,value| %>
-	<p>
-	<%= label_tag "#{key+1}" %>
-	<%= form_tag "#{value}" %>
-	</p>
-<% end %>
+<%= form_tag :action => "resolveAnswerverify" %>
+
+	<% @showHash[:ambiguous_answers].each do |key,value| %>
+		<p>
+		<%= label_tag "#{key+1}" %>
+		<%= flash[:notice] %>
+		<%= text_field_tag "#{key+1}", "#{value}" %>
+		</p>
+	<% end %>
+
+	<%= hidden_field_tag "issue_id", "#{@showHash[:issue].id}" %>
+	<%= hidden_field_tag "assignment_student_id", "#{@showHash[:assignmentStudent].id}" %>
+	<%= hidden_field_tag "delpath", "#{@showHash[:delpath]}" %>
+
+	<%= submit_tag "submit", :class =>'btn btn-success' %>
+<% $end -%>

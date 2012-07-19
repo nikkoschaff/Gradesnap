@@ -2,7 +2,7 @@
 
       <ul class="exporting">
         <li>
-        <%= link_to 'View students and grades',:action => 'new',:controller => 'excelsheets' %>
+        <%= link_to 'View students and grades',:action => 'new',:controller => 'displaysheets', :id => @assignment.id %>
         </li>
       </ul>
   <%= "Assignment: " + @assignment.name %>

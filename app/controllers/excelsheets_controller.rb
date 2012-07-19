@@ -1,5 +1,5 @@
-require 'iconv'
-
+# Class handles IMPORTING spreadsheets
+#
 class ExcelsheetsController < ApplicationController
   # GET /spreadsheets
   # GET /spreadsheets.json
@@ -12,36 +12,29 @@ class ExcelsheetsController < ApplicationController
     end
   end
 
-  # GET /spreadsheets/1
-  # GET /spreadsheets/1.json
-#  def show
-#    @spreadsheet = Spreadsheet.find(params[:id])
-#
-#    respond_to do |format|
-#      format.html # show.html.erb
-#      format.json { render json: @spreadsheet }
-#    end
-#  end
-
   # GET /spreadsheets/new
   # GET /spreadsheets/new.json
   def new
-    #@excelsheet = Excelsheet.new
-    @assignment = Assignment.where("email = ?", session[:user].email).last 
-    @students  = AssignmentStudents.where(" assignment_id = ?", @assignment.id)
-    @student_names = Array.new
+    #query students and assignments
+  #  @assignment = Assignment.where("email = ?", session[:user].email).last 
+  #  @students  = AssignmentStudents.where(" assignment_id = ?", @assignment.id)
 
-    @students.each{ |ass_stdnt|
-      stdnt = Student.where("id = ?", ass_stdnt.student_id).last
-      name = stdnt.first_name[0].capitalize + stdnt.middle_name[0] + stdnt.last_name
-      @student_names.push(name)
-    }
+    #gather params for displaysheet
+  #  @student_names = Array.new
+  #  @students.each{ |ass_stdnt|
+  #    stdnt = Student.where("id = ?", ass_stdnt.student_id).last
+  #    name = stdnt.first_name[0].capitalize + stdnt.middle_name[0] + stdnt.last_name
+  #    @student_names.push(name)
+ #   }
+    #create displaysheet
+
 
     respond_to do |format|
       format.html # new.html.erb
-      #format.json { render json: @excelsheets }
-      format.csv { send_data @students.to_csv }
-      format.xls #{ send_data @students.to_csv(col_sep: "\t") }
+  #    format.csv { send_data @displaysheet.to_csv }
+  #    format.xls {  send_data @displaysheet.to_csv(col_sep: "\t")  }
+      #format.xls {  @students }
+
     end
   end
 
@@ -85,5 +78,14 @@ class ExcelsheetsController < ApplicationController
     end
   end
 
+  def destroy
+    @excelsheet = AssignmentStudents.find(params[:id])
+    @excelsheet.destroy
+
+    respond_to do |format|
+      format.html { redirect_to :action => 'index', :controller => 'excelsheets' }
+      format.json
+    end
+  end
 
 end
