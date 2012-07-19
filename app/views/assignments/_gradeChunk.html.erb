@@ -21,7 +21,7 @@
 				<% @assignments.each do |assignment| %>
 				<p>
 				<%= link_to "#{assignment.name}", :action => 'show', :controller => 'assignments', :id => assignment.id %> |
-				<%= link_to "Edit", :action => 'index', :controller => 'assignment_students', :id => assignment.id %> |
+				<%= link_to "Edit (for skeleton)", :action => 'index', :controller => 'assignment_students', :id => assignment.id %> |
 				<%= link_to "Statistics", :action => 'show', :controller => 'stats', :id => assignment.id, :code => "assignment" %>
 				</p>	
 				<% end %>

@@ -11,10 +11,8 @@
       </tr>
 
     <% @courses.each do |course| %>
-      <tr>
         <td><%= link_to "#{course.name}", course %></td> | 
         <td><%= link_to "Statistics", :action => 'show', :controller => 'stats', :id => course.id, :code => "course" %></td>
-      </tr>
     <% end %>
     </table>
 
