@@ -7,7 +7,7 @@ class AssignmentsController < ApplicationController
   end
 
   def show
-    @assignment = Assignment.find(params[:id])    
+    @assignment = Assignment.find(params[:id].to_i)    
     @show_hash_assignment = showHash("assignment" , @assignment)
     respond_to do |format|
       format.html #show.html.erb

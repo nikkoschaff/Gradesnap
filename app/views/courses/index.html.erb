@@ -4,9 +4,10 @@
 
 
     <% @courses.each do |course| %>
- <%= link_to "#{course.name}", course %>
-     <%= link_to "Statistics", :action => 'show', :controller => 'stats', :id => course.id, :code => "course" %>
-    
+
+        <td><%= link_to "#{course.name}", course %></td> | 
+        <td><%= link_to "Statistics", :action => 'show', :controller => 'stats', :id => course.id, :code => "course" %></td>
+
     <% end %>
  
 

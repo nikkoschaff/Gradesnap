@@ -5,8 +5,6 @@ class StatsController < ApplicationController
   # html rendering function
   # this brings the browser to the assignments.html page
   def assignments
-    Rails.logger.info("&@@@@@@@@@@@@@@@@@@@@@@")
-
     @assignments = Assignment.where("email=?",session[:user].email)
 
     respond_to do |format|
@@ -49,7 +47,7 @@ class StatsController < ApplicationController
 ######################################################################
 
   def index
-    @teacher = Teacher.where("id=?", session[:user].teacher_id).to_a.last
+    #@teacher = Teacher.where("id=?", session[:user].teacher_id).to_a.last
     respond_to do |format|
       format.html # index.html.erb
     end    

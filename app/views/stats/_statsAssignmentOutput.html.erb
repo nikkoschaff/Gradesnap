@@ -1,16 +1,11 @@
 <% if @assignment %>
-
-      <ul class="exporting">
-        <li>
-        <%= link_to 'View students and grades',:action => 'new',:controller => 'displaysheets', :id => @assignment.id %>
-        </li>
-      </ul>
   <%= "Assignment: " + @assignment.name %>
-  <% if flash[:assignment] %>
-  <%= "Flash assignment: " + flash[:assignment]%>
-  <% end %>
 
-
+  <ul class="exporting">
+    <li>
+    <%= link_to 'View students and grades',:action => 'new',:controller => 'displaysheets', :id => @assignment.id %>
+    </li>
+  </ul>
 
   <!-- Error report if any files could not be read -->
   <div class="unreadables">
@@ -31,10 +26,7 @@
   <% keyString = @assignment.answer_key %> 
   <% gradeArray = @assignment.grades %>
   <% studentStringArray = @assignment.studentStringArray %>  
-  <% Rails.logger.info("keystring #{keyString}") %>
-  <% Rails.logger.info("Grade array #{gradeArray}") %>
-  <% Rails.logger.info("student string #{studentStringArray}") %>
-  <!-- Handling to ensure that the given information exists for stats -->
+
   <% unless keyString == "" or gradeArray == [] or studentStringArray == [] then %>
 
     <% accuracyArray = answerAccuracy( studentStringArray, keyString) %>
@@ -86,9 +78,6 @@
     <% students = @show_hash_assignment[:students].to_a %>
     <% ass_students = @show_hash_assignment[:assignmentstudents].to_a %>
 
-    <% Rails.logger.info "@stdnts #{@show_hash_assignment[:students].to_a}" %>
-    <% Rails.logger.info("ass_students  #{ass_students}") %>
-
     <% ass_students.each do |ass_student| %>
       <% student = Student.where("id = ?", ass_student.student_id).last %>
       <%= link_to "#{student.first_name} #{student.middle_name} #{student.last_name}", :action => 'show', :controller => 'students' %>  
@@ -97,7 +86,6 @@
       
     <% end %>
   </div>
-
 
 <% else %>
     <p>No data recieved to analyze.  Check to see if the tests were uploaded 
