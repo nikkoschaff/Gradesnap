@@ -11,12 +11,9 @@
     </div>
   <% end %>
 
-  <% if @student.course_id == nil %>
-    <%= f.hidden_field :course_id, :value => @course.id  %>
-  <% else %>
-    <%= f.hidden_field :course_id, :value => @student.course_id  %>
-  <% end %>
-
+  <div class="field">
+    <%= f.collection_select(:course_id, @courses,:id, :name, :prompt => "select" ) %>
+  </div>
 
   <div class="field">
     <%= f.label :first_name %><br />

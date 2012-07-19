@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Student:</b>
+  <%= @displaysheet.student %>
+</p>
+
+<p>
+  <b>Grade:</b>
+  <%= @displaysheet.grade %>
+</p>
+
+
+<%= link_to 'Edit', edit_displaysheet_path(@displaysheet) %> |
+<%= link_to 'Back', displaysheets_path %>
