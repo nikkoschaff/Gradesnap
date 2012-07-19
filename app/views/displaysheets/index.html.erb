@@ -1,0 +1,30 @@
+<div class="bodyWrapper">
+  <div class="container">
+
+<h1>Listing displaysheets</h1>
+
+<table>
+  <tr>
+    <th>Student</th>
+    <th>Grade</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @displaysheets.each do |displaysheet| %>
+  <tr>
+    <td><%= displaysheet.student %></td>
+    <td><%= displaysheet.grade %></td>
+    <td><%= link_to 'Show', displaysheet %></td>
+    <td><%= link_to 'Edit', edit_displaysheet_path(displaysheet) %></td>
+    <td><%= link_to 'Destroy', displaysheet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Displaysheet', new_displaysheet_path %>
+  </div>
+</div>

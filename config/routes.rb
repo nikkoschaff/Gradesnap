@@ -1,4 +1,6 @@
 Gradesnap::Application.routes.draw do
+  resources :displaysheets
+
   resources :scansheets 
   resources :assignments do
     collection do
@@ -64,6 +66,8 @@ Gradesnap::Application.routes.draw do
 
   #assignments pages
   match '/assignments/key' => 'assignments#key'
+
+  #match '/students.xls' => 'excelsheets#students.xls'
 
   # This is a legacy line that should never be used or it de-RESTs the app
   # match ':controller(/:action(/:id))(.:format)'

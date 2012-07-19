@@ -24,7 +24,8 @@
         </p>
 
 
-        <%= link_to 'Back', :action => 'index', :controller => 'assignments' %>
+        <%= link_to 'Back', :action => 'index', :controller => 'assignments' %> ||
+        <%= link_to 'View students and excel', :action => 'new', :controller => 'displaysheets', :id => @show_hash_assignment[:assignment].id %>
         <!-- Currently empty until detailed editing features placed in -->
         <!-- <%= link_to 'Edit', edit_course_path(@assignment) %> | -->
   </div>
