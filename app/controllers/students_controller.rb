@@ -16,7 +16,6 @@ class StudentsController < ApplicationController
         @students.push(student)
       }
     }
-    Rails.logger.info( "syndrome #{@students}")
     @students.uniq!
 
 

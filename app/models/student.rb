@@ -14,14 +14,14 @@ class Student < ActiveRecord::Base
   has_many :assignments, :through => :assignment_students
 
   #Validations
-  validates :first_name, presence: true
+  validates :first_name, :presence => true
   #validates :middle_name, presence: true
-  validates :last_name, presence: true
+  validates :last_name, :presence => true
 
 
   def compileGrade
     grade = 0.0
-    assignmentsDone = AssignmentStudent.where("student_id=?", student.id).to_a
+    assignmentsDone = AssignmentStudents.where("student_id=?", self.id).to_a
     assignmentsDone.each { |assignment|
       grade += assignment.grade
     }

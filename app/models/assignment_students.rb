@@ -14,6 +14,6 @@ class AssignmentStudents < ActiveRecord::Base
   belongs_to :student, class_name: "Student"
 
   #validation
-  validates :assignment_id, presence: true
-  validates :student_id, presence: true
+  validates :assignment_id, :presence => true
+  validates :student_id, :presence => true
 end

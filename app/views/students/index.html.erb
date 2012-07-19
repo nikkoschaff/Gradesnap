@@ -11,20 +11,17 @@
 
     <% @students.each do |student| %>
     <p>
-      <tr>
-            <td><%= link_to "#{student.first_name}  #{student.middle_name}  #{student.last_name}", student %></td>  
-            <b>Current grade:</b>
-            <%= student.grade %>
-      </tr>
+    <tr>
+      <td><%= link_to "#{student.first_name}  #{student.middle_name}  #{student.last_name}", student %></td> | 
+      <td><%= link_to "Statistics", :action => 'show', :controller => 'stats', :id => student.id, :code => "student" %></td> |   
+      <b>Current grade:</b> <%= student.grade %>
+    </tr>
     </p>
     <% end %>
 
     <br />
 
-    <%= link_to 'Back', :action => 'index', :controller => 'courses' %>
-
-    <%= link_to 'Back', :action => 'dashboard', :controller => 'sessions' %>
-
+    <%= link_to 'Back', :action => 'dashboard', :controller => 'sessions' %> |
     <%= link_to 'Add students', :action => 'new', :controller => 'students' %>
   </div>
 </div>

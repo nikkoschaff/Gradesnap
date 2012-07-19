@@ -1,2 +1,11 @@
+<%= form_tag :action => "resolveNameverify" %>
 
+	<%= label_tag "Name" %>
+	<%= text_field_tag "name", "#{@showHash[:name]}" %>
 
+	<%= hidden_field_tag "issue_id", "#{@showHash[:issue].id}" %>
+	<%= hidden_field_tag "assignment_student_id", "#{@showHash[:assignmentStudent].id}" %>
+	<%= hidden_field_tag "delpath", "#{@showHash[:delpath]}" %>
+
+	<%= submit_tag "submit", :class =>'btn btn-success' %>
+<% $end -%>

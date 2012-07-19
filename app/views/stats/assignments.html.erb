@@ -1,7 +1,14 @@
 <div class="bodyWrapper">
     <div class="container">
     	<h1>Stats for Assignments</h1>
-
+		<% if @assignments == [] %>
+			(You currently have no assignments)
+		<% else %>
+			<% @assignments.each do |assignment| %>
+			<p>
+			<%= link_to "#{assignment.name}", :action => 'show', :controller => 'stats', :id => assignment.id, :code => "assignment" %> 
+			</p>	
+			<% end %>
+		<% end %>
   	</div>
 </div>
-

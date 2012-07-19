@@ -59,11 +59,11 @@ Gradesnap::Application.routes.draw do
   match '/my_account' => 'sessions#myaccount'
   match '/payment' => 'sessions#payment'
 
-  #stats pages
-  match '/stats' => 'stats#index'
-
   #assignments pages
   match '/assignments/key' => 'assignments#key'
+
+  #Issue pages
+  match '/issues/resolveAnswerverify' => 'issues#resolveAnswerverify'
 
   # This is a legacy line that should never be used or it de-RESTs the app
   # match ':controller(/:action(/:id))(.:format)'

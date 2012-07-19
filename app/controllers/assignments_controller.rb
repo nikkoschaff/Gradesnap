@@ -8,42 +8,11 @@ class AssignmentsController < ApplicationController
 
   def show
     @assignment = Assignment.find(params[:id])    
-    @show_hash_assignment = showHash(2 , @assignment)
+    @show_hash_assignment = showHash("assignment" , @assignment)
     respond_to do |format|
       format.html #show.html.erb
     end
   end
-
-=begin
-  #Select a course
-  def select_course
-    @courses = Course.all.to_a
-    @course_name_array = Array.new 
-    @courses.each{|element| 
-      @course_name_array.push(element.name)
-    }
-    flash[:course] = @course = "k"  #name of course
-    flash.keep
-    respond_to do |format|
-      format.html
-    end
-  end
-
-  #Select an assignment
-  def select_assignment
-    @assignments = Assignment.all.to_a
-    @assignment_name_array = Array.new 
-    @assignments.each{|element| 
-      @assignment_name_array.push(element.name)
-    }
-    @assignment = "k"  #name of assignment
-    flash[:assignment] = "kno"
-    #flash.keep
-    respond_to do |format|
-      format.html
-    end
-  end
-=end
 
   def index
     @assignments = Assignment.where("email=?", session[:user].email).to_a
@@ -116,7 +85,7 @@ class AssignmentsController < ApplicationController
 
   #Function handles/begins the assignment modification process
  # def mod
- #    @assignment = Assignment.where("id=?", params[:id]).first
+ #   @assignment = Assignment.where("id=?", params[:id]).first
  #   @show_hash_assignment = showHash(2, @assignment)
  #   if @show_hash_assignment
  #     #Rails.logger.info( "datas1 #{@show_hash_assignment[:students]}")
