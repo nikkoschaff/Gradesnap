@@ -1,11 +1,11 @@
 <div class="bodyWrapper">
   <div class="container">
     
-    <h1>New excelsheet</h1>
+    <h1>New importsheet</h1>
     <p>
       Download:
-        <%= link_to "CSV", "new.csv" %> |
-        <%= link_to "Excel", "new.xls" %>
+        <%= link_to "CSV", 'new.csv' %> |
+        <%= link_to "Excel", 'new.xls' %>
     </p>
     <% if @students %>
 
@@ -26,6 +26,6 @@
       </table>
 
     <% end %>
-    <%= link_to 'Back', excelsheets_path %>
+    <%= link_to 'Back', :action => 'index', :controller => 'assignments' %>
   </div>
 </div>

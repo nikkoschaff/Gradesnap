@@ -329,6 +329,7 @@ end
     allSheets = Scansheet.where("assignment_id=?", assignment.id ).to_a
     allAssignmentStudents = AssignmentStudents.where("assignment_id=?", assignment.id).to_a
     gradedSheets = Array.new()
+    gradedSheets.push(assignment.answer_scansheet.id)
     allAssignmentStudents.each{ |student|
       gradedSheets.push(student.scansheet_id)
     }
@@ -337,6 +338,7 @@ end
         unreadables[fname(sheet.image.path)] = sheet.answers_string
       end
     }
+
     unreadables
   end
 
@@ -359,30 +361,27 @@ end
     path.split("/").last
   end
 
-
-
   # Prepares the show hash either course, assignemnt, or student
   # Param: code (1, 2, or 3), indicates which model to process
   # param: model (@course, @student, @assignment), refers to which model to use
   def showHash(code, model)
     showHash = Hash.new
     case code
-      when 1 #course
+      when "course"
         showHash[:course] = model
         showHash[:students] = Student.where("course_id=?",model.id).to_a
-        showHash[:coursestudents] = Coursestudents.where("course_id=?",model.id).to_a
+        showHash[:coursestudents] = CourseStudents.where("course_id=?",model.id).to_a
         return showHash
 
-      when 2 #assignment
+      when "assignment"
         showHash[:assignment] = model
         showHash[:students] = Student.where("course_id=?",model.course_id).to_a
         showHash[:assignmentstudents] = AssignmentStudents.where("assignment_id=?",model.id).to_a
         return showHash
 
-      when 3 #student
+      when "student" 
         showHash[:student] = model
         showHash[:assignment] = Assignment.where("email=?", session[:user].email).to_a.last
-        showHash[:assignmentstudents] = AssignemntStudents.where("student_id=?", model.id).to_a
         return showHash
     end
   end

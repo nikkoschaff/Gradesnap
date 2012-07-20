@@ -4,24 +4,20 @@
 			<div class="midText">
 				<div class="dashBoard">
 					<div class="statisticalStuff">
-						<% case flash[:code] %>
-							<% when "1" %>
+						<% case @code %>
+							<% when "course" %>
 						    	<%= render 'statsCourseOutput' %>
-							<% when "2" %>
+							<% when "assignment" %>
 						    	<%= render 'statsAssignmentOutput' %>
-							<% when "3" %>
+							<% when "student" %>
 						    	<%= render 'statsStudentOutput' %>
 							<% else %>
 								<h1>No course, student, or assignment selected</h1>
 						<% end %>
 					</div>
 				</div>
-            	<%= link_to 'Back', :action => 'index', :controller => 'stats' %>
+            	<%= link_to 'Back', :action => 'index', :controller => "#{@code}s" %>
             </div>
         </div>
     </div>    
 </div>
-
-
-
-

@@ -1,0 +1,25 @@
+<%= form_for(@exportsheet) do |f| %>
+  <% if @exportsheet.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@exportsheet.errors.count, "error") %> prohibited this exportsheet from being saved:</h2>
+
+      <ul>
+      <% @exportsheet.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :student %><br />
+    <%= f.text_field :student %>
+  </div>
+  <div class="field">
+    <%= f.label :grade %><br />
+    <%= f.text_field :grade %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

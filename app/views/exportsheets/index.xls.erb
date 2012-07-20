@@ -1,0 +1,15 @@
+      <table border="1">
+        <tr>
+          <th>Student</th>
+          <th>Grade</th>
+        </tr>
+        <% counter = 1 %>
+        <% @students_hash.each do |s, a| %>
+          <tr>
+            <td><%= s.first_name %></td>
+            <td><%= a.grade %></td>
+          </tr>
+          <% counter += 1 %>
+        <% end %>
+
+      </table>

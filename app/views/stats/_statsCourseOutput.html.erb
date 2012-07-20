@@ -1,23 +1,10 @@
 <% if @course %>
-
   <div class="studentResults">
     <h1>Course Results</h1>
-
-    <% courses = @show_hash_course[:students].to_a %>
-    <% Rails.logger.info "@stdnts #{@show_hash_assignment[:students].to_a}" %>
-    <% assignmentstudents = AssignmentStudents.where("assignment_id=?",@assignment.id).to_a %>
-    <% Rails.logger.info("@ass_Stdnt  #{assignmentstudents}") %>
-
-    <% studentCount = 0 %>
-
-    <% students.each do |student| %>
+    <% @show_hash_course[:students].each do |student| %>
       <%= link_to "#{student.first_name} #{student.middle_name} #{student.last_name}",
         :action => 'show', :controller => 'students' %>  
-      <%= "Grade: #{assignmentstudents[studentCount].grade}" %>
-      <%= link_to "Image", :action => 'show', :controller => 'scansheets', :id => assignmentstudents[studentCount].scansheet_id %>
-      <% studentCount += 1 %>
+      <%= "Grade: #{student.grade}" %>
     <% end %>
   </div>
-
-
 <% end %>

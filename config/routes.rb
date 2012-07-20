@@ -1,4 +1,6 @@
 Gradesnap::Application.routes.draw do
+  resources :exportsheets
+
   resources :scansheets 
   resources :assignments do
     collection do
@@ -8,7 +10,7 @@ Gradesnap::Application.routes.draw do
       post 'post_make'
     end
   end
-  resources :excelsheets do
+  resources :importsheets do
     collection do 
       post 'import'
       get 'import'
@@ -17,7 +19,12 @@ Gradesnap::Application.routes.draw do
   resources :prelogins
   resources :assignments
   resources :notifications
-  resources :assignment_students
+  resources :assignment_students do
+    collection do
+      get 'mod'
+      post 'mod'
+    end
+  end
   resources :sessions
   resources :shared
   resources :stats
@@ -59,11 +66,13 @@ Gradesnap::Application.routes.draw do
   match '/my_account' => 'sessions#myaccount'
   match '/payment' => 'sessions#payment'
 
-  #stats pages
-  match '/stats' => 'stats#index'
-
   #assignments pages
   match '/assignments/key' => 'assignments#key'
+
+  #Issue pages
+  match '/issues/resolveAnswerverify' => 'issues#resolveAnswerverify'
+  match '/issues/resolveNameverify' => 'issues#resolveNameverify'
+
 
   # This is a legacy line that should never be used or it de-RESTs the app
   # match ':controller(/:action(/:id))(.:format)'
