@@ -137,18 +137,18 @@ class Assignment < ActiveRecord::Base
     grade = gradeStudent( strResults, self.answer_key )  
     # If found, then handle data from here.
     unless theStudent == nil then
-      course = Course.find(self.course_id)
-      teacher_id = Teacher.find(course.teacher_id)
-      nameIssue = Issue.new( :code => 2, :resolved => false,
-       :row_id => sheet.id, :tablename => "Scansheet", :teacher_id => teacher_id,
-       :name => "Name Not Found" )
-      nameIssue.save
       @newAssignmentStudent = AssignmentStudents.new({ :assignment_id => self.id,
         :student_id => theStudent.id, :scansheet_id => sheet.id,
         :grade => grade,:results => strResults, :answer_key => self.answer_key })
       theStudent.grade = theStudent.compileGrade
       theStudent.save
     else 
+      course = Course.find(self.course_id)
+      teacher_id = Teacher.find(course.teacher_id)
+      nameIssue = Issue.new( :code => 2, :resolved => false,
+       :row_id => sheet.id, :tablename => "Scansheet", :teacher_id => teacher_id,
+       :name => "Name Not Found" )
+      nameIssue.save      
       nameArr = name.split(",")
       @newStudent = Student.new( :first_name => ("~" + nameArr[0]),
         :middle_name => ("~" + nameArr[1]), :last_name => ("~" + nameArr[2]), :grade => grade,

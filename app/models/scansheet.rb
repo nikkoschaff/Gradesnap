@@ -97,7 +97,7 @@ class Scansheet < ActiveRecord::Base
       val = nameVal - index
       name = name + translateFromFillValue( val, index )
     }
-    newName = (name[0,8] + "," + name[8] + "," + name[9,8])
+    newName = (name[0..7] + "," + name[8] + "," + name[9..16])
     newName
   end
 

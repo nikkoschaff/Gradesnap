@@ -329,6 +329,7 @@ end
     allSheets = Scansheet.where("assignment_id=?", assignment.id ).to_a
     allAssignmentStudents = AssignmentStudents.where("assignment_id=?", assignment.id).to_a
     gradedSheets = Array.new()
+    gradedSheets.push(assignment.answer_scansheet.id)
     allAssignmentStudents.each{ |student|
       gradedSheets.push(student.scansheet_id)
     }
@@ -337,6 +338,7 @@ end
         unreadables[fname(sheet.image.path)] = sheet.answers_string
       end
     }
+
     unreadables
   end
 

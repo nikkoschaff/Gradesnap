@@ -41,18 +41,23 @@ class IssuesController < ApplicationController
       issue_id = params[:issue_id]
       assignment_student_id = params[:assignment_student_id]
       delpath = params[:delpath]
+      ambiguous_answers = params[:ambiguous_answers]
+      assignment_id = params[:assignment_id]
       paramArr = params.to_a
       paramArr.each do |p|
-        if p.first.to_i > 0 then
-          resolved_answers[p.first] = p.last
+        parr = p.to_a
+        rownum = parr.first[0..parr.size-2].to_i
+        if rownum > 0 then
+          rownum -= 1
+          unless resolved_answers.has_key?(rownum)
+            resolved_answers[rownum] = ""
+          end
+          resolved_answers[rownum] = resolved_answers[rownum] + parr.first.last
         end
       end
-      if doAnswerVerify(issue_id, resolved_answers, assignment_student_id, delpath)
-        #Issue.delete(issue_id)
-        redirect_to :action => "index", :controller => 'issues'   
-      else
-        flash[:warning] = "Verification unsuccessful"
-      end
+      doAnswerVerify(resolved_answers, assignment_student_id, delpath, ambiguous_answers, assignment_id)
+      Issue.delete(issue_id)
+      redirect_to :action => "index", :controller => 'issues'   
     else
       flash[:warning] = "Verification unsuccessful"
     end
@@ -60,17 +65,13 @@ class IssuesController < ApplicationController
 
   def resolveNameverify
     if request.post?  
-      resolved_answers = Hash.new()
       issue_id = params[:issue_id]
       assignment_student_id = params[:assignment_student_id]
       delpath = params[:delpath]
-      name = params[:name]
-      if doAnswerVerify(issue_id, resolved_answers, assignment_student_id, delpath)
-        #Issue.delete(issue_id)
-        redirect_to :action => "index", :controller => 'issues'   
-      else
-        flash[:warning] = "Verification unsuccessful"
-      end
+      student_id = params[:student_id]
+      doNameVerify(student_id, assignment_student_id, delpath)
+      Issue.delete(issue_id)
+      redirect_to :action => "index", :controller => 'issues'   
     else
       flash[:warning] = "Verification unsuccessful"
     end

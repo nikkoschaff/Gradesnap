@@ -7,18 +7,18 @@ module IssuesHelper
 		@showHash[:issue] = issue
 		@showHash[:pagename] = issueCodeToPagename(issue.code)
   		
-  		@scansheet = Scansheet.find(issue.row_id)
-  		@showHash[:scansheet] = @scansheet		
+  		scansheet = Scansheet.find(issue.row_id)
+  		@showHash[:scansheet] = scansheet		
 		
-		filename = @scansheet.image.path.split("/").last
+		filename = scansheet.image.path.split("/").last
 		iproc = Imgproc.new
-		iproc.prepShowImage("#{@scansheet.image.to_s}",
-		 "#{Rails.root}/app/assets/images/uploads/scansheet/image/#{@scansheet.id}/~#{filename}")
-  		path = "/assets/uploads/scansheet/image/#{@scansheet.id}/~#{filename}"
+		iproc.prepShowImage("#{scansheet.image.to_s}",
+		 "#{Rails.root}/app/assets/images/uploads/scansheet/image/#{scansheet.id}/~#{filename}")
+  		path = "/assets/uploads/scansheet/image/#{scansheet.id}/~#{filename}"
   		@showHash[:path] = path
-  		@showHash[:delpath] = "#{Rails.root}/app/assets/images/uploads/scansheet/image/#{@scansheet.id}/~#{filename}"
+  		@showHash[:delpath] = "#{Rails.root}/app/assets/images/uploads/scansheet/image/#{scansheet.id}/~#{filename}"
 
-  		ambigAnswers = @scansheet.ambiguous_answers.split("~")
+  		ambigAnswers = scansheet.ambiguous_answers.split("~")
   		ambigHash = Hash.new
   		ambigAnswers.each { |amb|
   			ambarr = amb.split(" ")
@@ -26,37 +26,70 @@ module IssuesHelper
   		}
   		@showHash[:ambiguous_answers] = ambigHash
 		
-  		assignmentStudent = AssignmentStudents.where("scansheet_id=?",@scansheet.id).to_a.last
-		@showHash[:student] = Student.find(assignmentStudent.student_id)
-		@showHash[:assignmentStudent] = assignmentStudent
+
+  		assignment_student = AssignmentStudents.where("scansheet_id=?",scansheet.id).to_a.last
+  		unless assignment_student == nil
+			@showHash[:student] = Student.find(assignment_student.student_id)
+			@showHash[:assignment_student_id] = assignment_student.id
+		else
+			@showHash[:student] = nil
+			@showHash[:assignment_student_id] = nil			
+		end
+		@showHash[:assignment_id] = scansheet.assignment_id
 
 		@showHash
 	end
 
 
-	def doAnswerVerify(issue_id, resolved_answers, assignment_student_id, delpath)
-		status = true
-		issue = Issue.find(issue_id)
-		astu = AssignmentStudents.find(assignment_student_id)
-		results = astu.results.to_a
-		resultsArr = results.split("~")
-		resolveArr = resolved_answers.to_a
-		resolveArr.each { |ans|
-			index = ans.first.to_i - 1 
-			formattedAns = readableAnswerToDatabaseFormat(ans.last)
-			if formattedAns == false then
-				return false
-			end
-			resultsArr[index] = formattedAns
-		}
+	def doAnswerVerify(resolved_answers, 
+		assignment_student_id, delpath, ambiguous_answers, assignment_id)
+		resultsArr = Array.new()
+		assignment = Assignment.find(assignment_id)
+		astu = nil
+		unless assignment_student_id == ""
+			astu = AssignmentStudents.find(assignment_student_id)
+			resultsArr = astu.results.split("~")
+		else 
+			resultsArr = assignment.answer_key.split("~")
+		end
 
-		strResults = resultsArr.join("~")
-		gradeStudent( strResults, astu.answer_key )  
-		student = Student.find(astu.student_id)
-		student.compileGrade
+		resolveArr = resolved_answers.to_a
+		ambigAns = eval(ambiguous_answers)
+		resolveArr.each { |ans|
+			#Set to db format then insert
+			resultsArr[ans.first] = answersToDbFormat(ans.last)
+			ambigAns.delete(ans.first)
+		}
+		# Solve issue of empty fields not coming through as regular params
+		unless ambigAns.empty? then
+			ambigAns.each { |key, value|
+				resultsArr[key.to_i] = " , , , , "
+			}
+		end
+		newResults = resultsArr.join("~")
+
+		# If student, save and update grades, otherwise (key) save and update all
+		unless assignment_student_id == ""
+			astu.results = newResults
+			astu.grade = gradeStudent( astu.results, astu.answer_key )  
+			astu.save!
+			student = Student.find(astu.student_id)
+			student.compileGrade
+			student.save!
+		else
+			assignment.answer_key = newResults
+			assignmentStudents = AssignmentStudents.where("assignment_id=?",assignment.id)
+			assignmentStudents.each { |assStu|
+				assStu.grade = gradeStudent( assStu.results, newResults )
+				assStu.save!
+				student = Student.find(assStu.student_id)
+				student.compileGrade
+				student.save!
+			}
+			assignment.save!
+		end
 
 		FileUtils.remove_file(delpath)
-		status
 	end
 
 	def prepNameverify(issue)
@@ -64,37 +97,47 @@ module IssuesHelper
 		@showHash[:issue] = issue
 		@showHash[:pagename] = issueCodeToPagename(issue.code)
   		
-  		@scansheet = Scansheet.find(issue.row_id)
-  		@showHash[:scansheet] = @scansheet		
+  		scansheet = Scansheet.find(issue.row_id)
 		
-		filename = @scansheet.image.path.split("/").last
+		filename = scansheet.image.path.split("/").last
 		iproc = Imgproc.new
-		iproc.prepShowImage("#{@scansheet.image.to_s}",
-		 "#{Rails.root}/app/assets/images/uploads/scansheet/image/#{@scansheet.id}/~#{filename}")
-  		path = "/assets/uploads/scansheet/image/#{@scansheet.id}/~#{filename}"
+		iproc.prepShowImage("#{scansheet.image.to_s}",
+		 "#{Rails.root}/app/assets/images/uploads/scansheet/image/#{scansheet.id}/~#{filename}")
+  		path = "/assets/uploads/scansheet/image/#{scansheet.id}/~#{filename}"
   		@showHash[:path] = path
-  		@showHash[:delpath] = "#{Rails.root}/app/assets/images/uploads/scansheet/image/#{@scansheet.id}/~#{filename}"
+  		@showHash[:delpath] = "#{Rails.root}/app/assets/images/uploads/scansheet/image/#{scansheet.id}/~#{filename}"
   		
-  		@assignment = Assignment.find(@scansheet.assignment_id)
-  		@showHash[:course] = Course.find(assignment.course_id)
-  		@showHash[:students] = Student.where("course_id=?",@showHash[:course].id)
-		
-  		assignmentStudent = AssignmentStudents.where("scansheet_id=?",@scansheet.id).to_a.last
-		@showHash[:student] = Student.find(assignmentStudent.student_id)
+  		assignment = Assignment.find(scansheet.assignment_id)
+  		course = Course.find(assignment.course_id)
 
-		# TODO get name right
+  		students = Student.where("course_id=?",course.id)
+  		unmatchedStudents = Array.new()
+  		students.each { |student|
+  			if student.first_name[0] == "~"
+  				unmatchedStudents.push(student)
+  			end
+  		}
+
+  		@showHash[:students] = unmatchedStudents
+  		assignmentStudent = AssignmentStudents.where("scansheet_id=?",scansheet.id).to_a.last
+		@showHash[:student] = Student.find(assignmentStudent.student_id)
+		
+		@showHash[:assignmentStudent] = assignmentStudent
 
 		@showHash
 	end
 
 
-	def doNameVerify
-		status = false
-		# TODO function to make necessary changes
-		# - Change student and associations
-		# Delete temp image
-		# Delete temp student
-		status
+	def doNameVerify(student_id, assignment_student_id, delpath)
+		assignmentStudent = AssignmentStudents.find(assignment_student_id)
+		student = Student.find(student_id)
+		oldStudent = assignmentStudent.student_id
+		assignmentStudent.student_id = student_id
+		Student.delete(oldStudent)
+		assignmentStudent.save!
+		student.compileGrade
+		student.save!
+		FileUtils.remove_file(delpath)
 	end
 
 
@@ -107,32 +150,16 @@ module IssuesHelper
 		end
 	end
 
-
-	def readableAnswerToDatabaseFormat( answer )
-		newAns = ""
-		answerArr = answer.split("")
-		fullAnswerArr = "abcde".split("")
-
-		if answer.size < 0 or answer.size > 5
-			return false 
+	def answersToDbFormat(answers)
+		letters = ["a","b","c","d","e"]
+		ansarr = answers.split("")
+		letters.each do |letter|
+			unless ansarr.include?(letter) then
+				letters[letters.index(letter)] = " "
+			end
 		end
-		answerArr.each { |ans|
-			unless ans =~ /[a-e]/
-				return false
-			end
-		}
-
-		count = 0
-		fullAnswerArr.each {
-			unless answerArr.include?(fullAnswerArr[count])
-				fullAnswerArr[count] = " "
-			end
-			count += 1
-		}
-		newAns = fullAnswerArr.join(",")
-		newAns
+		row = letters.join(",")
+		row
 	end
-
-
 
 end

@@ -1,16 +1,23 @@
 <%= form_tag :action => "resolveAnswerverify" %>
 
+	<% letters = ["a","b","c","d","e"] %>
 	<% @showHash[:ambiguous_answers].each do |key,value| %>
 		<p>
-		<%= label_tag "#{key+1}" %>
-		<%= flash[:notice] %>
-		<%= text_field_tag "#{key+1}", "#{value}" %>
+			<%= label_tag "##{key+1}:" %>
+			<% valArr = value.split("") %>
+			<%= flash[:notice] %>
+			<%= label_tag(" a--b--c--d--e") %>
+			<% letters.each do |letter| %>
+				<%= check_box_tag "#{key+1}#{letter}", "yes", valArr.include?(letter) %>	
+			<% end %>
 		</p>
 	<% end %>
 
 	<%= hidden_field_tag "issue_id", "#{@showHash[:issue].id}" %>
-	<%= hidden_field_tag "assignment_student_id", "#{@showHash[:assignmentStudent].id}" %>
+	<%= hidden_field_tag "assignment_student_id", "#{@showHash[:assignment_student_id]}" %>
+	<%= hidden_field_tag "assignment_id", "#{@showHash[:assignment_id]}" %>
 	<%= hidden_field_tag "delpath", "#{@showHash[:delpath]}" %>
+	<%= hidden_field_tag "ambiguous_answers", "#{@showHash[:ambiguous_answers]}" %>
 
 	<%= submit_tag "submit", :class =>'btn btn-success' %>
 <% $end -%>
