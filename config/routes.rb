@@ -64,12 +64,8 @@ Gradesnap::Application.routes.draw do
   #assignments pages
   match '/assignments/key' => 'assignments#key'
 
-<<<<<<< HEAD
   #Issue pages
   match '/issues/resolveAnswerverify' => 'issues#resolveAnswerverify'
-=======
-  #match '/students.xls' => 'excelsheets#students.xls'
->>>>>>> 3b41805691271d445e62ad68e12d756441b700d9
 
   # This is a legacy line that should never be used or it de-RESTs the app
   # match ':controller(/:action(/:id))(.:format)'
