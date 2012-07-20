@@ -1,36 +1,39 @@
 <div class="bodyWrapper">
-  <div class="container">
-   
-</div>
-<div class="mid">
-  <div class="midText">
-  	<div class="dashBoard">
-  		<h1><%= "Account For: " + session[:user].email %></h1>
-<% if session[:user] != nil %>
-   <%= "Current user: " + session[:user].email %>
-<% else %>
-  <%=h "There is currently no one logged in" %>
-<% end %>
+  <div class="container"></div>
+  <div class="mid">
+    <div class="midText">
+      <div class="dashBoard">
+        <div class="container">
+          <h1 class="courseHH">
+            <%= "Account For: " + session[:user].email %></h1>
+          <% if session[:user] != nil %>
+          <%= "Current user: " + session[:user].email %>
+          <% else %>
+          <%=h "There is currently no one logged in" %>
+          <% end %>
+          <div id="light" class="white_content">
+            <h3>Change password</h3>
 
-		<p> <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">Change Password</a></p>
-		<div id="light" class="white_content">This is the lightbox content.
-			<h3>Change password</h3>
+            <%= form_tag :action =>
+            'change_password' %>
+            <label for="user_password">Choose password:</label>
+            <br/>
+            <%= password_field "user", "password", :size =>
+            20, :value=>"" %>
+            <br/>
 
-<%= form_tag :action => 'change_password' %>
+            <label for="user_password_confirmation">Confirm password:</label>
+            <br/>
+            <%= password_field "user", "password_confirmation", :size =>
+            20, :value=>"" %>
+            <br/>
 
-<label for="user_password">Choose password:</label><br/>
-<%= password_field "user", "password", :size => 20, :value=>"" %><br/>
+            <%= submit_tag "Submit" %>
 
-<label for="user_password_confirmation">Confirm password:</label><br/>
-<%= password_field "user", "password_confirmation", :size => 20, :value=>"" %><br/>
-
-<%= submit_tag "Submit" %>
-
- <% $end -%> <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">Close</a></div>
-		<div id="fade" class="black_overlay"></div>
-
-		</div>
+            <% $end -%>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-
-
+</div>
