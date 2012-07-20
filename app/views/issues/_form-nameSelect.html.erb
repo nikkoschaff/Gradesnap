@@ -1,7 +1,6 @@
 <%= form_tag :action => "resolveNameverify" %>
 
-	<%= label_tag "Name" %>
-	<%= text_field_tag "name", "#{@showHash[:name]}" %>
+	<%= select_tag(:student_id, options_from_collection_for_select(	 @showHash[:students], :id, "#{:full_name}", 1), :prompt => "Select Student" ) %>
 
 	<%= hidden_field_tag "issue_id", "#{@showHash[:issue].id}" %>
 	<%= hidden_field_tag "assignment_student_id", "#{@showHash[:assignmentStudent].id}" %>

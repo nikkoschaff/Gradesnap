@@ -3,8 +3,6 @@
 	<%= f.error_messages %>
 	<%= f.hidden_field :email, :value => session[:user].email  %>
 
-	<% @teacher_id = session[:user].teacher_id %>
-	<% @courses = Course.where( "teacher_id=?", @teacher_id ) %>	
 	<%= f.label :course_id, "Select Course" %>
 	<%= f.collection_select(:course_id, @courses, :id, :name, :prompt => "Select Course" ) %>
 

@@ -14,11 +14,12 @@
     <p>Welcome to the Answer Verification page.  If you're here, then it means our algorithm wasn't sure if some of the answer bubbles were filled or not.</p>  
     <p>We've listed the tricky ones and what we think the answer is.  Set the answer and click the "Done" button when everything is set.</p>
 
+    <%= render :partial => 'form-answerBoxes' %>
+
     <div class="image">
       <%= image_tag(@showHash[:path]) %>
     </div>
 
-    <%= render :partial => 'form-answerBoxes' %>
 
   	<%= link_to "Back", :action => 'index', :controller => 'issues' %>
   </div>
