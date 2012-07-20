@@ -1,0 +1,30 @@
+<div class="bodyWrapper">
+  <div class="container">
+
+<h1>Listing exportsheets</h1>
+
+<table>
+  <tr>
+    <th>Student</th>
+    <th>Grade</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @exportsheets.each do |exportsheet| %>
+  <tr>
+    <td><%= exportsheet.student %></td>
+    <td><%= exportsheet.grade %></td>
+    <td><%= link_to 'Show', exportsheet %></td>
+    <td><%= link_to 'Edit', edit_exportsheet_path(exportsheet) %></td>
+    <td><%= link_to 'Destroy', exportsheet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Displaysheet', new_exportsheet_path %>
+  </div>
+</div>

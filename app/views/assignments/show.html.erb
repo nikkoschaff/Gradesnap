@@ -24,7 +24,9 @@
 
 
         <%= link_to 'Back', :action => 'index', :controller => 'assignments' %> ||
-        <%= link_to 'View students and excel', :action => 'new', :controller => 'displaysheets', :id => @show_hash_assignment[:assignment].id %> |
+
+        <%= link_to 'View students and excel', :action => 'new', :controller => 'exportsheets', :id => @show_hash_assignment[:assignment].id %>
+
         <%= link_to "Statistics", :action => 'show', :controller => 'stats', :id => @show_hash_assignment[:assignment].id, :code => "assignment" %>
         <!-- Currently empty until detailed editing features placed in -->
         <!-- <%= link_to 'Edit', edit_course_path(@assignment) %> | -->

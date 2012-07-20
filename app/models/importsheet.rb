@@ -1,9 +1,9 @@
-class Excelsheet < ActiveRecord::Base
+class Importsheet < ActiveRecord::Base
   include Rails.application.routes.url_helpers
 
   mount_uploader :datafile, DatafileUploader
 
-  attr_accessible :datafile, :name#, :num_q
+  attr_accessible :datafile, :name, :course_id
 
   #validates :name, :presence => true
   #validates :num_q, :presence => true
@@ -13,21 +13,22 @@ class Excelsheet < ActiveRecord::Base
 
 
   #Function takes datafile and sets a number of students from it.
-  def datafile_to_students
+  def datafile_to_students(course)
     book = Spreadsheet.open self.datafile.path
 
     counter = 0
     sheet = book.worksheet counter
-
-    unless sheet == nil
-      if @course
-      sheet.each{ |row|
+    Rails.logger.info("dafuq #{course==nil}")
+    if course
+      unless sheet == nil
+        sheet.each{ |row|
           s = Student.new( :first_name  => row[0],
                            :middle_name => row[1],
                            :last_name => row[2], 
-                           :course_id => @course.id)
+                           :course_id => course)
+          Rails.logger.info("dafuq #{s}")
           s.save
-      }
+        }
       counter += 1
       sheet = book.worksheet counter
       end
@@ -40,7 +41,7 @@ class Excelsheet < ActiveRecord::Base
         "name" =>  read_attribute(:datafile),
         "size" => datafile.size,
         "url" => datafile.url,
-        "delete_url" => excelsheet_path(:id => id),
+        "delete_url" => importsheet_path(:id => id),
         "delete_type" => "DELETE" 
       }
     end

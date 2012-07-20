@@ -4,7 +4,10 @@
   <%= render :partial => "scansheets/widget-library" %>    
 <% end %>
 
-<%= form_for @excelsheet, :html => { :multipart => true, :id => "fileupload"  } do |f| %>
+<%= form_for @importsheet ,:html => { :multipart => true, :id => "fileupload"  } do |f| %>
+    <% Rails.logger.info "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#{params[:course_id]}" %>
+
+    <%= f.hidden_field :course_id, :value => params[:course_id] %>
 <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
         <!-- TODO hidden field for gs id -->
 

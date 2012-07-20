@@ -1,14 +1,13 @@
 # Class handles IMPORTING spreadsheets
 #
-class ExcelsheetsController < ApplicationController
+class ImportsheetsController < ApplicationController
   # GET /spreadsheets
   # GET /spreadsheets.json
   def index
-    @excelsheets = Excelsheet.all
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @excelsheets }
+      format.json { render json: @importsheets }
     end
   end
 
@@ -40,26 +39,37 @@ class ExcelsheetsController < ApplicationController
 
   # GET /spreadsheets/1/edit
   def edit
-    @excelsheet = Excelsheet.find(params[:id])
+    @importsheet = Importsheet.find(params[:id])
   end
 
   # POST /spreadsheets
   # POST /spreadsheets.json
   def create 
-    @excelsheet = Excelsheet.new(params[:excelsheet])
-    if @excelsheet.save
+    flash.keep
+    Rails.logger.info "~~~~~~~~~~~~~~~~~~~~~~~~~#{params[:importsheet]}"
+    @importsheet = Importsheet.new(params[:importsheet])
+    Rails.logger.info "@@@@@@@@@@ #{flash[:course_id]}"
+    Rails.logger.info "~~~~~~~~~~~~~~~~~~~~~~~~~#{@importsheet.course_id}"
+
+    if @importsheet.save
       
       #Student creation inc
-      @excelsheet.datafile_to_students
+     # @teacher = Teacher.where("id=?",session[:user].teacher_id )
+     # @course = Course.where("teacher_id=?", session[:user].teacher_id).first
+
+      Rails.logger.info "~~~~~~~~~~~~~~~~~~~~~~~#{@importsheet.course_id}"
+
+      @importsheet.datafile_to_students(@importsheet.course_id)
+      Rails.logger.info "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
       respond_to do |format|
         format.html {
-          render :json => [@excelsheet.to_jq_upload].to_json,
+          render :json => [@importsheet.to_jq_upload].to_json,
                  :content_type => 'text/html',
                  :layout => false
         }
         format.json {
-          render :json => [ @excelsheet.to_jq_upload ].to_json
+          render :json => [ @importsheet.to_jq_upload ].to_json
         }
       end 
     else 
@@ -67,23 +77,23 @@ class ExcelsheetsController < ApplicationController
     end
   end 
 
-
-
   #using roo
   #import a spreadsheet to the db
   def import
-    @excelsheet = Excelsheet.new
+    @course_id = params[:course].to_i
+    flash.keep
+    @importsheet = Importsheet.new
     respond_to do |format|
       format.html # import.html.erb
     end
   end
 
   def destroy
-    @excelsheet = AssignmentStudents.find(params[:id])
-    @excelsheet.destroy
+    @importsheet = AssignmentStudents.find(params[:id])
+    @importsheet.destroy
 
     respond_to do |format|
-      format.html { redirect_to :action => 'index', :controller => 'excelsheets' }
+      format.html { redirect_to :action => 'index', :controller => 'importsheets' }
       format.json
     end
   end

@@ -1,10 +1,10 @@
-<%= form_for(@displaysheet) do |f| %>
-  <% if @displaysheet.errors.any? %>
+<%= form_for(@exportsheet) do |f| %>
+  <% if @exportsheet.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@displaysheet.errors.count, "error") %> prohibited this displaysheet from being saved:</h2>
+      <h2><%= pluralize(@exportsheet.errors.count, "error") %> prohibited this exportsheet from being saved:</h2>
 
       <ul>
-      <% @displaysheet.errors.full_messages.each do |msg| %>
+      <% @exportsheet.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>

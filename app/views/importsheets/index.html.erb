@@ -1,0 +1,29 @@
+<div class="bodyWrapper">
+  <div class="container">
+
+    <h1>Listing importsheets</h1>
+
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Num q</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+
+    <% @importsheets.each do |importsheet| %>
+      <tr>
+        <td><%= importsheet.name %></td>
+        <td><%= link_to 'Show', importsheet %></td>
+        <td><%= link_to 'Edit', edit_importsheet_path(importsheet) %></td>
+        <td><%= link_to 'Destroy', importsheet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+    </table>
+
+    <br />
+
+    <%= link_to 'New Importsheet', :action => "import", :controller => "importsheets" %>
+  </div>
+</div>

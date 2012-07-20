@@ -1,13 +1,13 @@
 <div class="bodyWrapper">
   <div class="container">
     
-    <h1>New excelsheet</h1>
+   <h1>New exportsheet</h1>
     <p>
       Download:
-        <%= link_to "CSV", 'new.csv' %> |
-        <%= link_to "Excel", 'new.xls' %>
+        <%= link_to "CSV", exportsheets_path(format: "csv"), :id => @assignment.id %> |
+        <%= link_to "Excel", exportsheets_path(format: "xls"), :id => @assignment.id %>
     </p>
-    <% if @students %>
+    <% if @students_hash %>
 
       <table border="1">
         <tr>
@@ -15,17 +15,16 @@
           <th>Grade</th>
         </tr>
         <% counter = 1 %>
-        <% @students.each do |s| %>
+        <% @students_hash.each do |s, a| %>
           <tr>
-            <td><%= @student_names[counter] %></td>
-            <td><%= s.grade %></td>
+            <td><%= s.first_name %></td>
+            <td><%= a.grade %></td>
           </tr>
           <% counter += 1 %>
         <% end %>
 
       </table>
-
-    <% end %>
+	<% end %>
     <%= link_to 'Back', :action => 'index', :controller => 'assignments' %>
   </div>
 </div>

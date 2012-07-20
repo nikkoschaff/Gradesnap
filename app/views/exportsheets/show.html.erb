@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Student:</b>
+  <%= @exportsheet.student %>
+</p>
+
+<p>
+  <b>Grade:</b>
+  <%= @exportsheet.grade %>
+</p>
+
+
+<%= link_to 'Edit', edit_exportsheet_path(@exportsheet) %> |
+<%= link_to 'Back', exportsheets_path %>
