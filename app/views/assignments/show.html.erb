@@ -11,18 +11,25 @@
         <%= mean(@show_hash_assignment[:assignment].grades) * 100 %>%
         </p>
         <b>Students:</b><p>
-        <% @show_hash_assignment[:students].each do |stdnt| %>
-            <p>
-            <tr>
-            <td><%= link_to "#{stdnt.first_name}  #{stdnt.middle_name}  #{stdnt.last_name}", stdnt %></td>
-              <b>Grade recieved:</b>
-              <%= stdnt.grade * 100 %>
-            </tr>
+
+        <% if @students_hash != nil %>
+            <% @students_hash.each do |s, as| %>
+                <p>
+                <tr>
+                <td><%= link_to "#{s.first_name}  #{s.middle_name}  #{s.last_name}", s %></td>
+                  <b>Grade recieved:</b>
+                  <%= as.grade * 100 %>
+                </tr>
+                </p>
+            <% end %>
             </p>
+
+        <% else%>
+            <p>
+                No students.
+            </p>
+            
         <% end %>
-        </p>
-
-
         <%= link_to 'Back', :action => 'index', :controller => 'assignments' %> ||
 
         <%= link_to 'View students and excel', :action => 'new', :controller => 'exportsheets', :id => @show_hash_assignment[:assignment].id %>

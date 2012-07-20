@@ -9,6 +9,28 @@ class AssignmentsController < ApplicationController
   def show
     @assignment = Assignment.find(params[:id].to_i)    
     @show_hash_assignment = showHash("assignment" , @assignment)
+
+    if !@show_hash_assignment[:assignmentstudents].empty?
+      
+      # assemble student => ass_stdnt hash 
+      # that hash to be used to write to the exportsheet record
+      @students_hash = Hash.new
+      dem_students = Student.where("course_id = ?", @assignment.course_id)
+      Rails.logger.info("qwy: #{dem_students}")
+      counter = 0
+      @show_hash_assignment[:assignmentstudents].each{ |ass_stdnt|
+        s = dem_students[counter]
+        if !@students_hash.key?(s)  and s != nil then
+          h = Hash.new
+          h[s] = ass_stdnt
+          if h != nil then
+            @students_hash.merge!( h )
+          end
+        end
+        counter += 1
+      }
+      Rails.logger.info("qwz2: #{@students_hash}")
+    end
     respond_to do |format|
       format.html #show.html.erb
     end

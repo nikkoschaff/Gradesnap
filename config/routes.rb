@@ -19,7 +19,12 @@ Gradesnap::Application.routes.draw do
   resources :prelogins
   resources :assignments
   resources :notifications
-  resources :assignment_students
+  resources :assignment_students do
+    collection do
+      get 'mod'
+      post 'mod'
+    end
+  end
   resources :sessions
   resources :shared
   resources :stats
