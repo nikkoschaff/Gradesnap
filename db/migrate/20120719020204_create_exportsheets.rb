@@ -1,6 +1,6 @@
-class CreateDisplaysheets < ActiveRecord::Migration
+class CreateExportsheets < ActiveRecord::Migration
   def self.up
-    create_table :displaysheets do |t|
+    create_table :exportsheets do |t|
       t.string :student
       t.integer :grade
       t.integer :assignment_id
@@ -10,6 +10,6 @@ class CreateDisplaysheets < ActiveRecord::Migration
   end
 
   def self.down
-  	drop_table :displaysheets
+  	drop_table :exportsheets
   end
 end

@@ -1,24 +1,24 @@
-class DisplaysheetsController < ApplicationController
-  # GET /displaysheets
-  # GET /displaysheets.json
+class ExportsheetsController < ApplicationController
+  # GET /exportsheets
+  # GET /exportsheets.json
   def index
-    @displaysheets = Displaysheet.order(:student)
+    @exportsheets = Exportsheet.order(:student)
 
     respond_to do |format|
       format.html # index.html.erb
-      format.csv { send_data @displaysheets.to_csv }
-      format.xls { send_data @displaysheets.to_csv(col_sep: "\t") }  
+      format.csv { send_data @exportsheets.to_csv }
+      format.xls { send_data @exportsheets.to_csv(col_sep: "\t") }  
     end
   end
 
-  # GET /displaysheets/1
-  # GET /displaysheets/1.json
+  # GET /exportsheets/1
+  # GET /exportsheets/1.json
   def show
-    @displaysheet = Displaysheet.find(params[:id])
+    @exportsheet = Exportsheet.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @displaysheet }
+      format.json { render json: @exportsheet }
     end
   end
 
@@ -26,13 +26,13 @@ class DisplaysheetsController < ApplicationController
   def new
     #destroy all traces of an identical assignment before beginning
     #otherwise have the spreadsheet output be completely fucked up
-    Displaysheet.delete_all(:assignment_id => params[:id].to_i)
+    Exportsheet.delete_all(:assignment_id => params[:id].to_i)
     #query students and assignments
     @assignment = Assignment.where("id = ?", params[:id]).to_a.first
     @ass_students  = AssignmentStudents.where(" assignment_id = ?", params[:id]).to_a
     
     # assemble student => ass_stdnt hash 
-    # that hash to be used to write to the displaysheet record
+    # that hash to be used to write to the exportsheet record
     @students_hash = Hash.new
     dem_students = Student.where("course_id = ?", @assignment.course_id)
     Rails.logger.info("qwy: #{dem_students}")
@@ -50,76 +50,76 @@ class DisplaysheetsController < ApplicationController
     }
     Rails.logger.info("qwz: #{@students_hash}")
 
-    #create displaysheets
+    #create exportsheets
     counter = 0
     @students_hash.each{ |stdnt, ass_stdnt|
       if counter == @students_hash.size then
         break
       end
-      @displaysheet = Displaysheet.new({
+      @exportsheet = Exportsheet.new({
       :student => stdnt.first_name,
       :grade => ass_stdnt.grade.to_i,
       :assignment_id => @assignment.id
       })
-      @displaysheet.save
+      @exportsheet.save
       counter +=1
     }
 
     #format html, csv, and xls formats
     respond_to do |format|
       format.html # new.html.erb
-      format.csv { send_data @displaysheet.to_csv }
-      format.xls {  send_data @displaysheet.to_csv(col_sep: "\t")  }
+      format.csv { send_data @exportsheet.to_csv }
+      format.xls {  send_data @exportsheet.to_csv(col_sep: "\t")  }
       #format.xls {  @students }
 
     end
   end
 
-  # GET /displaysheets/1/edit
+  # GET /exportsheets/1/edit
   def edit
-    @displaysheet = Displaysheet.find(params[:id])
+    @exportsheet = Exportsheet.find(params[:id])
   end
 
-  # POST /displaysheets
-  # POST /displaysheets.json
+  # POST /exportsheets
+  # POST /exportsheets.json
  # def create
-  #  @displaysheet = Displaysheet.new(params[:displaysheet])#
+  #  @exportsheet = Exportsheet.new(params[:exportsheet])#
 
   #  respond_to do |format|
-  #    if @displaysheet.save
-  #      format.html { redirect_to @displaysheet, notice: 'Displaysheet was successfully created.' }
-  ##      format.json { render json: @displaysheet, status: :created, location: @displaysheet }
+  #    if @exportsheet.save
+  #      format.html { redirect_to @exportsheet, notice: 'Exportsheet was successfully created.' }
+  ##      format.json { render json: @exportsheet, status: :created, location: @exportsheet }
    #   else
    #     format.html { render action: "new" }
-   #     format.json { render json: @displaysheet.errors, status: :unprocessable_entity }
+   #     format.json { render json: @exportsheet.errors, status: :unprocessable_entity }
    #   end
    # end
   #end
 
-  # PUT /displaysheets/1
-  # PUT /displaysheets/1.json
+  # PUT /exportsheets/1
+  # PUT /exportsheets/1.json
   def update
-    @displaysheet = Displaysheet.find(params[:id])
+    @exportsheet = Exportsheet.find(params[:id])
 
     respond_to do |format|
-      if @displaysheet.update_attributes(params[:displaysheet])
-        format.html { redirect_to @displaysheet, notice: 'Displaysheet was successfully updated.' }
+      if @exportsheet.update_attributes(params[:exportsheet])
+        format.html { redirect_to @exportsheet, notice: 'Exportsheet was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @displaysheet.errors, status: :unprocessable_entity }
+        format.json { render json: @exportsheet.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /displaysheets/1
-  # DELETE /displaysheets/1.json
+  # DELETE /exportsheets/1
+  # DELETE /exportsheets/1.json
   def destroy
-    @displaysheet = Displaysheet.find(params[:id])
-    @displaysheet.destroy
+    @exportsheet = Exportsheet.find(params[:id])
+    @exportsheet.destroy
 
     respond_to do |format|
-      format.html { redirect_to displaysheets_url }
+      format.html { redirect_to exportsheets_url }
       format.json { head :no_content }
     end
   end

@@ -1,6 +1,6 @@
 # Class handles EXPORTING spreadsheets
 #
-class Displaysheet < ActiveRecord::Base
+class Exportsheet < ActiveRecord::Base
   attr_accessible :grade, :student, :assignment_id
 
 

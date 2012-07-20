@@ -1,5 +1,5 @@
 Gradesnap::Application.routes.draw do
-  resources :displaysheets
+  resources :exportsheets
 
   resources :scansheets 
   resources :assignments do
@@ -10,7 +10,7 @@ Gradesnap::Application.routes.draw do
       post 'post_make'
     end
   end
-  resources :excelsheets do
+  resources :importsheets do
     collection do 
       post 'import'
       get 'import'

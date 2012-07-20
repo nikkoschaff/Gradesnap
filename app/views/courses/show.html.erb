@@ -41,8 +41,5 @@
                 <%= link_to 'Edit', edit_course_path(@course) %> |
                 <td><%= link_to 'Destroy', @course, :method => :delete, 
                     :data => { :confirm => 'Are you sure?' }, :key => "value" %></td> |
-                <%= link_to 'Add student', :action => 'new', :controller => 'students', :course => @course.id %>
-
-        </div>
-</div>
-~           
+                <%= link_to 'Add student', :action => 'new', :controller => 'students', :course => @course.id %> |
+                <%= link_to 'Import students', :action => 'import', :controller => 'importsheets', :course_id => @course.id %>

@@ -1,11 +1,11 @@
 
 
-<h1>Excelsheet uploader</h1>
+<h1>Importsheet uploader</h1>
 <p>
 	Word of warning:
 	An invalid file format upload will result in an internal server error. Disregard the message and continue operations.
 </p>
 <%= render 'form' %>
 
-<%= link_to "Finished", :action => 'dashboard', :controller => 'sessions'%>
+<%= link_to "Finished", :action => 'index', :controller => 'students'%>
 <%= render 'shared/footer' %>
