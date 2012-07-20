@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20120711155641) do
     t.string   "tablename"
     t.integer  "row_id"
     t.boolean  "resolved"
+    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
