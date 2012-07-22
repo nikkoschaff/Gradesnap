@@ -116,8 +116,7 @@ module IssuesHelper
   		students.each { |student|
   			#Keep out the obviously unmatched "fake" students
   			unless student.first_name[0] == "~"
-  				gradedAssignmentStudent = AssignmentStudents.where("student_id=? and assignment_id=?"
-  					,student.id,assignment.id)
+  				gradedAssignmentStudent = AssignmentStudents.where("student_id=? AND assignment_id", student.id, assignment.id)
   				# Add if there doesnt exist a record for this student on this assignmen
   				if gradedAssignmentStudent == nil
   					unmatchedStudents.push(student)
