@@ -110,11 +110,18 @@ module IssuesHelper
   		assignment = Assignment.find(scansheet.assignment_id)
   		course = Course.find(assignment.course_id)
 
+  		#Filtering students down to ones who haven't been matched yet.
   		students = Student.where("course_id=?",course.id)
   		unmatchedStudents = Array.new()
   		students.each { |student|
-  			if student.first_name[0] == "~"
-  				unmatchedStudents.push(student)
+  			#Keep out the obviously unmatched "fake" students
+  			unless student.first_name[0] == "~"
+  				gradedAssignmentStudent = AssignmentStudents.where("student_id=? and assignment_id=?"
+  					,student.id,assignment.id)
+  				# Add if there doesnt exist a record for this student on this assignmen
+  				if gradedAssignmentStudent == nil
+  					unmatchedStudents.push(student)
+  				end
   			end
   		}
 
