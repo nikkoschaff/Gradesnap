@@ -3,15 +3,18 @@
 <% if @students_hash %>
   <%= form_tag :action => 'mod' %>
 
+    <%= hidden_field_tag :hash, @students_hash%>
+
     <% @students_hash.each do |s,as| %>
       <p>
-        <%= label_tag "Grade" %>
+        <%=%>
+        <%= label_tag "  Grade" %>
         <%= flash[:notice] %>
-        <%= text_field_tag "Grade", as.grade %>
+        <%= text_field_tag  "#{s.id}" , "grade", :value => as.grade %>
       </p>
-    <% end %>
 
-    <%= submit_tag "submit", :class =>'btn btn-success' %>
+    <% end %>
+    <%= submit_tag "submit", :class =>'btn btn-success'  %>
   <% $end -%>
 
 <% end %>

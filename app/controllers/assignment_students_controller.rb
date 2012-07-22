@@ -104,4 +104,32 @@ class AssignmentStudentsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  #Function handles/begins the assignment modification process
+  def mod
+    Rails.logger.info("point4 #{@list_of_grades}" )
+    Rails.logger.info("point5 #{params}" )
+
+    # get the grade params
+
+    grade_params = Hash.new
+    params.each{ |key, value|
+      begin
+        key = key.to_i
+        if key.kind_of?(Fixnum) && key != 0
+          grade_params[key] = value
+        end
+      rescue Error
+          # ignore
+      end
+    }
+
+    grade_params.each{ |key,value|
+      as = AssignmentStudents.find(key.to_i)
+      as.grade = value
+      as.save
+    } 
+    redirect_to :action => 'index', :controller => 'assignment_students'
+  end
+
 end
