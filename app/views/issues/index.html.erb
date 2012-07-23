@@ -1,10 +1,14 @@
 <div class="bodyWrapper">
   <div class="container">
-  	<h1>All Issues</h1>
+  	<h1 class="courseH">All Issues</h1>
   	<% count = 0 %>
   	<% unless @issues == [] %>
 	  	<% @issues.each do |issue| %>
-	  		<%= link_to "#{issue.name}", :action => 'show', :controller => 'issues', :id => issue.id %><br /><br />
+<div class="backB">
+	  <ul>		
+	  	<li><%= link_to "#{issue.name}", :action => 'show', :controller => 'issues', :id => issue.id %></li>
+	  </ul>
+	</div>
 	  		<% count += 1 %>
 	  	<% end %>
 	<% else %>

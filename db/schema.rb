@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(:version => 20120719020204) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "displaysheets", :force => true do |t|
+  create_table "exportsheets", :force => true do |t|
     t.string   "student"
     t.integer  "grade"
     t.integer  "assignment_id"
@@ -65,9 +65,10 @@ ActiveRecord::Schema.define(:version => 20120719020204) do
     t.datetime "updated_at",    :null => false
   end
 
-  create_table "excelsheets", :force => true do |t|
+  create_table "importsheets", :force => true do |t|
     t.string   "datafile"
     t.string   "name"
+    t.integer  "course_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
