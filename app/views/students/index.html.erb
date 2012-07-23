@@ -1,13 +1,10 @@
 <div class="bodyWrapper">
   <div class="container">
-    <h1>Listing students</h1>
-
-      <tr>
-        <th>Name</th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
+    <h1 class="courseH">Listing students</h1>
+    <h2>Name</h2>
+      <ul class="nav nav-tabs nav-stacked">
+      <li></li>
+    </ul>
 
     <% @students.each do |student| %>
     <p>
@@ -21,7 +18,14 @@
 
     <br />
 
-    <%= link_to 'Back', :action => 'dashboard', :controller => 'sessions' %> |
-    <%= link_to 'Add students', :action => 'new', :controller => 'students' %>
+      <div class="backB">
+        <ul>
+          <li>
+            <%= link_to 'Back', :action => 'dashboard', :controller => 'sessions' %>
+          </li>
+          <li><%= link_to 'Add students', :action => 'new', :controller => 'students' %>
+          </li>
+        </ul>
+      </div>
   </div>
 </div>
