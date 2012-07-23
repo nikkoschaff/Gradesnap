@@ -9,7 +9,8 @@ class StudentsController < ApplicationController
     @courses = Course.where("teacher_id=?",session[:user].teacher_id).to_a
     student_ids = Array.new
     @courses.each{ |c|
-      student_ids.push(c.courseStudents)
+      sIds = Student.where("course_id=?",c.id)
+      student_ids.push(sIds)
     }
     student_ids.each{ |array|
       array.each{ |student|
