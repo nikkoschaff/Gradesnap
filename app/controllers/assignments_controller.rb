@@ -105,35 +105,7 @@ class AssignmentsController < ApplicationController
     end
   end
 
-  #Function handles/begins the assignment modification process
- # def mod
- #   @assignment = Assignment.where("id=?", params[:id]).first
- #   @show_hash_assignment = showHash(2, @assignment)
- #   if @show_hash_assignment
- #     #Rails.logger.info( "datas1 #{@show_hash_assignment[:students]}")
- #
- #     #update assignment students
- #     #prevent double entry
- #     @assignment.updateAssignmentStudents(@show_hash_assignment, params[:id])
- #
- #     @show_hash_assignment = showHash(2 , @assignment)
- #
- #     #assemble hash {student object => assignment_student object}
- #     @students_hash = Hash.new
- #     counter = 0
- #     #Rails.logger.info( "datas2 #{@show_hash_assignment[:students]}")
- #     @show_hash_assignment[:students].each{ |s|
- #       @students_hash[s] = @show_hash_assignment[:assignmentstudents][counter]
- #      counter += 1
- #     }
- #     #Rails.logger.info( "datas3 #{@students_hash}")
- #    #Rails.logger.info( "hrey#{ @show_hash_assignment[:assignmentstudents]}")
- #     @ass = AssignmentStudents.new
- #   end
- #   respond_to do |format| 
- #     format.html
- #   end
- # end
+
 
  # def post_mod
  #   redirect_to :action => 'dashboard', :controller => 'sessions'

@@ -20,7 +20,7 @@ class Course < ActiveRecord::Base
     grades
   end
 
-  def courseStudents
+  def self.courseStudents
     students = Student.where("course_id=?", self.id).to_a
   end
   
