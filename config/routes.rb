@@ -18,6 +18,15 @@ Gradesnap::Application.routes.draw do
   end
   resources :prelogins do
     collection do
+      get 'signup'
+      get 'login'
+      post 'login'
+      get 'forgot_password'
+      get 'features'
+      get 'about'
+      get 'contact'
+      get 'registration'
+      get 'legal'
       get 'confirm_it'
       get 'confirmed_it'
       post 'confirmed_it'

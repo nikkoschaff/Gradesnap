@@ -20,11 +20,15 @@
 SRC="//smarticon.geotrust.com/si.js"></SCRIPT>
 <!-- end  GeoTrust Smart Icon tag --> 
 
-<% if session[:user] == nil %>
+<%= getController %>
+
+<% if session[:user] == nil%>
 	<%= render 'prelogins/main' %>
-<% else %>
+<% elsif session[:user] and getController != 'prelogins' %>
   	<p class="dashBoardUser">
 	<%= render 'shared/loginNave' %>
+<% elsif session[:user] and getController == 'prelogins' %>
+  <%= render 'prelogins/main2' %>
 <% end %>
 
 <%= yield %>

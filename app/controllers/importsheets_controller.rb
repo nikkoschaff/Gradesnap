@@ -1,6 +1,8 @@
 # Class handles IMPORTING spreadsheets
 #
 class ImportsheetsController < ApplicationController
+
+  before_filter :login_required
   # GET /spreadsheets
   # GET /spreadsheets.json
   def index

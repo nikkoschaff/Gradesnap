@@ -1,4 +1,6 @@
 class ExportsheetsController < ApplicationController
+
+  before_filter :login_required
   # GET /exportsheets
   # GET /exportsheets.json
   def index

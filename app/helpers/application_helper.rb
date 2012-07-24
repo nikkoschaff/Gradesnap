@@ -7,4 +7,10 @@ module ApplicationHelper
 		@issues.size
 	end
 
+	def getController
+	  url = request.fullpath 
+	  url_arr = url.split('/') 
+	  controller = url_arr[1]
+	end
+
 end

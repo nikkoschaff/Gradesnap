@@ -55,7 +55,9 @@ class PreloginsController < ApplicationController
         #redirect_to_stored 
      else
         Rails.logger.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-        render "login"
+        respond_to do |format|
+          format.html
+        end
         flash[:warning] = "Login unsuccessful"
       end
     end
@@ -95,19 +97,27 @@ class PreloginsController < ApplicationController
   end
 
   def home
-    render "home"
+    respond_to do |format|
+      format.html
+    end
   end
 
   def features
-	  render "features"
+    respond_to do |format|
+      format.html
+    end 
   end
 
   def legal
-	  render "legal"
+    respond_to do |format|
+      format.html
+    end  
   end
 
   def registration
-    render 'registration'
+    respond_to do |format|
+      format.html
+    end  
   end
 
   def index

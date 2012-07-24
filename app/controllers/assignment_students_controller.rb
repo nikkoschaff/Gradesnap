@@ -1,4 +1,6 @@
 class AssignmentStudentsController < ApplicationController
+
+  before_filter :login_required
   # GET /assignment_students
   # GET /assignment_students.json
   def index
