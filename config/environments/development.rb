@@ -36,6 +36,8 @@ Gradesnap::Application.configure do
   config.assets.debug = true
 
   # Use?
+  # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
+ # config.force_ssl = true
 
 
  # config.reload_plugins = true if RAILS_ENV == ‘development’
