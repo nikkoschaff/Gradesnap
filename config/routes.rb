@@ -65,16 +65,6 @@ Gradesnap::Application.routes.draw do
   #prelogin page
   root :to => 'prelogins#index'
 
-  match '/home' => 'prelogins#index'
-  match '/features' => 'prelogins#features'
-  match '/about' => 'prelogins#about'
-  match '/contact' => 'prelogins#contact'
-  match '/registration' => 'prelogins#registration'
-  match '/forgot_password' => 'prelogins#forgot_password'
-  match '/legal' => 'prelogins#legal'  
-  match '/signup' => 'prelogins#signup'
-  match '/login' => 'prelogins#login'
-
   #session pages
   match '/dashboard' => 'sessions#dashboard'
   match '/logout' => 'sessions#logout'
