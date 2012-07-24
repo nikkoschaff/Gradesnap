@@ -62,6 +62,7 @@ GEM
       carrierwave
       sequel
     choice (0.1.6)
+    client_side_validations (3.1.4)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -248,6 +249,7 @@ DEPENDENCIES
   carrierwave
   carrierwave-mongoid
   carrierwave-sequel
+  client_side_validations
   coffee-rails (~> 3.2.1)
   docsplit
   dynamic_form

@@ -40,7 +40,7 @@ class StudentsController < ApplicationController
   # GET /students/new.json
   def new
     @student = Student.new
-    @courses = Course.where("teacher_id=?", session[:user].teacher_id)
+    @courses = Course.where("teacher_id=?", session[:user].teacher_id.to_a)
 
     respond_to do |format|
       format.html # new.html.erb

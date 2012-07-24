@@ -19,6 +19,7 @@ Gradesnap::Application.routes.draw do
   resources :prelogins do
     collection do
       get 'signup'
+      post 'signup'
       get 'login'
       post 'login'
       get 'forgot_password'

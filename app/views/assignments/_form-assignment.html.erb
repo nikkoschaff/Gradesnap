@@ -1,5 +1,5 @@
 <div class="newTest">
-<%= form_for @assignment, :url => { :action => 'create' }  do |f| %>
+<%= form_for @assignment, :url => { :action => 'create' }, :validate => true  do |f| %>
 	<%= f.error_messages %>
 	<%= f.hidden_field :email, :value => session[:user].email  %>
 

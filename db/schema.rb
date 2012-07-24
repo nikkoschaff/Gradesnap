@@ -116,8 +116,8 @@ ActiveRecord::Schema.define(:version => 20120719020204) do
     t.string   "hashed_password"
     t.string   "email"
     t.string   "salt"
-    t.datetime "created_at"
     t.integer  "teacher_id"
+    t.datetime "created_at"
     t.string   "confirmation_code"
     t.boolean  "confirmed"
   end

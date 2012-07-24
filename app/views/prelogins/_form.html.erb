@@ -1,4 +1,4 @@
-<%= form_for(@prelogin) do |f| %>
+<%= form_for(@prelogin, :validate => true) do |f| %>
   <% if @prelogin.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@prelogin.errors.count, "error") %> prohibited this prelogin from being saved:</h2>

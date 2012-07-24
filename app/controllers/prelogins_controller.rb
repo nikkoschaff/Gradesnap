@@ -9,32 +9,30 @@ class PreloginsController < ApplicationController
 
    # Function invoked to sign-up a new user
    def signup
-    @user = User.new(params[:user])
-    @teacher = Teacher.new(:name => @user.name)
-    if request.post?  
-      if  if validate_recap(params, @user.errors) && @user.save 
-        if @teacher.save 
-          @user.teacher_id = @teacher.id
-          #create confirmation code
-          c_code = random_code(10)
-          @user.confirmation_code = c_code
-          @user.save
-          #send mails
-          # MAILER FUNCTIONS THIS SHIT BREAKS IF THE MAILERS BREAK IF THE SSL CERT BREAKS
-          #UserMailer.welcome_email(@user).deliver
-          #Notifications.welcome_email(@user).deliver
-          flash[:notice] = "Signup successful"
-          # go to home is sign up success
-          session[:user] = User.authenticate(@user.email, @user.password)
-          redirect_to :action => "dashboard", :controller => 'sessions'
-          #redirect_to :action => "confirm_it", :controller => 'prelogins'   
-        end
-      end
-    end
-    else
-        flash[:warning] = "Signup unsuccessful"
-    end
-  end
+     @user = User.new(params[:user])
+     @teacher = Teacher.new(:name => @user.name)
+     @user.teacher = @teacher
+     if request.post?  
+       if validate_recap(params, @user.errors) 
+         if @user.save 
+           if @teacher.save
+             @user.teacher_id = @teacher.id
+             @user.save
+             # MAILER FUNCTIONS THIS SHIT BREAKS IF THE MAILERS BREAK IF THE SSL CERT BREAKS
+             #UserMailer.welcome_email(@user).deliver
+             #Notifications.welcome_email(@user).deliver
+             flash[:notice] = "Signup successful"
+             # go to home is sign up success
+             session[:user] = User.authenticate(@user.email, @user.password)
+             redirect_to :action => "dashboard", :controller => 'sessions'
+             #redirect_to :action => "confirm_it", :controller => 'prelogins' 
+           end
+         end
+       end
+     else
+       flash[:warning] = "Signup unsuccessful"
+     end
+   end
 
   # Function invoked to authenticate a user in login 
   #

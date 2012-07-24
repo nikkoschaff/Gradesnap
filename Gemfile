@@ -9,6 +9,7 @@ gem 'sqlite3'
 gem 'ps'
 gem 'activerecord-postgresql-adapter'
 gem 'ruby-recaptcha'
+gem 'client_side_validations'
 
 # Gems used only for assets and not required
 # in production environments by default.

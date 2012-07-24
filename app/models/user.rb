@@ -12,10 +12,10 @@ class User < ActiveRecord::Base
 
   attr_protected :id, :salt
   attr_accessor :password, :password_confirmation, :confirmation_code, :confirmed
-  attr_writer :teacher_id
-  
 
   belongs_to :teacher, :foreign_key => ":teacher_id"
+  accepts_nested_attributes_for :teacher
+
 
   def self.authenticate(email, pass)
     u=find(:first, :conditions=>["email = ?", email])
