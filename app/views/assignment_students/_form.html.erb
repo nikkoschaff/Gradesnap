@@ -1,4 +1,4 @@
-<%= form_for(@assignment_student) do |f| %>
+<%= form_for(@assignment_student, :validate => true) do |f| %>
   <% if @assignment_student.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@assignment_student.errors.count, "error") %> prohibited this assignment_student from being saved:</h2>

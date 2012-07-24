@@ -4,7 +4,7 @@
   <%= render :partial => "scansheets/widget-library" %>    
 <% end %>
 
-<%= form_for @scansheet, :html => { :multipart => true, :id => "fileupload"  } do |f| %>
+<%= form_for @scansheet, :html => { :multipart => true, :id => "fileupload"  }, :validate => true do |f| %>
 <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
 	<%= f.hidden_field :assignment_id %>
 	<div class="row fileupload-buttonbar">
