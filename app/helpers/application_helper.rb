@@ -1,3 +1,5 @@
+include ReCaptcha::ViewHelper
+
 module ApplicationHelper
 
 	def currentIssueCount

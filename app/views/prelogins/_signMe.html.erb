@@ -33,6 +33,8 @@
 <%= flash[:notice] %>
 <label for="user_password_confirmation"><strong>Password Confirmation</strong></label><br/>
 
+<%= raw(get_captcha(:options => {:theme => 'white', :tabindex => 10})) %>
+
 <%= submit_tag "submit", :class =>'btn btn-success'%>
 <% $end -%>
     </div>

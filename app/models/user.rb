@@ -11,7 +11,8 @@ class User < ActiveRecord::Base
   validates :name, presence: true
 
   attr_protected :id, :salt
-  attr_accessor :password, :password_confirmation
+  attr_accessor :password, :password_confirmation, :confirmation_code, :confirmed
+  attr_writer :teacher_id
   
 
   belongs_to :teacher, :foreign_key => ":teacher_id"

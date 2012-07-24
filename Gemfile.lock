@@ -198,6 +198,7 @@ GEM
       todonotes (>= 0.1.0)
     ruby-hmac (0.4.0)
     ruby-ole (1.2.11.4)
+    ruby-recaptcha (1.0.5)
     rubyzip (0.9.9)
     rvm-capistrano (1.2.5)
       capistrano (>= 2.0.0)
@@ -263,6 +264,7 @@ DEPENDENCIES
   rails (= 3.2.6)
   remotipart
   roo
+  ruby-recaptcha
   rvm-capistrano
   sass-rails (~> 3.2.3)
   spreadsheet

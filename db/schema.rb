@@ -118,6 +118,8 @@ ActiveRecord::Schema.define(:version => 20120719020204) do
     t.string   "salt"
     t.datetime "created_at"
     t.integer  "teacher_id"
+    t.string   "confirmation_code"
+    t.boolean  "confirmed"
   end
 
 end

@@ -16,7 +16,13 @@ Gradesnap::Application.routes.draw do
       get 'import'
     end
   end
-  resources :prelogins
+  resources :prelogins do
+    collection do
+      get 'confirm_it'
+      get 'confirmed_it'
+      post 'confirmed_it'
+    end
+  end
   resources :assignments
   resources :notifications
   resources :assignment_students do
@@ -45,6 +51,7 @@ Gradesnap::Application.routes.draw do
     end
   end
 
+  match "/prelogins/:id/code" => "prelogins#confirmation_code"
 
   #prelogin page
   root :to => 'prelogins#index'
