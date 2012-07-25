@@ -1,3 +1,4 @@
+<% if @students_hash %>
 	<% if @students_hash.empty? %>
 		<p>
 			No students.
@@ -31,6 +32,12 @@
 			No Assignment ID came through.
 		</p>
 	<% end %>
+
+<% else %>
+	<p>
+		The information necessary to render this page did not come through. Please navigate the site through its links.
+	</p>
+<% end %>
 
 
 

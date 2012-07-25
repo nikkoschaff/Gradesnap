@@ -3,7 +3,7 @@
   <%= javascript_include_tag "http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js" %>
   <%= render :partial => "scansheets/widget-library" %>    
 <% end %>
-
+<% if @scansheet %>
 <%= form_for @scansheet, :html => { :multipart => true, :id => "fileupload"  }, :validate => true do |f| %>
 <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
 	<%= f.hidden_field :assignment_id %>
@@ -42,6 +42,12 @@
         <!-- The table listing the files available for upload/download -->
         <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
         </table>
+<% end %>
+<% else %>
+<p>
+    The information necessary to process this page did not come through. Please navigate the site through its links.
+</p>
+
 <% end %>
 
 <%= render :partial => "scansheets/upload-errors" %>

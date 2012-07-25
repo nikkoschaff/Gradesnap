@@ -13,14 +13,13 @@ class PreloginsController < ApplicationController
      @teacher = Teacher.new(:name => @user.name)
      @user.teacher = @teacher
      if request.post?  
-       if validate_recap(params, @user.errors) 
+       if validate_recap(params, @user.errors) #captcha line
          if @user.save 
            if @teacher.save
              @user.teacher_id = @teacher.id
              @user.save
              # MAILER FUNCTIONS THIS SHIT BREAKS IF THE MAILERS BREAK IF THE SSL CERT BREAKS
              #UserMailer.welcome_email(@user).deliver
-             #Notifications.welcome_email(@user).deliver
              flash[:notice] = "Signup successful"
              # go to home is sign up success
              session[:user] = User.authenticate(@user.email, @user.password)
@@ -37,7 +36,7 @@ class PreloginsController < ApplicationController
   # Function invoked to authenticate a user in login 
   #
   # Signup action creates a new user using the parameters it receives. 
-  # It it is a post request (the form was submitted) it tries to save the 
+  # It is a post request (the form was submitted) it tries to save the 
   # new user. If the save operation was successful the user is authenticated and 
   # redirected to the welcome screen. If we fail to save the user 
   # (e.g. if validation fails) we add a warning to the flash and the page renders again. 
@@ -77,7 +76,8 @@ class PreloginsController < ApplicationController
   end
 
 
-  # MAILER FUNCTIONS THIS SHIT BREAKS IF THE MAILERS BREAK IF THE SSL CERT BREAKS
+  # MAILER FUNCTION:
+  # THIS SHIT BREAKS IF THE MAILERS BREAK IF THE SSL CERT BREAKS
   def confirmed_it
     #look up user
     url = request.fullpath
@@ -94,30 +94,35 @@ class PreloginsController < ApplicationController
     redirect_to :action => "signup", :controller => 'prelogins'   
   end
 
+  #Nikko pls
   def home
     respond_to do |format|
       format.html
     end
   end
 
+  #Nikko pls
   def features
     respond_to do |format|
       format.html
     end 
   end
 
+  #Nikko pls
   def legal
     respond_to do |format|
       format.html
     end  
   end
 
+  #Nikko pls
   def registration
     respond_to do |format|
       format.html
     end  
   end
 
+  #Nikko pls
   def index
     @user = User.all
     respond_to do |format|
@@ -125,7 +130,8 @@ class PreloginsController < ApplicationController
     end
   end
 
-  # MAILER FUNCTIONS THIS SHIT BREAKS IF THE MAILERS BREAK IF THE SSL CERT BREAKS
+  # MAILER FUNCTION:
+  # generates a confirmation code 
   def random_code(len)
     #generat a random password consisting of strings and digits
     chars = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a

@@ -1,30 +1,33 @@
 <div class="bodyWrapper">
   <div class="container">
-    
-   <h1>New exportsheet</h1>
-    <p>
-      Download:
-        <%= link_to "CSV", exportsheets_path(format: "csv"), :id => @assignment.id %> |
-        <%= link_to "Excel", exportsheets_path(format: "xls"), :id => @assignment.id %>
-    </p>
-    <% if @students_hash %>
-
-      <table border="1">
-        <tr>
-          <th>Student</th>
-          <th>Grade</th>
-        </tr>
-        <% counter = 1 %>
-        <% @students_hash.each do |s, a| %>
-          <tr>
-            <td><%= s.first_name %></td>
-            <td><%= a.grade %></td>
-          </tr>
-          <% counter += 1 %>
-        <% end %>
-
-      </table>
-	<% end %>
+    <% if @assignment %>
+      <h1>New exportsheet</h1>
+        <p>
+          Download:
+            <%= link_to "CSV", exportsheets_path(format: "csv"), :id => @assignment.id %> |
+            <%= link_to "Excel", exportsheets_path(format: "xls"), :id => @assignment.id %>
+        </p>
+        <% if @students_hash %>
+          <table border="1">
+            <tr>
+              <th>Student</th>
+              <th>Grade</th>
+            </tr>
+            <% counter = 1 %>
+            <% @students_hash.each do |s, a| %>
+              <tr>
+                <td><%= s.first_name %></td>
+                <td><%= a.grade %></td>
+              </tr>
+              <% counter += 1 %>
+            <% end %>
+          </table>
+    	  <% end %>
+    <% else %>
+      <p>
+        The information necessary to render this page did not come through. Please navigate the site through its links.
+       </p>
+    <% end %>
     <%= link_to 'Back', :action => 'index', :controller => 'assignments' %>
   </div>
 </div>

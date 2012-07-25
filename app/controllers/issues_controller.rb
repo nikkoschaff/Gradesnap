@@ -33,6 +33,7 @@ class IssuesController < ApplicationController
 
   def new
     #leave empty
+    redirect_to :action => 'index', :controller => 'issues'
   end
 
   def resolveAnswerverify
