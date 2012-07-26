@@ -71,17 +71,15 @@ module Gradesnap
     config.action_mailer.raise_delivery_errors = true
     config.action_mailer.delivery_method = :smtp
      ActionMailer::Base.smtp_settings = {
-  :address              => "127.0.0.1",
-  :port                 => 587,
-  :domain               => "gradesnap.com",
-  :user_name            => "support@gradesnap.com",
-  :password             => "support",
-  :authentication       => "login",
-  :enable_starttls_auto => false,
-  :openssl_verify_mode  => 'none'
-
-
- }
+        :address              => "127.0.0.1",
+        :port                 => 587,
+        :domain               => "gradesnap.com",
+        :user_name            => "support@gradesnap.com",
+        :password             => "support",
+        :authentication       => "login",
+        :enable_starttls_auto =>  'none',
+        :openssl_verify_mode  =>  OpenSSL::SSL::VERIFY_NONE
+      }
 
   end
 end

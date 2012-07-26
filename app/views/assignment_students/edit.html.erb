@@ -1,6 +1,12 @@
-<h1>Editing assignment_student</h1>
+<% if @assignment_student %>
+	<h1>Editing assignment's students</h1>
 
-<%= render 'form' %>
+	<%= render 'form' %>
 
-<%= link_to 'Show', @assignment_student %> |
-<%= link_to 'Back', assignment_students_path %>
+	<%= link_to 'Show', @assignment_student %> |
+	<%= link_to 'Back', assignment_students_path %>
+<% else %>
+	<p>
+		The information necessary to render this page did not come through. Please navigate the site through its links.
+	</p>
+<% end %>

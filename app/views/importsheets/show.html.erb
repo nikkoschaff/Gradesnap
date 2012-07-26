@@ -1,20 +1,24 @@
 <div class="bodyWrapper">
   	<div class="container">
-
 		<p id="notice"><%= notice %></p>
+		<%if @importsheet %>
+			<p>
+			  <b>Name:</b>
+			  <%= @importsheet.name %>
+			</p>
 
-		<p>
-		  <b>Name:</b>
-		  <%= @importsheet.name %>
-		</p>
-
-		<p>
-		  <b>Num q:</b>
-		  <%= @importsheet.num_q %>
-		</p>
+			<p>
+			  <b>Num q:</b>
+			  <%= @importsheet.num_q %>
+			</p>
 
 
-		<%= link_to 'Edit', edit_importsheet_path(@importsheet) %> |
-		<%= link_to 'Back', importsheet_path %>
+			<%= link_to 'Edit', edit_importsheet_path(@importsheet) %> |
+			<%= link_to 'Back', importsheet_path %>
+		<% else %>
+          <p>
+            The information necessary to render this page did not come through. Please navigate the site through its links.
+          </p>
+        <% end %>
 	</div>
 </div>

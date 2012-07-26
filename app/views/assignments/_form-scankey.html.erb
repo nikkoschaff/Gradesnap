@@ -3,7 +3,7 @@
   <%= javascript_include_tag "//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js" %>
 <% end %>
 
-<%= form_for Scansheet.new, :html => { :multipart => true, :id => "fileupload"  } do |f| %>
+<%= form_for Scansheet.new, :html => { :multipart => true, :id => "fileupload"  }, :validate => true do |f| %>
 <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
         <!-- TODO hidden field for gs id -->
 	<%= f.hidden_field :assignment_id %>

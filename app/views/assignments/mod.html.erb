@@ -1,3 +1,4 @@
+<% if @students_hash %>
 	<% if @students_hash.empty? %>
 		<p>
 			No students.
@@ -7,7 +8,7 @@
         <div>
         <% @students_hash.each do |stdnt, ass_stdnt| %>
         <%  %>
-        	<%= form_for ass_stdnt, :url => {:action => 'post_mod'} do |s| %>
+        	<%= form_for ass_stdnt, :url => {:action => 'post_mod'}, :validate => true do |s| %>
 	        	<div>
 	        		<% s.hidden_field :ass, :value => ass_stdnt %>
 
@@ -31,6 +32,12 @@
 			No Assignment ID came through.
 		</p>
 	<% end %>
+
+<% else %>
+	<p>
+		The information necessary to render this page did not come through. Please navigate the site through its links.
+	</p>
+<% end %>
 
 
 

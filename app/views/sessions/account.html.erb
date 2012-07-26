@@ -5,32 +5,27 @@
       <div class="dashBoard">
         <div class="container">
           <h1 class="courseHH">
-            <%= "Account For: " + session[:user].email %></h1>
-          <% if session[:user] != nil %>
-          <%= "Current user: " + session[:user].email %>
-          <% else %>
-          <%=h "There is currently no one logged in" %>
-          <% end %>
-          <div id="light" class="white_content">
-            <h3>Change password</h3>
+            <% if session[:user] != nil %>
+              <%= "Account For: " + session[:user].email %></h1>
+            <% end %>
+            <div id="light" class="white_content">
+              <h3>Change password</h3>
 
-            <%= form_tag :action =>
-            'change_password' %>
-            <label for="user_password">Choose password:</label>
-            <br/>
-            <%= password_field "user", "password", :size =>
-            20, :value=>"" %>
-            <br/>
+              <%= form_tag :action => 'change_password' %>
+                <label for="user_password">Choose password:</label>
+                <br/>
+                <%= password_field "user", "password", :size =>
+                20, :value=>"" %>
+                <br/>
 
-            <label for="user_password_confirmation">Confirm password:</label>
-            <br/>
-            <%= password_field "user", "password_confirmation", :size =>
-            20, :value=>"" %>
-            <br/>
+                <label for="user_password_confirmation">Confirm password:</label>
+                <br/>
+                <%= password_field "user", "password_confirmation", :size =>
+                20, :value=>"" %>
+                <br/>
+              <%= submit_tag "Submit" %>
 
-            <%= submit_tag "Submit" %>
-
-            <% $end -%>
+              <% $end -%>
           </div>
         </div>
       </div>

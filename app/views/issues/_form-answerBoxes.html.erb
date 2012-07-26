@@ -1,4 +1,4 @@
-<%= form_tag :action => "resolveAnswerverify" %>
+<%= form_tag :action => "resolveAnswerverify", :validate => true %>
 
 	<% letters = ["a","b","c","d","e"] %>
 	<% @showHash[:ambiguous_answers].each do |key,value| %>

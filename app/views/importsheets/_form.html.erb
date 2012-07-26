@@ -4,7 +4,7 @@
   <%= render :partial => "scansheets/widget-library" %>    
 <% end %>
 
-<%= form_for @importsheet ,:html => { :multipart => true, :id => "fileupload"  } do |f| %>
+<%= form_for @importsheet ,:html => { :multipart => true, :id => "fileupload"  }, :validate => true do |f| %>
     <% Rails.logger.info "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#{params[:course_id]}" %>
 
     <%= f.hidden_field :course_id, :value => params[:course_id] %>

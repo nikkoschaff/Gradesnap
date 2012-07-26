@@ -1,29 +1,30 @@
 <div class="bodyWrapper">
   <div class="container">
 		<p id="notice"><%= notice %></p>
-
-		<p>
-		  <b>First Name:</b>
-		  <%= @student.first_name %>
-		</p>
-
-                <p>
-                  <b>Middle Name:</b>
-                  <%= @student.middle_name %>
-                </p>
-
-                <p>
-                  <b>Last Name:</b>
-                  <%= @student.last_name %>
-                </p>
-
-                <p>
-                  <b>Current grade:</b>
-                  <%= @student.grade * 100 %>%
-                </p>
-    <%= link_to 'Back', :action => 'show', :controller => "courses", :id => @student.course_id %> |
-    <td><%= link_to 'Edit', edit_student_path(@student) %></td> |
-    <td><%= link_to 'Destroy', @student, method: :delete, data: { confirm: 'Are you sure?' },
-    :courseid => @student.course_id %></td>
+      <% if @student %>
+        <p>
+          <b>First Name:</b>
+          <%= @student.first_name %>
+        </p>
+        <p>
+          <b>Middle Name:</b>
+          <%= @student.middle_name %>
+        </p>
+        <p>
+          <b>Last Name:</b>
+          <%= @student.last_name %>
+        </p>
+        <p>
+          <b>Current grade:</b>
+          <%= @student.grade * 100 %>%
+        </p>
+        <%= link_to 'Back', :action => 'show', :controller => "courses", :id => @student.course_id %> |
+        <td><%= link_to 'Edit', edit_student_path(@student) %></td> |
+        <td><%= link_to 'Destroy', @student, method: :delete, data: { confirm: 'Are you sure?' }, :courseid => @student.course_id %></td>
+      <% else %>
+        <p>
+          The information necessary to process this page was not recieved. Please navigate the site through its links.
+        </p>
+      <% end %>
 	</div>
 </div>
