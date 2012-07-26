@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::Base
+
+ include ReCaptcha::AppHelper
+
   protect_from_forgery
   layout "application"
 #before_filter :login_required, :only=>[':scansheets, 

@@ -9,31 +9,34 @@ class PreloginsController < ApplicationController
 
    # Function invoked to sign-up a new user
    def signup
-    @user = User.new(params[:user])
-    @teacher = Teacher.new(:name => @user.name)
-    @user.teacher = @teacher
-    if request.post?  
-      if @user.save 
-        if @teacher.save 
-          @user.teacher_id = @teacher.id
-          @user.save
-          UserMailer.welcome_email(@user).deliver
-    	    session[:user] = User.authenticate(@user.email, @user.password)
-          #Notifications.welcome_email(@user).deliver
-          flash[:notice] = "Signup successful"
-          # go to home is sign up success
-          redirect_to :action => "dashboard", :controller => 'sessions'   
-        end
-      end
-    else
-        flash[:warning] = "Signup unsuccessful"
-    end
-  end
+     @user = User.new(params[:user])
+     @teacher = Teacher.new(:name => @user.name)
+     @user.teacher = @teacher
+     if request.post?  
+       if validate_recap(params, @user.errors) #captcha line
+         if @user.save 
+           if @teacher.save
+             @user.teacher_id = @teacher.id
+             @user.save
+             # MAILER FUNCTIONS THIS SHIT BREAKS IF THE MAILERS BREAK IF THE SSL CERT BREAKS
+             #UserMailer.welcome_email(@user).deliver
+             flash[:notice] = "Signup successful"
+             # go to home is sign up success
+             session[:user] = User.authenticate(@user.email, @user.password)
+             redirect_to :action => "dashboard", :controller => 'sessions'
+             #redirect_to :action => "confirm_it", :controller => 'prelogins' 
+           end
+         end
+       end
+     else
+       flash[:warning] = "Signup unsuccessful"
+     end
+   end
 
   # Function invoked to authenticate a user in login 
   #
   # Signup action creates a new user using the parameters it receives. 
-  # It it is a post request (the form was submitted) it tries to save the 
+  # It is a post request (the form was submitted) it tries to save the 
   # new user. If the save operation was successful the user is authenticated and 
   # redirected to the welcome screen. If we fail to save the user 
   # (e.g. if validation fails) we add a warning to the flash and the page renders again. 
@@ -49,7 +52,9 @@ class PreloginsController < ApplicationController
         #redirect_to_stored 
      else
         Rails.logger.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-        render "login"
+        respond_to do |format|
+          format.html
+        end
         flash[:warning] = "Login unsuccessful"
       end
     end
@@ -70,22 +75,54 @@ class PreloginsController < ApplicationController
     end
   end
 
+
+  # MAILER FUNCTION:
+  # THIS SHIT BREAKS IF THE MAILERS BREAK IF THE SSL CERT BREAKS
+  def confirmed_it
+    #look up user
+    url = request.fullpath
+    id = url[9]
+    u = User.find(:id => user_id)
+    # check code to paramater code
+    if u.confirmation_code == confirmation_code then
+      u.confirmed = true
+      u.save
+      #if all clear log them in and go to dashboard
+      session[:user] = User.authenticate(u.email, u.password)
+      redirect_to :action => "dashboard", :controller => 'sessions'   
+    end
+    redirect_to :action => "signup", :controller => 'prelogins'   
+  end
+
+  #Nikko pls
   def home
-    render "home"
+    respond_to do |format|
+      format.html
+    end
   end
 
+  #Nikko pls
   def features
-	  render "features"
+    respond_to do |format|
+      format.html
+    end 
   end
 
+  #Nikko pls
   def legal
-	  render "legal"
+    respond_to do |format|
+      format.html
+    end  
   end
 
+  #Nikko pls
   def registration
-    render 'registration'
+    respond_to do |format|
+      format.html
+    end  
   end
 
+  #Nikko pls
   def index
     @user = User.all
     respond_to do |format|
@@ -93,4 +130,13 @@ class PreloginsController < ApplicationController
     end
   end
 
+  # MAILER FUNCTION:
+  # generates a confirmation code 
+  def random_code(len)
+    #generat a random password consisting of strings and digits
+    chars = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a
+    newcode = ""
+    1.upto(len) { |i| newcode << chars[rand(chars.size-1)] }
+    return newcode
+  end
 end

@@ -3,7 +3,7 @@
 <head>
   <title>Gradesnap: The Future Of Grading</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "application", "rails.validations" %>
   <%= csrf_meta_tags %>
   <link href='http://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel='stylesheet' type='text/css'>
   <!--[if lt IE 9]>
@@ -20,11 +20,15 @@
 SRC="//smarticon.geotrust.com/si.js"></SCRIPT>
 <!-- end  GeoTrust Smart Icon tag --> 
 
-<% if session[:user] == nil %>
+<% getController %>
+
+<% if session[:user] == nil%>
 	<%= render 'prelogins/main' %>
-<% else %>
+<% elsif session[:user] and getController != 'prelogins' %>
   	<p class="dashBoardUser">
 	<%= render 'shared/loginNave' %>
+<% elsif session[:user] and getController == 'prelogins' %>
+  <%= render 'prelogins/main2' %>
 <% end %>
 
 <%= yield %>

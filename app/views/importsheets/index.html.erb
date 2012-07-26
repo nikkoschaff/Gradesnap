@@ -1,6 +1,6 @@
 <div class="bodyWrapper">
   <div class="container">
-
+  <% if @importsheets %>
     <h1>Listing importsheets</h1>
 
     <table>
@@ -22,8 +22,12 @@
     <% end %>
     </table>
 
-    <br />
+  <% else %>
+    <p>
+      The information necessary to render this page did not come through. Please navigate the site through its links.
+    </p>
+  <% end %>
 
-    <%= link_to 'New Importsheet', :action => "import", :controller => "importsheets" %>
+  <%= link_to 'New Importsheet', :action => "import", :controller => "importsheets" %>
   </div>
 </div>

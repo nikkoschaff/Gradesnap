@@ -4,7 +4,6 @@
 
 class SessionsController < ApplicationController
 
-
 before_filter :login_required#, :only=>['change_password', 'logout', 'forgot_password', 'dashboard', 'grade', 'stats', 'create']
  
   # Function invoked to logout a user

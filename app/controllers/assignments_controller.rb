@@ -4,32 +4,34 @@ class AssignmentsController < ApplicationController
 
   def edit
     #leave empty
+    redirect_to :action => 'index', :controller => 'assignments'
   end
 
   def show
-    @assignment = Assignment.find(params[:id].to_i)    
-    @show_hash_assignment = showHash("assignment" , @assignment)
+    if @assignment = Assignment.find(params[:id].to_i)    
+      @show_hash_assignment = showHash("assignment" , @assignment)
 
-    if !@show_hash_assignment[:assignmentstudents].empty?
-      
-      # assemble student => ass_stdnt hash 
-      # that hash to be used to write to the exportsheet record
-      @students_hash = Hash.new
-      dem_students = Student.where("course_id = ?", @assignment.course_id)
-      Rails.logger.info("qwy: #{dem_students}")
-      counter = 0
-      @show_hash_assignment[:assignmentstudents].each{ |ass_stdnt|
-        s = dem_students[counter]
-        if !@students_hash.key?(s)  and s != nil then
-          h = Hash.new
-          h[s] = ass_stdnt
-          if h != nil then
-            @students_hash.merge!( h )
+      if !@show_hash_assignment[:assignmentstudents].empty?
+        
+        # assemble student => ass_stdnt hash 
+        # that hash to be used to write to the exportsheet record
+        @students_hash = Hash.new
+        dem_students = Student.where("course_id = ?", @assignment.course_id)
+        Rails.logger.info("qwy: #{dem_students}")
+        counter = 0
+        @show_hash_assignment[:assignmentstudents].each{ |ass_stdnt|
+          s = dem_students[counter]
+          if !@students_hash.key?(s)  and s != nil then
+            h = Hash.new
+            h[s] = ass_stdnt
+            if h != nil then
+              @students_hash.merge!( h )
+            end
           end
-        end
-        counter += 1
-      }
-      Rails.logger.info("qwz2: #{@students_hash}")
+          counter += 1
+        }
+        Rails.logger.info("qwz2: #{@students_hash}")
+      end
     end
     respond_to do |format|
       format.html #show.html.erb
@@ -104,24 +106,5 @@ class AssignmentsController < ApplicationController
       redirect_to :action => 'dashboard', :controller => 'sessions'
     end
   end
-
-
-
- # def post_mod
- #   redirect_to :action => 'dashboard', :controller => 'sessions'
- # end
-
- # def update
- #  Rails.logger.info(":ass4 #{@ass}") 
- #
- #   ass = AssignmentStudents.find(@ass.id)
- #    if ass
- #      ass.grade = params[:grade]
- #       ass.save
- #    end
- #   
- #   redirect_to :action => 'index', :controller => 'assignments'
- #
- # end
 
 end

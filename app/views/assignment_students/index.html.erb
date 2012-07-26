@@ -1,4 +1,4 @@
-<h1>Listing assignment_students</h1>
+<h1>Listing assignment's students</h1>
 
 <% if @students_hash %>
   <%= form_tag :action => 'mod' %>
@@ -16,10 +16,10 @@
     <% end %>
     <%= submit_tag "submit", :class =>'btn btn-success'  %>
   <% $end -%>
-
+<% else%>
+  <p>
+    No students.
+  </p>
 <% end %>
-
-
-
 
 <%= link_to 'Back to Dash', :action=> 'dashboard', :controller => 'sessions' %>

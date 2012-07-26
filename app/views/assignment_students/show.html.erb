@@ -1,16 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Student:</b>
-  <% stdnt = @student %>
-  <%= link_to "#{stdnt.first_name}  #{stdnt.middle_name}  #{stdnt.last_name}", stdnt %>
-</p>
+<% if @student and @assignment_student %>
 
-<p>
-  <b>Grade:</b>
-  <%= @assignment_student.grade %>
-</p>
+	<p>
+	  <b>Student:</b>
+	  <% stdnt = @student %>
+	  <%= link_to "#{stdnt.first_name}  #{stdnt.middle_name}  #{stdnt.last_name}", stdnt %>
+	</p>
+
+	<p>
+	  <b>Grade:</b>
+	  <%= @assignment_student.grade %>
+	</p>
 
 
-<%= link_to 'Edit grade', edit_assignment_student_path(@assignment_student) %> |
-<%= link_to 'Back', assignment_students_path %>
+	<%= link_to 'Edit grade', edit_assignment_student_path(@assignment_student) %> |
+	<%= link_to 'Back', assignment_students_path %>
+<% else %>
+	 <p>
+		The information necessary to render this page did not come through. Please navigate the site through its links.
+	</p>
+<% end %>
+<% end %>

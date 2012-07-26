@@ -1,5 +1,6 @@
 <div class="bodyWrapper">
         <div class="container">
+                <% if @course %>
                 <p id="notice"><%= notice %></p>
 
                 <p>
@@ -45,7 +46,11 @@
 
                 <%= link_to 'Import students', :action => 'import', :controller => 'importsheets', :course_id => @course.id %> |
                 <%= link_to "Statistics", :action => 'show', :controller => 'stats', :id => @course.id, :code => "course" %>
-
+                <% else %>
+                    <p>
+                        The information necessary to render this page did not come through. Please navigate the site through its links.
+                    </p>
+                <% end %>
         </div>
 </div>
-~           
+       

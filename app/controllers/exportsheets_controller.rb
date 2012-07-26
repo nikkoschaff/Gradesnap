@@ -1,4 +1,6 @@
 class ExportsheetsController < ApplicationController
+
+  before_filter :login_required
   # GET /exportsheets
   # GET /exportsheets.json
   def index
@@ -29,41 +31,43 @@ class ExportsheetsController < ApplicationController
     Exportsheet.delete_all(:assignment_id => params[:id].to_i)
     #query students and assignments
     @assignment = Assignment.where("id = ?", params[:id]).to_a.first
-    @ass_students  = AssignmentStudents.where(" assignment_id = ?", params[:id]).to_a
-    
-    # assemble student => ass_stdnt hash 
-    # that hash to be used to write to the exportsheet record
-    @students_hash = Hash.new
-    dem_students = Student.where("course_id = ?", @assignment.course_id)
-    Rails.logger.info("qwy: #{dem_students}")
-    counter = 0
-    @ass_students.each{ |ass_stdnt|
-      s = dem_students[counter]
-      if !@students_hash.key?(s)  and s != nil then
-        h = Hash.new
-        h[s] = ass_stdnt
-        if h != nil then
-          @students_hash.merge!( h )
+    if @assignment
+      @ass_students  = AssignmentStudents.where(" assignment_id = ?", params[:id]).to_a
+      
+      # assemble student => ass_stdnt hash 
+      # that hash to be used to write to the exportsheet record
+      @students_hash = Hash.new
+      dem_students = Student.where("course_id = ?", @assignment.course_id)
+      Rails.logger.info("qwy: #{dem_students}")
+      counter = 0
+      @ass_students.each{ |ass_stdnt|
+        s = dem_students[counter]
+        if !@students_hash.key?(s)  and s != nil then
+          h = Hash.new
+          h[s] = ass_stdnt
+          if h != nil then
+            @students_hash.merge!( h )
+          end
         end
-      end
-      counter += 1
-    }
-    Rails.logger.info("qwz: #{@students_hash}")
+        counter += 1
+      }
+      Rails.logger.info("qwz: #{@students_hash}")
 
-    #create exportsheets
-    counter = 0
-    @students_hash.each{ |stdnt, ass_stdnt|
-      if counter == @students_hash.size then
-        break
-      end
-      @exportsheet = Exportsheet.new({
-      :student => stdnt.first_name,
-      :grade => ass_stdnt.grade.to_i,
-      :assignment_id => @assignment.id
-      })
-      @exportsheet.save
-      counter +=1
-    }
+      #create exportsheets
+      counter = 0
+      @students_hash.each{ |stdnt, ass_stdnt|
+        if counter == @students_hash.size then
+          break
+        end
+        @exportsheet = Exportsheet.new({
+        :student => stdnt.first_name,
+        :grade => ass_stdnt.grade.to_i,
+        :assignment_id => @assignment.id
+        })
+        @exportsheet.save
+        counter +=1
+      }
+    end
 
     #format html, csv, and xls formats
     respond_to do |format|
@@ -72,43 +76,6 @@ class ExportsheetsController < ApplicationController
       format.xls {  send_data @exportsheet.to_csv(col_sep: "\t")  }
       #format.xls {  @students }
 
-    end
-  end
-
-  # GET /exportsheets/1/edit
-  def edit
-    @exportsheet = Exportsheet.find(params[:id])
-  end
-
-  # POST /exportsheets
-  # POST /exportsheets.json
- # def create
-  #  @exportsheet = Exportsheet.new(params[:exportsheet])#
-
-  #  respond_to do |format|
-  #    if @exportsheet.save
-  #      format.html { redirect_to @exportsheet, notice: 'Exportsheet was successfully created.' }
-  ##      format.json { render json: @exportsheet, status: :created, location: @exportsheet }
-   #   else
-   #     format.html { render action: "new" }
-   #     format.json { render json: @exportsheet.errors, status: :unprocessable_entity }
-   #   end
-   # end
-  #end
-
-  # PUT /exportsheets/1
-  # PUT /exportsheets/1.json
-  def update
-    @exportsheet = Exportsheet.find(params[:id])
-
-    respond_to do |format|
-      if @exportsheet.update_attributes(params[:exportsheet])
-        format.html { redirect_to @exportsheet, notice: 'Exportsheet was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @exportsheet.errors, status: :unprocessable_entity }
-      end
     end
   end
 

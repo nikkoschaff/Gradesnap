@@ -62,6 +62,7 @@ GEM
       carrierwave
       sequel
     choice (0.1.6)
+    client_side_validations (3.1.4)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -198,6 +199,7 @@ GEM
       todonotes (>= 0.1.0)
     ruby-hmac (0.4.0)
     ruby-ole (1.2.11.4)
+    ruby-recaptcha (1.0.5)
     rubyzip (0.9.9)
     rvm-capistrano (1.2.5)
       capistrano (>= 2.0.0)
@@ -247,6 +249,7 @@ DEPENDENCIES
   carrierwave
   carrierwave-mongoid
   carrierwave-sequel
+  client_side_validations
   coffee-rails (~> 3.2.1)
   docsplit
   dynamic_form
@@ -263,6 +266,7 @@ DEPENDENCIES
   rails (= 3.2.6)
   remotipart
   roo
+  ruby-recaptcha
   rvm-capistrano
   sass-rails (~> 3.2.3)
   spreadsheet
