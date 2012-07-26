@@ -23,6 +23,7 @@ group :assets do
   gem 'google-code-prettify-rails'
   gem 'uglifier', '>= 1.0.3'
   gem 'bson_ext'
+  gem 'railties'
 end
 
 gem 'therubyracer', :platform => :ruby 
