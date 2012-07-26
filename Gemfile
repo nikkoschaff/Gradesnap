@@ -29,7 +29,7 @@ gem 'rack'
 gem 'dynamic_form'
 gem 'gsimgproc', '0.0.1', :git => 'git@github.com:nikkoschaff/gsimgproc.git'
 gem 'carrierwave'
-gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+#gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'carrierwave-sequel', :require => 'carrierwave/sequel'
 gem 'spreadsheet'
 gem 'mini_magick'
@@ -51,7 +51,7 @@ gem 'jquery-rails'
 # gem 'unicorn'
 
 # Deploy with Capistrano
-gem 'capistrano'
-gem 'rvm-capistrano'
+#gem 'capistrano'
+#gem 'rvm-capistrano'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'

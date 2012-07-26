@@ -3,14 +3,14 @@ class UserMailer < ActionMailer::Base
  
   def welcome_email(user)
     @user = user
-    @url  = "http://gradesnap.com/login"
+    @url  = "//gradesnap.com/login"
     mail(:to => user.email, :subject => "Welcome to Gradesnap")
   end
 
   def forgot_password(user)
 	@user = user
 	@newpass = user.new_password
-    @url  = "http://gradesnap.com/login"
+    @url  = "//gradesnap.com/login"
     mail(:to => user.email, :subject => "Forgotten Password for Gradesnap")
   end
 
