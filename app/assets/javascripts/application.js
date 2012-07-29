@@ -23,3 +23,4 @@
 //=require jquery-fileupload/locale
 //= require twitter/bootstrap
 //= require_tree .
+//= require rails.validations
