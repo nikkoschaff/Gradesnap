@@ -1,18 +1,16 @@
 require 'digest/sha1'
 
 class User < ActiveRecord::Base
-  #validates :login, :presence => true
-  #validates_length_of :login, :within => 3..40
-  validates_length_of :password, :within => 5..40
-  validates_presence_of :email, :password, :password_confirmation, :salt
+  validates_length_of :password, :within => 5..40, :on => 'create'
+  validates_presence_of :email, :salt
+  validates_presence_of :password_confirmation, :password, :on => 'create'
   validates_uniqueness_of :email
   validates_confirmation_of :password
   validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :message => "Invalid email"  
   validates :name, presence: true
 
   attr_protected :id, :salt
-  attr_accessor :password, :password_confirmation, :confirmation_code, :confirmed
-
+  attr_accessor :password, :password_confirmation, :confirmation_code, :confirmed, :eula
   belongs_to :teacher, :foreign_key => ":teacher_id"
   accepts_nested_attributes_for :teacher
 

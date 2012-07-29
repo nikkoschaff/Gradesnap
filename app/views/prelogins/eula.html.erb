@@ -194,4 +194,8 @@ Customizations:				to be determined
 Other Charges:  				$0.10 per each additional gigabyte of incoming data per month
 </p>
 
+<%= form_tag :action => "confirm_eula", :validate => true %>
+	<%= hidden_field_tag "params" ,params %>
+<%= submit_tag "hellyes mang", :class =>'btn btn-success'%>
+<%= button_to "no way dude", :action => "index", :controller => "prelogins"%>
 </div>

@@ -1,41 +1,27 @@
-<div id="flash">
-  <% if flash[:notice] %>
-    <h3 class="info_box"><%= flash[:notice] %></h3>
-  <% end %>
-  <% if flash[:error] %>
-    <h3 class="error_box"><%= flash[:error] %></h3>
-  <% end %>
-</div>
-
 
    <div class="preLogin">
     <h3>Join Gradesnap</h3>
-<%= form_tag :action=> "signup", :validate => true %>
+    <%= form_tag :action=> "signup", :validate => true %>
 
-<br/>
-<%= text_field "user", "name", :size => 20 %><br/>
-<%= flash[:notice] %>
-<label for="user_password"><strong>Name</strong></label>
-<br/>
+        <label for="user_password"><strong>Name</strong></label>
+        <%= text_field "user", "name", :size => 20 %><br/>
+        <%= flash[:notice] %>
 
+        <label for="user_email"><strong>Email</strong></label>
+        <%= text_field "user", "email", :size => 20 %><br/>
+        <%= flash[:notice] %>
 
-<%= text_field "user", "email", :size => 20 %><br/>
-<%= flash[:notice] %>
-<label for="user_email"><strong>Email</strong></label><br/>
+        <label for="user_password"><strong>Password</strong></label>
+        <%= password_field "user", "password", :size => 20 %>
+        <%= flash[:notice] %>
 
+        <label for="user_password_confirmation"><strong>Password Confirmation</strong></label>
+        <%= password_field "user", "password_confirmation", :size => 20 %>
 
-<%= password_field "user", "password", :size => 20 %><br/>
-<%= flash[:notice] %>
-<label for="user_password"><strong>Password</strong></label><br/>
-
-
-<%= password_field "user", "password_confirmation", :size => 20 %><br/>
-<%= flash[:notice] %>
-<label for="user_password_confirmation"><strong>Password Confirmation</strong></label><br/>
-<div class="reCaptcha">
-  <%= raw(get_captcha(:options => {:theme => 'white', :tabindex => 10})) %>
-</div>
-<%= submit_tag "submit", :class =>'btn btn-success'%>
-<% $end -%>
+        <div class="reCaptcha">
+          <%= raw(get_captcha(:options => {:theme => 'white', :tabindex => 10})) %>
+        </div>
+        <%= submit_tag "submit", :class =>'btn btn-success'%>
+    <% $end -%>
     </div>
    </div>

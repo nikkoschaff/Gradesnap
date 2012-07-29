@@ -23,7 +23,7 @@ class PreloginsController < ApplicationController
              flash[:notice] = "Signup successful"
              # go to home is sign up success
              session[:user] = User.authenticate(@user.email, @user.password)
-             redirect_to :action => "dashboard", :controller => 'sessions'
+             redirect_to :action => "eula", :controller => 'prelogins'
              #redirect_to :action => "confirm_it", :controller => 'prelogins' 
            end
          end
@@ -122,11 +122,24 @@ class PreloginsController < ApplicationController
     end  
   end
 
-  #Nikko pls
-  def index
-    @user = User.all
+  #Conor pls
+  def eula
     respond_to do |format|
       format.html
+    end
+  end
+
+  # finds user to set the eula marker to trueeeeeeeeeeee
+  def confirm_eula
+    @user = User.all.last
+    Rails.logger.info("~~~~~~2~~~~~~~~#{@user}")
+    if @user != nil
+      @user.eula = true
+      Rails.logger.info("~~~~~~~3~~~~~~~~#{@user.eula}")
+      if @user.save
+        Rails.logger.info("~~~~~~~4~~~~~~~~#{@user.eula}")
+        redirect_to :action => "dashboard", :controller => "sessions"
+      end
     end
   end
 
