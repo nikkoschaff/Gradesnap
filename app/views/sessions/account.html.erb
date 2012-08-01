@@ -1,34 +1,236 @@
 <div class="bodyWrapper">
-  <div class="container"></div>
-  <div class="mid">
-    <div class="midText">
-      <div class="dashBoard">
-        <div class="container">
-          <h1 class="courseHH">
+  <div id="content">
+
+    <div class="container">
+
+      <div class="row">
+
+        <div class="span3">
+
+          <div class="account-container">
+ <h1 class="page-title">
             <% if session[:user] != nil %>
-              <%= "Account For: " + session[:user].email %></h1>
-            <% end %>
-            <div id="light" class="white_content">
-              <h3>Change password</h3>
+            <%= "Account For: " + session[:user].email %></h1>
+          <% end %>
+          <!--   <div class="account-avatar">
+              <img src="./img/headshot.png" alt="" class="thumbnail" />
+            </div> -->
+            <!-- /account-avatar -->
+<!-- 
+            <div class="account-details">
 
-              <%= form_tag :action => 'change_password' %>
-                <label for="user_password">Choose password:</label>
-                <br/>
-                <%= password_field "user", "password", :size =>
-                20, :value=>"" %>
-                <br/>
+              <span class="account-name">Ryan Rich</span>
 
-                <label for="user_password_confirmation">Confirm password:</label>
-                <br/>
-                <%= password_field "user", "password_confirmation", :size =>
-                20, :value=>"" %>
-                <br/>
-              <%= submit_tag "Submit" %>
+              <span class="account-role">K-12 Teacher</span>
 
-              <% $end -%>
+              <span class="account-actions dattt">
+                <a href="javascript:;">My Account</a>
+                |
+                <a href="javascript:;">Settings</a>
+              </span>
+
+            </div> -->
+            <!-- /account-details --> </div>
+          <!-- /account-container -->
+
+          <hr />
+
+          <ul id="main-nav" class="nav nav-tabs nav-stacked">
+
+             <li>
+              <%= link_to 'Home',:action =>'dashboard',:controller => 'sessions' %>
+            </li>
+
+            <li>
+              <%= link_to 'Courses',:action =>'index',:controller => 'courses' %>
+            </li>
+
+            <li>
+              <%= link_to 'Assignments',:action =>'index',:controller => 'assignments' %>
+            </li>
+
+            <li>
+              <%= link_to 'Students',:action =>'index',:controller => 'students' %>
+            </li>
+
+            <li class="active">
+              <%= link_to "My Account",:action =>'myaccount',:controller => 'sessions' %>
+            </li>
+
+          </ul>
+
+          <hr />
+
+          <div class="sidebar-extra">
+            <p>
+              Short expo of what Gradesnap is. What the Dashboard is. What we do. How Gradesnap is awesome.
+              Why this layout is cross browser/cross platform usable.
+            </p>
           </div>
+          <!-- .sidebar-extra -->
+
+          <br />
+
         </div>
-      </div>
-    </div>
-  </div>
+        <!-- /span3 -->
+
+        <div class="span9">
+
+          <h1 class="page-title">
+            <i class="icon-th-large"></i>
+            User Account
+          </h1>
+
+          <div class="row">
+
+            <div class="span9">
+
+              <div class="widget">
+
+                <div class="widget-header">
+                  <h3>Basic Information</h3>
+                </div>
+                <!-- /widget-header -->
+
+                <div class="widget-content">
+
+                  <div class="tabbable">
+                    <ul class="nav nav-tabs">
+                      <li class="active">
+                        <a href="#1" data-toggle="tab">Profile</a>
+                      </li>
+                      <li>
+                        <a href="#2" data-toggle="tab">Settings</a>
+                      </li>
+                    </ul>
+
+                    <br>
+
+                    <div class="tab-content">
+                      <div class="tab-pane active" id="1">
+                        <form id="edit-profile" class="form-horizontal">
+                          <fieldset>
+
+                            <div class="control-group">
+                              <label class="control-label" for="username">Username</label>
+                              <div class="controls">
+                                <input type="text" class="input-medium disabled" id="username" value="" disabled>
+                                <p class="help-block">Your username is for logging in and cannot be changed.</p>
+                              </div>
+                              <!-- /controls --> </div>
+                            <!-- /control-group -->
+
+                            <div class="control-group">
+                              <label class="control-label" for="firstname">First Name</label>
+                              <div class="controls">
+                                <input type="text" class="input-medium" id="firstname" value=""></div>
+                              <!-- /controls --> </div>
+                            <!-- /control-group -->
+
+                            <div class="control-group">
+                              <label class="control-label" for="lastname">Last Name</label>
+                              <div class="controls">
+                                <input type="text" class="input-medium" id="lastname" value=""></div>
+                              <!-- /controls --> </div>
+                            <!-- /control-group -->
+
+                            <div class="control-group">
+                              <label class="control-label" for="email">Email Address</label>
+                              <div class="controls">
+                                <input type="text" class="input-large" id="email" value="@"></div>
+                              <!-- /controls --> </div>
+                            <!-- /control-group -->
+
+                            <br />
+                            <br />
+
+                            <div class="control-group">
+                              <label class="control-label" for="password1">Password</label>
+                              <div class="controls">
+                                <input type="password" class="input-medium" id="password1" value="password"></div>
+                              <!-- /controls --> </div>
+                            <!-- /control-group -->
+
+                            <div class="control-group">
+                              <label class="control-label" for="password2">Confirm</label>
+                              <div class="controls">
+                                <input type="password" class="input-medium" id="password2" value="password"></div>
+                              <!-- /controls --> </div>
+                            <!-- /control-group -->
+
+                            <br />
+
+                            <div class="form-actions">
+                              <button type="submit" class="btn btn-primary">Save</button>
+                              <button class="btn">Cancel</button>
+                            </div>
+                            <!-- /form-actions --> </fieldset>
+                        </form>
+                      </div>
+
+                      <div class="tab-pane" id="2">
+                        <form id="edit-profile2" class="form-horizontal">
+                          <fieldset>
+
+                            <div class="control-group">
+                              <label class="control-label" for="accounttype">Account Type</label>
+                              <div class="controls">
+                                <label class="radio">
+                                  <input type="radio" name="accounttype" value="option1" checked="checked" id="accounttype">Gradesnap</label>
+                                <label class="radio">
+                                  <input type="radio" name="accounttype" value="option2">
+                                  Gradesnap Pro (will redirect to pro account signup if selected)
+                                </label>
+                              </div>
+                            </div>
+                            <div class="control-group">
+                              <label class="control-label" for="accountusername">Account Username</label>
+                              <div class="controls">
+                                <input type="text" class="input-large" id="accountusername" value="What you want to be called">
+                                <p class="help-block">Leave blank to use your profile email address.</p>
+                              </div>
+                            </div>
+                            <div class="control-group">
+                              <label class="control-label" for="emailserver">Email Change</label>
+                              <div class="controls">
+                                <input type="text" class="input-large" id="emailserver" value="Change your email"></div>
+                            </div>
+                            <div class="control-group">
+                              <label class="control-label" for="accountpassword">Password Change</label>
+                            <%= form_tag :action => 'change_password' %>
+                              <div class="controls">
+                                 <%= password_field "user", "password", :size => 20, :value=>"" %></div>
+                              <br />
+                                 <label class="control-label" for="accountpassword">Confirm Password</label>
+                              <div class="controls">
+                                 <%= password_field "user", "password_confirmation", :size => 20, :value=>"" %></div>
+                                <br />
+                              <div class="controls"><%= submit_tag "Submit Password Change", :class => 'btn btn-success' %></div>
+                                    <% $end -%>
+
+                            </div>
+
+                            <br />
+
+                            <div class="form-actions">
+                              <button type="submit" class="btn btn-primary">Save</button>
+                              <button class="btn">Cancel</button>
+                            </div>
+                          </fieldset>
+                        </form>
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+                <!-- /widget-content --> </div>
+              <!-- /widget --> </div>
+            <!-- /span9 --> </div>
+          <!-- /row --> </div>
+        <!-- /span9 --> </div>
+      <!-- /row --> </div>
+    <!-- /container --> </div>
+  <!-- /content -->
 </div>

@@ -8,21 +8,87 @@
       </button>
       <div class="nav-collapse collapse">
         <ul class="nav">
-          <li><%= link_to 'Home',:action => 'index',:controller => 'prelogins' %></li>
-          <li><%= link_to 'Features',:action => 'features',:controller => 'prelogins' %></li>
-          <li><%= link_to 'About Us',:action => 'about',:controller => 'prelogins' %></li>
-          <li><%= link_to 'Contact',:action => 'contact',:controller => 'prelogins' %></li>
-          <li><%= link_to 'Legal',:action => 'legal',:controller => 'prelogins' %></li>
-          <li><%= link_to 'Registration',:action => 'registration',:controller => 'prelogins' %></li>
+          <li>
+            <%= link_to 'Home',:action =>'index',:controller => 'prelogins' %></li>
+          <li>
+            <%= link_to 'Features',:action =>'features',:controller => 'prelogins' %></li>
+          <li>
+            <%= link_to 'About Us',:action =>'about',:controller => 'prelogins' %></li>
+          <li>
+            <a data-toggle="modal" href="#myModal">Contact</a>
+          </li>
+          <li>
+            <%= link_to 'Legal',:action =>'legal',:controller => 'prelogins' %></li>
+          <li>
+            <%= link_to 'Pricing',:action =>'pricing',:controller => 'prelogins' %></li>
+          <li>
+            <%= link_to 'Registration',:action =>'registration',:controller => 'prelogins' %></li>
         </ul>
       </div>
     </div>
   </div>
-<div class="container">
-  <ul class="signUp">
-    <ul class="nav">
-      <li><%= link_to 'Login', :action => 'login', :controller => 'prelogins', :class => "btn btn-success" %></li>
+  <div class="container">
+    <ul class="signUp">
+      <ul class="nav">
+        <li>
+          <a data-toggle="modal" href="#myModal2">Login</a>
+        </li>
+      </ul>
     </ul>
-  </ul>
+  </div>
 </div>
+
+<!-- ********************************************************************************** -->
+<div id="myModal2" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h3 class="FH">Login</h3>
+  </div>
+  <div class="modal-body">
+    <%= form_tag :action=>
+    "login", :validate => true %>
+    <h3>Login</h3>
+    <h4>
+      <% if session[:user] != nil %>
+      <%= session[:user].email %>
+      <% else %>
+      <%=h "There is currently no one logged in" %>
+      <% end %></h4>
+    <label for="user_login">Email:</label>
+    <br/>
+    <%= text_field "user", "email", :size =>
+    20 %>
+    <br/>
+    <label for="user_password">Password:</label>
+    <br/>
+    <%= password_field "user", "password", :size =>
+    20 %>
+    <br/>
+    <%= submit_tag "Submit", :class =>
+    'btn btn-success'%>
+    <div class="forgot">
+      <%= link_to 'Forgot password', :action =>'forgot_password', :controller => 'prelogins' %></div>
+    <% $end -%>
+  </div>
+</div>
+<!-- ******************************************************************************** -->
+<div id="myModal" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h3 class="FH">CONTACT FORM</h3>
+  </div>
+  <div class="modal-body">
+    <div class="centerF">
+      <form action="mail.php" method="POST">
+        <p>Name</p>
+        <input type="text" name="name">
+        <p>Email</p>
+        <input type="text" name="email">
+        <p>Message</p>
+        <textarea name="message" rows="6" cols="25"></textarea>
+        <br />
+        <input type="submit" value="Send" class="btn">
+        <input type="reset" value="Clear" class="btn"></form>
+    </div>
+  </div>
 </div>

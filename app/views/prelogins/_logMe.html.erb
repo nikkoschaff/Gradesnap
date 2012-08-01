@@ -1,10 +1,5 @@
-<div class="logo">
-  <div class="container">
-    <%= image_tag('/assets/logo.png') %>
-    <%= image_tag('/assets/current.png' , :class =>'pull-right fux' ) %>
-  </div>
-</div>
 <div class="container">
+  <% render :partial => 'logo' %>
    <div class="alert alert-info"> <strong>Login |</strong>
       below to access your dashboard.
     </div>

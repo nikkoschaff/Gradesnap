@@ -1,39 +1,298 @@
 <div class="thisDash">
-  <h1>
-    Welcome To Your Dashboard<br />
-    <span> clean | simple | easy</span>
-  </h1>
-  <div class="mainNav">
-    <div class="row">
-      <div class="span4">
-        <ul class="nav nav-tabs nav-stacked">
-          <li class="active">
-            <%= link_to 'Home',:action =>'dashboard',:controller => 'sessions' %></li>
-          <li>
-            <%= link_to 'Courses',:action =>'index',:controller => 'courses' %></li>
-          <li>
-            <%= link_to 'Assignments',:action =>'index',:controller => 'assignments' %></li>
-          <li>
-            <%= link_to 'Students',:action =>'index',:controller => 'students' %></li>
-          <li>
-            <%= link_to "My Account",:action =>'myaccount',:controller => 'sessions' %></li>
-        </ul>
-      </div>
-      <div class="span8">
-        <p class="welCome">
-          Welcome to your Gradesnap Dashboard. Here you can access all of the features available.
-        </p>
-        <p class="expoEase">
-          Right now you are 'Home'. This is where you will be located everytime you log in. As stated before this gives you
+<!-- -->
+<div id="content">
+
+    <div class="container">
+
+      <div class="row">
+
+        <div class="span3">
+
+          <div class="account-container">
+
+            <div class="account-avatar">
+              <img src="http://placehold.it/50x50">
+            </div>
+            <!-- /account-avatar -->
+
+            <div class="account-details">
+
+              <span class="account-name">Ryan Rich</span>
+
+              <span class="account-role">K-12 Teacher</span>
+
+              <span class="account-actions dattt">
+                <a href="javascript:;">My Account</a>
+                |
+                <a href="javascript:;">Settings</a>
+              </span>
+
+            </div>
+            <!-- /account-details -->
+
+          </div>
+          <!-- /account-container -->
+
+          <hr />
+
+          <ul id="main-nav" class="nav nav-tabs nav-stacked">
+
+            <li class="active">
+              <%= link_to 'Home',:action =>'dashboard',:controller => 'sessions' %>
+            </li>
+
+            <li>
+              <%= link_to 'Courses',:action =>'index',:controller => 'courses' %>
+            </li>
+
+            <li>
+              <%= link_to 'Assignments',:action =>'index',:controller => 'assignments' %>
+            </li>
+
+            <li>
+              <%= link_to 'Students',:action =>'index',:controller => 'students' %>
+            </li>
+
+            <li>
+              <%= link_to "My Account",:action =>'myaccount',:controller => 'sessions' %>
+            </li>
+
+            <li>
+              <a href="./login.html">
+                <i class="icon-lock"></i>
+              New Login
+              </a>
+            </li>
+
+            <li>
+              <a href="./pricing.html">
+              Pricing Plans
+              </a>
+            </li>
+          </ul>
+
+          <hr />
+
+          <div class="sidebar-extra">
+            <p>
+           Right now you are 'Home'. This is where you will be located everytime you log in. As stated before this gives you
         access to all of Gradesnap's features. To navigate the site please use either the links in the tabs to the left or 
         alternatively you can navigate using the navigation bar located at the top of the page.
-        </p>
-        <hr class="soften"></div>
-    </div>
-  </div>
-  <p class="feedMe">
+            </p>
+          </div>
+          <!-- .sidebar-extra -->
+
+          <br />
+
+        </div>
+        <!-- /span3 -->
+
+        <div class="span9">
+
+          <h1 class="page-title">
+            <i class="icon-home"></i>
+            Dashboard | Panel
+          </h1>
+
+          <div class="stat-container">
+
+            <div class="stat-holder">
+              <div class="stat">
+                <span>0</span>
+                Assignments
+              </div>
+              <!-- /stat -->
+            </div>
+            <!-- /stat-holder -->
+
+            <div class="stat-holder">
+              <div class="stat">
+                <span>0</span>
+                Students
+              </div>
+              <!-- /stat -->
+            </div>
+            <!-- /stat-holder -->
+
+            <div class="stat-holder">
+              <div class="stat">
+                <span>0</span>
+                Classes
+              </div>
+              <!-- /stat -->
+            </div>
+            <!-- /stat-holder -->
+
+            <div class="stat-holder">
+              <div class="stat">
+                <span>0</span>
+                Issues
+              </div>
+              <!-- /stat -->
+            </div>
+            <!-- /stat-holder -->
+
+          </div>
+          <!-- /stat-container -->
+
+          <div class="widget">
+
+            <div class="widget-header">
+              <i class="icon-signal"></i>
+              <h3>Overall Performance</h3>
+            </div>
+            <!-- /widget-header -->
+
+            <div class="widget-content">
+              <div id="bar-chart" class="chart-holder"></div>
+              <!-- /bar-chart -->
+            </div>
+            <!-- /widget-content -->
+
+          </div>
+          <!-- /widget -->
+
+          <div class="widget widget-table">
+
+            <div class="widget-header">
+              <i class="icon-th-list"></i>
+              <h3>Your Students</h3>
+            </div>
+            <!-- /widget-header -->
+
+            <div class="widget-content">
+
+              <table class="table table-striped table-bordered">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>In Course</th>
+                    <th>Overall Grade</th>
+                    <th>&nbsp;</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Ashley</td>
+                    <td>Davis</td>
+                    <td>Math_B1</td>
+                    <td>87.62%</td>
+                    <td class="action-td">
+                      <a href="javascript:;" class="btn btn-small btn-warning">
+                        <i class="icon-ok"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Banard</td>
+                    <td>Johnson</td>
+                    <td>Math_B1</td>
+                    <td>82.55%</td>
+                    <td class="action-td">
+                      <a href="javascript:;" class="btn btn-small btn-warning">
+                        <i class="icon-ok"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>Benjamin</td>
+                    <td>Babbles</td>
+                    <td>MathRem</td>
+                    <td>76.66%</td>
+                    <td class="action-td">
+                      <a href="javascript:;" class="btn btn-small btn-warning">
+                        <i class="icon-ok"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>Bucknell</td>
+                    <td>Schism</td>
+                    <td>MathRem</td>
+                    <td>97.71%</td>
+                    <td class="action-td">
+                      <a href="javascript:;" class="btn btn-small btn-warning">
+                        <i class="icon-ok"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>Casey</td>
+                    <td>Bintley</td>
+                    <td>Math_B1</td>
+                    <td>71.13%</td>
+                    <td class="action-td">
+                      <a href="javascript:;" class="btn btn-small btn-warning">
+                        <i class="icon-ok"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td>Charles</td>
+                    <td>Galshington</td>
+                    <td>Math_B1</td>
+                    <td>88.39%</td>
+                    <td class="action-td">
+                      <a href="javascript:;" class="btn btn-small btn-warning">
+                        <i class="icon-ok"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>7</td>
+                    <td>David</td>
+                    <td>Brazleton</td>
+                    <td>Math_B1</td>
+                    <td>97.88%</td>
+                    <td class="action-td">
+                      <a href="javascript:;" class="btn btn-small btn-warning">
+                        <i class="icon-ok"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>8</td>
+                    <td>Darcy</td>
+                    <td>Durple</td>
+                    <td>MathRem</td>
+                    <td>78.54%</td>
+                    <td class="action-td">
+                      <a href="javascript:;" class="btn btn-small btn-warning">
+                        <i class="icon-ok"></i>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+            <!-- /widget-content -->
+
+          </div>
+            <p class="feedMe">
     Gradesnap is always looking to improve. Please
     <%= link_to "contact us", :action =>
     'contact', :controller => 'prelogins' %> with all of your feedback.
   </p>
+          <!-- /widget -->
 </div>
+
+        </div>
+        <!-- /span9 -->
+
+      </div>
+      <!-- /row -->
+
+    </div>
+    <!-- /container -->
+
+  </div>

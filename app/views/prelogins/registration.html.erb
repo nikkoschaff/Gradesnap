@@ -1,39 +1,43 @@
   <%= render :partial => 'logo' %>
-  <div class="datHeader">
-    <div class="container">
-       <div class="row">
-        <!-- -->
-         <div class="span4">
+<div class="datHeader">
+  <div class="container">
+    <div class="alert alert-info">
+     <strong>Currently BETA Testing !</strong>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+<div class="row">
+        <div class="span4">
           <p class="headerP">Beta Sign Up</p>
           <p>
-            Currently Gradesnap is in Beta Testing. We are always looking for more teachers from around the world to test our product and give us the feedback we need in order to make this better for you.
+             Currently Gradesnap is in Beta Testing. We are always looking for more teachers from around the world to test our product and give us the feedback we need in order to make this better for you.
           </p>
-          <p>
+         <p>
             Being a beta tester is absolutely free. Sign up as a beta today and be a part of the future of grading.
           </p>
-          <%= button_to 'Sign up for Gradesnap!', :action => 'signup', :controller => 'prelogins', :class => "btn btn-success" %>
+            <button class="btn btn-success shitMeng">
+            <%= link_to 'Sign up for Gradesnap!', :action => 'signup', :controller => 'prelogins' %></button>
         </div>
         <!-- -->
-         <div class="span4">
+        <div class="span4">
           <p class="headerP">Teacher Pricing</p>
           <p>
-            Because Gradesnap is built for teachers we allow teachers to purchase Gradesnap so that they can use it anywhere they need to grade. No longer are you tied down to grading at school with a primative machine. Grade when you want to.
+            Because Gradesnap is built for teachers we allow teachers to purchase Gradesnap so that they can use it anywhere they need to grade. No longer are you tied down to grading at school with a primative machine. Grade when you want to.</p>
             <p>Gradesnap will be available for full featured use within 3 months. Be sure to subscribe to our newsletter to stay up to date.</p>
-          </p>
-          <p>
-            <button class="btn btn-success">Stay Up To Date!</button>
-          </p>
+             <button class="btn btn-success">Stay Up To Date!</button>
         </div>
         <!-- -->
-         <div class="span4">
+        <div class="span4">
           <p class="headerP">Institution Models</p>
-          <p>
-            Coming soon...
-          </p>
-       
+          <p>Coming soon...</p>
         </div>
         <!-- -->
-       </div>
+        <!--/row--> </div>
+</div>
+<!--- RIGHT HERE -->
+     
       </div>
   </div>
 <!-- end body container -->

@@ -1,4 +1,7 @@
-<div class="eula">
+<div class="bodyWrapper">
+	<div class="container">
+		<div class="privacy">
+			<div style="height:300px;overflow:auto;">
 	<h1>End User License Agreement</h1>
 	AGREEMENT
 <p>
@@ -196,6 +199,11 @@ Other Charges:  				$0.10 per each additional gigabyte of incoming data per mont
 
 <%= form_tag :action => "confirm_eula", :validate => true %>
 	<%= hidden_field_tag "params" ,params %>
-<%= submit_tag "hellyes mang", :class =>'btn btn-success'%>
-<%= button_to "no way dude", :action => "index", :controller => "prelogins"%>
+<%= submit_tag "Confirm", :class =>'btn btn-success'%>
+<button class="btn btn-danger shitMeng">
+<%= link_to "Do Not Accept", :action => "index", :controller => "prelogins"%>
+</button>
+</div>
+</div>
+</div>
 </div>
