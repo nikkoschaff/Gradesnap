@@ -17,14 +17,14 @@ class Notifications < ActionMailer::Base
 
   def deliver_forgot_password(email, newpass)
     #@user = session[:user]
-    @url = "http://gradesnap.com"
+    @url = "//gradesnap.com"
     @newpass = newpass
     mail(:to => email, :subject => "Forgotten password for Gradesnap")
   end
 
   def welcome_email(user)
     @user = user
-    @url  = "http://gradesnap.com/login"
+    @url  = "://gradesnap.com/login"
     mail(:to => user.email, :subject => "Welcome to Gradesnap!")
   end
   
