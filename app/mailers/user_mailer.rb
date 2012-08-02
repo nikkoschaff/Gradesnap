@@ -14,6 +14,13 @@ class UserMailer < ActionMailer::Base
     mail(:to => user.email, :subject => "Forgotten Password for Gradesnap")
   end
 
+  def contact_email(user, subject, message)
+    @user = user
+    @subject = subject
+    @message = message
+    mail(:to => @user.email, :subject => @subject)
+  end
+
   def receive(email)
     page = Page.find_by_address(email.to.first)
     page.emails.create(
