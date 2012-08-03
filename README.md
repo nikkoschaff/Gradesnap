@@ -1,4 +1,4 @@
-# Executive Summary
+# Gradesnap
 Gradesnap is a web-based teacher-utility and grading application that allows teachers to upload multiple-choice tests to be processed and graded, providing statistics too time-consuming to do by hand. The site is divided into three main categories relating to the process of grading multiple choice tests: Grader, Gradebook, Statistics. 
 
 The Grader section facilitates upload and image processing.  Either through manual upload or email with image attachments (postponed until later use), the images are written to the local filesystem and read using the private gsimgproc gem, which is a Ruby extension written in C++ with OpenCV.  The extension calibrates and records fill-values, which are saved into the database and evaluated by a separate algorithm to determine what the responses were.
