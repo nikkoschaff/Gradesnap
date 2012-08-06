@@ -58,8 +58,7 @@ gem 'spreadsheet'
 gem 'mini_magick'
 # Gem used for ajax upload.
 gem 'remotipart'
-# Gem supports all major cloud providers including AWS, Rackspace, Linode, Blue Box, StormOnDemand, and many others. Full support for most AWS 
-services including EC2, S3, CloudWatch, SimpleDB, ELB, and RDS.
+# Gem supports all major cloud providers including AWS, Rackspace, Linode, Blue Box, StormOnDemand, and many others. Full support for most AWS services including EC2, S3, CloudWatch, SimpleDB, ELB, and RDS.
 gem 'fog'
 # Gem used to split emailed pdf's.
 gem 'docsplit'
