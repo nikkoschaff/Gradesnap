@@ -3,7 +3,7 @@ class UserMailer < ActionMailer::Base
  
   def welcome_email(user)
     @user = user
-    @url  = "http://gradesnap.com/prelogins/#{@user.id}/code"
+    @url  = "//gradesnap.com/prelogins/#{@user.id}/code"
     mail(:to => @user.email, :subject => "Welcome to Gradesnap")
   end
 
