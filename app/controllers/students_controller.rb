@@ -57,15 +57,13 @@ class StudentsController < ApplicationController
   # POST /students.json
   def create
     @student = Student.new(params[:student])
-
-    respond_to do |format|
-      if @student.save
-        @student.grade = 0
-        if @student.middle_name == nil
-          @student.middle_name = " "
-        end
-          @student.save
-
+    if @student.save
+      @student.grade = 0
+      if @student.middle_name == nil
+        @student.middle_name = " "
+      end
+      @student.save
+      respond_to do |format|
         format.html { redirect_to @student, notice: 'Student was successfully created.' }
         format.json { render json: @student, status: :created, location: @student }
       else
