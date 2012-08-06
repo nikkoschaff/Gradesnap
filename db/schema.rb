@@ -120,7 +120,6 @@ ActiveRecord::Schema.define(:version => 20120719020204) do
     t.datetime "created_at"
     t.string   "confirmation_code"
     t.boolean  "confirmed"
-    t.boolean  "eula"
   end
 
 end

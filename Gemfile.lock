@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:nikkoschaff/gsimgproc.git
-  revision: 99ae22e2ded02751407717c064665c4af9e4208a
+  revision: fb0049ea84ce19053865e6d411f7b236979bdb55
   specs:
     gsimgproc (0.0.1)
 
