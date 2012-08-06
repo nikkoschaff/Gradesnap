@@ -11,15 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120719020204) do
+ActiveRecord::Schema.define(:version => 20120806205142) do
 
   create_table "assignment_students", :force => true do |t|
     t.integer  "assignment_id"
     t.integer  "student_id"
     t.integer  "scansheet_id"
     t.float    "grade"
-    t.string   "results"
-    t.string   "answer_key"
+    t.text     "results"
+    t.text     "answer_key"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
@@ -30,10 +30,10 @@ ActiveRecord::Schema.define(:version => 20120719020204) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "num_questions"
-    t.string   "answer_key"
-    t.string   "name"
-    t.string   "answer_scansheet"
-    t.string   "email"
+    t.text     "answer_key"
+    t.text     "name"
+    t.text     "answer_scansheet"
+    t.text     "email"
     t.integer  "course_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
@@ -85,10 +85,10 @@ ActiveRecord::Schema.define(:version => 20120719020204) do
   end
 
   create_table "scansheets", :force => true do |t|
-    t.string   "name"
-    t.string   "ambiguous_answers"
-    t.string   "answers_string"
-    t.string   "assignment_student_id"
+    t.text     "name"
+    t.text     "ambiguous_answers"
+    t.text     "answers_string"
+    t.text     "assignment_student_id"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
     t.integer  "assignment_id"
@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(:version => 20120719020204) do
     t.datetime "created_at"
     t.string   "confirmation_code"
     t.boolean  "confirmed"
+    t.boolean  "eula"
   end
 
 end

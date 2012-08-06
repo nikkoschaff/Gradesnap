@@ -5,8 +5,8 @@ class CreateAssignmentStudents < ActiveRecord::Migration
       t.integer :student_id
       t.integer :scansheet_id
       t.float :grade
-      t.string :results
-      t.string :answer_key
+      t.text :results, :limit => nil
+      t.text :answer_key, :limit => nil
 
       t.timestamps
     end
