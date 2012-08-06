@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <style type="text/css">
+    body{
+      background-color: #444444;
+      color: #ffffff;
+      font-family: "helvetica neue", arial, sans-serif;
+    }
+    h1{
+      font-weight: 100;
+    }
+.mailText{
+  background-color: #cccccc;
+  color: #333333;
+  padding: 10px;
+  border-radius: 5px;
+}
+  </style>
+  <body>
+
+    <h1>Message from: <%= @user.email %></h1>
+    <h2>Subject: <%= @subject %></h2>
+  <div class="mailText">
+    <p>
+      <%= @message %>
+    </p>
+  </div>
+  </body>
+</html>
