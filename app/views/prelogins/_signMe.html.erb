@@ -18,7 +18,7 @@
         <%= password_field "user", "password_confirmation", :size => 20 %>
 
         <div class="reCaptcha">
-          <%= raw(get_captcha(:options => {:theme => 'white', :tabindex => 10})) %>
+          <%= raw(get_captcha(:ssl => true, :options => {:theme => 'white', :tabindex => 10})) %>
         </div>
         <%= submit_tag "submit", :class =>'btn btn-success'%>
     <% $end -%>
