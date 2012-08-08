@@ -11,7 +11,8 @@ class ChangeStringToText < ActiveRecord::Migration
 	change_column :scansheets, :answers_string, :text, :limit => nil
 	change_column :scansheets, :assignment_student_id, :text, :limit => nil
 
-	#change_column :assignment_students, :results, :text, :limit => nil
+	change_column :assignment_students, :results, :text, :limit => nil
+	change_column :assignment_students, :answer_key, :text, :limit => nil
 	#add_index(:assignment_students, [:student_id, :assignment_id], :name => "add_index_to_assignment_students")
 	#change_column :assignment_students, :answer_key, :text, :limit => nil
   end
