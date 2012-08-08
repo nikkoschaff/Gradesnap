@@ -16,17 +16,11 @@
             <!-- /account-avatar -->
 
             <div class="account-details">
-
-              <span class="account-name">Ryan Rich</span>
-
+              <span class="account-name"><%= session[:user][:name] %></span>
               <span class="account-role">K-12 Teacher</span>
-
               <span class="account-actions dattt">
-                <a href="javascript:;">My Account</a>
-                |
-                <a href="javascript:;">Settings</a>
+              <%= link_to "My Account", :action=> 'myaccount' %>
               </span>
-
             </div>
             <!-- /account-details -->
 
@@ -34,59 +28,15 @@
           <!-- /account-container -->
 
           <hr />
-
           <ul id="main-nav" class="nav nav-tabs nav-stacked">
-
-            <li class="active">
-              <%= link_to 'Home',:action =>'dashboard',:controller => 'sessions' %>
-            </li>
-
-            <li>
-              <%= link_to 'Courses',:action =>'index',:controller => 'courses' %>
-            </li>
-
-            <li>
-              <%= link_to 'Assignments',:action =>'index',:controller => 'assignments' %>
-            </li>
-
-            <li>
-              <%= link_to 'Students',:action =>'index',:controller => 'students' %>
-            </li>
-
-            <li>
-              <%= link_to "My Account",:action =>'myaccount',:controller => 'sessions' %>
-            </li>
-
-            <li>
-              <a href="./login.html">
-                <i class="icon-lock"></i>
-              New Login
-              </a>
-            </li>
-
-            <li>
-              <a href="./pricing.html">
-              Pricing Plans
-              </a>
-            </li>
+            <li><%= link_to 'Home',:action =>'dashboard',:controller => 'sessions' %></li>
+            <li><%= link_to 'Courses',:action =>'index',:controller => 'courses' %></li>
+            <li><%= link_to 'Assignments',:action =>'index',:controller => 'assignments' %></li>
+            <li><%= link_to 'Students',:action =>'index',:controller => 'students' %></li>
+            <li><%= link_to "My Account",:action =>'myaccount',:controller => 'sessions' %></li>
           </ul>
-
-          <hr />
-
-          <div class="sidebar-extra">
-            <p>
-           Right now you are 'Home'. This is where you will be located everytime you log in. As stated before this gives you
-        access to all of Gradesnap's features. To navigate the site please use either the links in the tabs to the left or 
-        alternatively you can navigate using the navigation bar located at the top of the page.
-            </p>
-          </div>
-          <!-- .sidebar-extra -->
-
-          <br />
-
-        </div>
-        <!-- /span3 -->
-
+          <hr /><br />
+        </div>  
         <div class="span9">
 
           <h1 class="page-title">
@@ -98,7 +48,7 @@
 
             <div class="stat-holder">
               <div class="stat">
-                <span>0</span>
+                <span><%= @numass=Assignment.where("email = ?",session[:user][:email]).to_a.size %></span>
                 Assignments
               </div>
               <!-- /stat -->
@@ -107,7 +57,17 @@
 
             <div class="stat-holder">
               <div class="stat">
-                <span>0</span>
+                <span>
+                  <% newarray=Array.new%>
+                  <% @numcourses=Course.where("teacher_id = ?",session[:user][:teacher_id]).to_a %>
+                  <% @numcourses.each do |c| %>
+                  <% newarray.push c.id %>
+                  <% end %>
+                  <% s_num = 0 %>
+                  <% newarray.each do |id| %>
+                  <% s_num += Student.where("course_id = ?", id).to_a.size %>
+                  <% end %>
+                  <%= s_num %></span>
                 Students
               </div>
               <!-- /stat -->
@@ -116,8 +76,8 @@
 
             <div class="stat-holder">
               <div class="stat">
-                <span>0</span>
-                Classes
+                <span><%= @numcourse=Course.where("teacher_id = ?",session[:user][:teacher_id]).to_a.size %></span>
+                Courses
               </div>
               <!-- /stat -->
             </div>
@@ -125,7 +85,7 @@
 
             <div class="stat-holder">
               <div class="stat">
-                <span>0</span>
+                <span style="color: #ff5400"><%="#{currentIssueCount}"%></span>
                 Issues
               </div>
               <!-- /stat -->
@@ -150,114 +110,26 @@
 
               <table class="table table-striped table-bordered">
                 <thead>
+                  <% newarray.each do |id| %>
+                  <% @s = Student.where("course_id = ?", id).to_a %>
+                  <% end %>
                   <tr>
-                    <th>#</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>In Course</th>
                     <th>Overall Grade</th>
-                    <th>&nbsp;</th>
                   </tr>
                 </thead>
-
+<% @s.each do |student| %>
                 <tbody>
                   <tr>
-                    <td>1</td>
-                    <td>Ashley</td>
-                    <td>Davis</td>
-                    <td>Math_B1</td>
-                    <td>87.62%</td>
-                    <td class="action-td">
-                      <a href="javascript:;" class="btn btn-small btn-warning">
-                        <i class="icon-ok"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Banard</td>
-                    <td>Johnson</td>
-                    <td>Math_B1</td>
-                    <td>82.55%</td>
-                    <td class="action-td">
-                      <a href="javascript:;" class="btn btn-small btn-warning">
-                        <i class="icon-ok"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Benjamin</td>
-                    <td>Babbles</td>
-                    <td>MathRem</td>
-                    <td>76.66%</td>
-                    <td class="action-td">
-                      <a href="javascript:;" class="btn btn-small btn-warning">
-                        <i class="icon-ok"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td>Bucknell</td>
-                    <td>Schism</td>
-                    <td>MathRem</td>
-                    <td>97.71%</td>
-                    <td class="action-td">
-                      <a href="javascript:;" class="btn btn-small btn-warning">
-                        <i class="icon-ok"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>5</td>
-                    <td>Casey</td>
-                    <td>Bintley</td>
-                    <td>Math_B1</td>
-                    <td>71.13%</td>
-                    <td class="action-td">
-                      <a href="javascript:;" class="btn btn-small btn-warning">
-                        <i class="icon-ok"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>6</td>
-                    <td>Charles</td>
-                    <td>Galshington</td>
-                    <td>Math_B1</td>
-                    <td>88.39%</td>
-                    <td class="action-td">
-                      <a href="javascript:;" class="btn btn-small btn-warning">
-                        <i class="icon-ok"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>7</td>
-                    <td>David</td>
-                    <td>Brazleton</td>
-                    <td>Math_B1</td>
-                    <td>97.88%</td>
-                    <td class="action-td">
-                      <a href="javascript:;" class="btn btn-small btn-warning">
-                        <i class="icon-ok"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>8</td>
-                    <td>Darcy</td>
-                    <td>Durple</td>
-                    <td>MathRem</td>
-                    <td>78.54%</td>
-                    <td class="action-td">
-                      <a href="javascript:;" class="btn btn-small btn-warning">
-                        <i class="icon-ok"></i>
-                      </a>
-                    </td>
+                    <td><%= student.first_name %></td>
+                    <td><%= student.last_name %></td>
+                    <td><%= Course.where("id = ?",student.course_id).to_a.last.name %></td>
+                    <td><%= student.grade %></td>
                   </tr>
                 </tbody>
+  <% end %>
               </table>
 
             </div>
