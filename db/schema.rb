@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(:version => 20120806205142) do
     t.integer  "student_id"
     t.integer  "scansheet_id"
     t.float    "grade"
-    t.text     "results"
-    t.text     "answer_key"
+    t.string   "results"
+    t.string   "answer_key"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
@@ -120,7 +120,6 @@ ActiveRecord::Schema.define(:version => 20120806205142) do
     t.datetime "created_at"
     t.string   "confirmation_code"
     t.boolean  "confirmed"
-    t.boolean  "eula"
   end
 
 end
