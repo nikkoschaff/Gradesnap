@@ -11,7 +11,7 @@
           <li><%= link_to 'Home',:action => 'dashboard',:controller => 'sessions' %></li>
           <li><%= link_to 'Features',:action => 'features',:controller => 'prelogins' %></li>
           <li><%= link_to 'About Us',:action => 'about',:controller => 'prelogins' %></li>
-          <li><%= link_to 'Contact',:action => 'contact', :controller => 'prelogins' %></li>
+          <li><%= link_to 'Contact',:action => 'new', :controller => 'contacts' %></li>
           <li><%= link_to 'Legal',:action => 'legal',:controller => 'prelogins' %></li>
           <li><%= link_to 'Logout',:action => 'logout', :controller => 'sessions' %></li>
           <li><%= link_to "Welcome, #{session[:user].name}"%></li>

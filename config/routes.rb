@@ -1,4 +1,10 @@
 Gradesnap::Application.routes.draw do
+  resources :contacts do
+    collection do
+      get 'login'
+    end
+  end
+
   resources :exportsheets
 
   resources :scansheets 
@@ -18,6 +24,8 @@ Gradesnap::Application.routes.draw do
   end
   resources :prelogins do
     collection do
+      get 'thanks'
+      post 'post_contact'
       post 'confirm_eula'
       get 'eula'
       get 'signup'
@@ -27,7 +35,6 @@ Gradesnap::Application.routes.draw do
       get 'forgot_password'
       get 'features'
       get 'about'
-      get 'contact'
       get 'registration'
       get 'legal'
       get 'confirm_it'
