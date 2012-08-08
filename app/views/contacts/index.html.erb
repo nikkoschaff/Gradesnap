@@ -1,5 +1,5 @@
 <h1>Listing contacts</h1>
-
+<% if @contacts %>
 <table>
   <tr>
     <th>String</th>
@@ -9,6 +9,7 @@
     <th></th>
     <th></th>
   </tr>
+
 
 <% @contacts.each do |contact| %>
   <tr>
@@ -23,5 +24,9 @@
 </table>
 
 <br />
+<% else %>
 
+<p>No contacts. </p>
+
+<% end %>
 <%= link_to 'New Contact', new_contact_path %>
