@@ -120,6 +120,7 @@
                     <th>Overall Grade</th>
                   </tr>
                 </thead>
+<% unless @s == nil %>
 <% @s.each do |student| %>
                 <tbody>
                   <tr>
@@ -129,6 +130,7 @@
                     <td><%= student.grade %></td>
                   </tr>
                 </tbody>
+<% end %>
   <% end %>
               </table>
 
