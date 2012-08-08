@@ -129,6 +129,13 @@ class PreloginsController < ApplicationController
     end
   end
 
+  #Conor pls
+  def thanks
+    respond_to do |format|
+      format.html
+    end
+  end
+  
   # finds user to set the eula marker to trueeeeeeeeeeee
   def confirm_eula
     @user = User.all.last
@@ -151,5 +158,13 @@ class PreloginsController < ApplicationController
     newcode = ""
     1.upto(len) { |i| newcode << chars[rand(chars.size-1)] }
     return newcode
+  end
+
+  def post_contact
+    Rails.logger.info("hue========================================hue")
+    respond_to do |format|
+      format.xml
+      redirect_to :action => "thanks", :controller => "prelogins"
+    end
   end
 end
