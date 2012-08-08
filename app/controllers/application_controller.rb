@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
   layout "application"
+  before_filter :admin_required, :only=>[:contacts]
 #before_filter :login_required, :only=>[':scansheets, 
 #              :scansheet, 
 #              :grademodels,
@@ -19,6 +20,14 @@ class ApplicationController < ActionController::Base
     backup = session.data.clone
     reset_session
     backup.each { |k, v| session[k] = v unless k.is_a?(String) && k =~ /^as:/ }
+  end
+
+  def admin_required
+    if session[:user][:email] == "admin@gradesnap.com"
+      return true
+    end
+    redirect_to :controller => "prelogins", :action => "index"
+    return false
   end
 
   def login_required

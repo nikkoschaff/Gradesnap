@@ -26,10 +26,11 @@ class PreloginsController < ApplicationController
              redirect_to :action => "eula", :controller => 'prelogins'
              #redirect_to :action => "confirm_it", :controller => 'prelogins' 
            end
+         #elsif ! @user.save
+         #  @user.errors.add("something went wrong")
+         #  redirect_to :action => "signup", :controller => 'prelogins'
          end
        end
-     else
-       flash[:warning] = "Signup unsuccessful"
      end
    end
 
@@ -129,6 +130,13 @@ class PreloginsController < ApplicationController
     end
   end
 
+  #Conor pls
+  def thanks
+    respond_to do |format|
+      format.html
+    end
+  end
+  
   # finds user to set the eula marker to trueeeeeeeeeeee
   def confirm_eula
     @user = User.all.last
@@ -151,5 +159,13 @@ class PreloginsController < ApplicationController
     newcode = ""
     1.upto(len) { |i| newcode << chars[rand(chars.size-1)] }
     return newcode
+  end
+
+  def post_contact
+    Rails.logger.info("hue========================================hue")
+    respond_to do |format|
+      format.xml
+      redirect_to :action => "thanks", :controller => "prelogins"
+    end
   end
 end

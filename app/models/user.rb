@@ -2,7 +2,7 @@ require 'digest/sha1'
 
 class User < ActiveRecord::Base
   validates_length_of :password, :within => 5..40, :on => 'create'
-  validates_presence_of :email, :salt
+  validates_presence_of :email, :salt, :message => "No email"
   validates_presence_of :password_confirmation, :password, :on => 'create'
   validates_uniqueness_of :email
   validates_confirmation_of :password

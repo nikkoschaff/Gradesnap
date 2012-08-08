@@ -9,10 +9,10 @@
               <a href="#">Forums</a>
             </li>
             <li>
-              <a href="#">Contact</a>
+              <%= link_to "contact us", :action => 'new', :controller => 'contacts' %>
             </li>
             <li>
-              <a href="#">Send Feedback</a>
+              <%= link_to "contact us", :action => 'new', :controller => 'contacts' %>
             </li>
           </ul>
         </p>
@@ -23,19 +23,23 @@
         <p class="B">
           <ul>
             <li>
-              <a href="#">Home</a>
+              <% if session[:user] %>
+                <%= link_to "Dashboard", :action => "dashboard", :controller => "sessions" %>
+              <% else %>
+                <%= link_to "Home page", :action => "index", :controller => "prelogins" %>
+              <% end %>
             </li>
             <li>
-              <a href="#">Features</a>
+              <%= link_to "Features", :action => "features", :controller => "prelogins" %>
             </li>
             <li>
-              <a href="#">About Us</a>
+              <%= link_to "About us", :action => "about", :controller => "prelogins" %>
             </li>
             <li>
-              <a href="#">Contact</a>
+              <%= link_to "Contact", :action => 'new', :controller => 'contacts' %>
             </li>
             <li>
-              <a href="#">Sign Up</a>
+              <%= link_to "Sign up", :action => 'signup', :controller => 'prelogins' %>
             </li>
           </ul>
         </p>
