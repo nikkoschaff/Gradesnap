@@ -26,10 +26,11 @@ class PreloginsController < ApplicationController
              redirect_to :action => "eula", :controller => 'prelogins'
              #redirect_to :action => "confirm_it", :controller => 'prelogins' 
            end
+         #elsif ! @user.save
+         #  @user.errors.add("something went wrong")
+         #  redirect_to :action => "signup", :controller => 'prelogins'
          end
        end
-     else
-       flash[:warning] = "Signup unsuccessful"
      end
    end
 

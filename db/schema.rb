@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120808164543) do
+ActiveRecord::Schema.define(:version => 20120808202533) do
 
   create_table "assignment_students", :force => true do |t|
     t.integer  "assignment_id"
@@ -129,6 +129,7 @@ ActiveRecord::Schema.define(:version => 20120808164543) do
     t.string   "confirmation_code"
     t.boolean  "confirmed"
     t.boolean  "eula"
+    t.integer  "subscribed"
   end
 
 end

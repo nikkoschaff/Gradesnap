@@ -3,6 +3,16 @@
     <h3>Join Gradesnap</h3>
     <%= form_tag :action=> "signup", :validate => true %>
 
+          <% if @user.errors.any? %>
+            <div id="error_explanation">
+              <ul>
+              <% @user.errors.messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+
         <label for="user_password"><strong>Name</strong></label>
         <%= text_field "user", "name", :size => 20 %><br/>
         <%= flash[:notice] %>
