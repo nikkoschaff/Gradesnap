@@ -29,7 +29,6 @@ Gradesnap::Application.routes.draw do
   resources :prelogins do
     collection do
       get 'thanks'
-      post 'post_contact'
       post 'confirm_eula'
       get 'eula'
       get 'signup'

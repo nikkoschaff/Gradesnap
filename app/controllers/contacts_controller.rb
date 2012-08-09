@@ -3,7 +3,7 @@ class ContactsController < ApplicationController
   #before_filter :login_required, :only => [:show, :edit, :update, :destroy]
 
   before_filter :admin_required, :only => [:show, :index, :edit, :update, :destroy]
-
+  
   # GET /contacts
   # GET /contacts.json
   def index
@@ -40,10 +40,6 @@ class ContactsController < ApplicationController
   # GET /contacts/1/edit
   def edit
     @contact = Contact.find(params[:id])
-  end
-
-  def login
-    redirect_to :action => "new", :controller => "contacts"
   end
 
   # POST /contacts

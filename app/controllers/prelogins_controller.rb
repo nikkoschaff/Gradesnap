@@ -159,12 +159,7 @@ class PreloginsController < ApplicationController
     return newcode
   end
 
-  def post_contact
-    @contact = Contact.new(params[:contact])
-    if @contact.save
-      redirect_to :action => "thanks", :controller => "prelogins"
-    end
-  end
+
 
 
 
