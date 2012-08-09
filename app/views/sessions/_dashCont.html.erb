@@ -120,6 +120,20 @@
                     <th>Overall Grade</th>
                   </tr>
                 </thead>
+<<<<<<< HEAD
+<% unless @s == nil %>
+<% @s.each do |student| %>
+                <tbody>
+                  <tr>
+                    <td><%= student.first_name %></td>
+                    <td><%= student.last_name %></td>
+                    <td><%= Course.where("id = ?",student.course_id).to_a.last.name %></td>
+                    <td><%= student.grade %></td>
+                  </tr>
+                </tbody>
+<% end %>
+  <% end %>
+=======
             <% unless @s == nil %>
               <% @s.each do |student| %>
                   <tbody>
@@ -132,6 +146,7 @@
                   </tbody>
               <% end %>
             <% end %>
+>>>>>>> a7b96dc31c3ffd388ac606bd26b1d0ea762b2d2b
               </table>
 <% else%>
  <p>No stuednts.
