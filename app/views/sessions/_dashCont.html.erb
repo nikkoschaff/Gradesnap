@@ -107,6 +107,7 @@
             <!-- /widget-header -->
 
             <div class="widget-content">
+<% if @s != nil %>
 
               <table class="table table-striped table-bordered">
                 <thead>
@@ -131,7 +132,10 @@
                 </tbody>
   <% end %>
               </table>
-
+<% else%>
+ <p>No stuednts.
+</p>
+<% end %>
             </div>
             <!-- /widget-content -->
 

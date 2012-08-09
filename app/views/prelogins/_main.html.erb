@@ -77,35 +77,23 @@
     <button type="button" class="close" data-dismiss="modal">&times;</button>
     <h3 class="FH">Login</h3>
   </div>
-  <%= form_for(@contact) do |f| %>
-  <% if @contact.errors.any? %>
-  <div id="error_explanation">
-    <h2>
-      <%= pluralize(@contact.errors.count, "error") %>prohibited this contact from being saved:</h2>
-
-    <ul>
-      <% @contact.errors.full_messages.each do |msg| %>
-      <li>
-        <%= msg %></li>
-      <% end %></ul>
-  </div>
-  <% end %>
+  <%= form_tag :action => "post_contact" %>
 
   <div class="field">
-    <%= f.label :email %>
     <br />
-    <%= f.text_field :email %></div>
+    <label for="contact_email">Email:</label><br/>
+    <%= text_field_tag "contact", "email" %></div>
   <div class="field">
-    <%= f.label :subject %>
+    Subject
     <br />
-    <%= f.text_field :subject %></div>
+    <%= text_field_tag "contact", "subject" %></div>
   <div class="field">
-    <%= f.label :message %>
+    Message
     <br />
-    <%= f.text_area :message %></div>
+    <%= text_area_tag "contact", "message" %></div>
   <div class="actions">
-    <%= f.submit %></div>
-  <% end %></div>
+    <%= submit_tag "DERRRRRRRRRRRRRRRRRR" %></div>
+  <% $end %></div>
 <!-- ******************************************************************************** -->
 <!-- ******************************************************************************** -->
 <div id="myModal" class="modal hide fade">

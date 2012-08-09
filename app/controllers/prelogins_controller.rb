@@ -160,10 +160,12 @@ class PreloginsController < ApplicationController
   end
 
   def post_contact
-    Rails.logger.info("hue========================================hue")
-    respond_to do |format|
-      format.xml
+    @contact = Contact.new(params[:contact])
+    if @contact.save
       redirect_to :action => "thanks", :controller => "prelogins"
     end
   end
+
+
+
 end
