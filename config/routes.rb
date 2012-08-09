@@ -2,6 +2,10 @@ Gradesnap::Application.routes.draw do
   resources :contacts do
     collection do
       get 'login'
+      post 'new'
+      get 'new'
+      get 'post_contact'
+      post 'post_contact'
     end
   end
 

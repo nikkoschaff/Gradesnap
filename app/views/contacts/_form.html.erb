@@ -1,3 +1,13 @@
+<div class="loginMover">
+<div id="login-container">
+  <div id="login-header">
+    
+    <h3>Contact Form</h3>
+    
+  </div> <!-- /login-header -->
+  
+  <div id="login-content" class="clearfix">
+  
 <%= form_for(@contact) do |f| %>
   <% if @contact.errors.any? %>
     <div id="error_explanation">
@@ -21,9 +31,12 @@
   </div>
   <div class="field">
     <%= f.label :message %><br />
-    <%= f.text_area :message %>
+    <%= f.text_area :message, :class => 'fuckingBitch' %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => 'btn btn-info'%>
   </div>
 <% end %>
+      
+    </div> <!-- /login-content -->
+  </div>
