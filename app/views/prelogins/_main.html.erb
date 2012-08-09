@@ -15,8 +15,7 @@
           <li>
             <%= link_to 'About Us',:action =>'about',:controller => 'prelogins' %></li>
           <li>
-            <a data-toggle="modal" href="#contactForm">Contact</a>
-          </li>
+            <%= link_to 'Contact Us',:action =>"new",:controller => "contacts" %></li>
           <li>
             <%= link_to 'Legal',:action =>'legal',:controller => 'prelogins' %></li>
           <li>
@@ -64,8 +63,7 @@
     <%= password_field "user", "password", :size =>
     20 %>
     <br/>
-    <%= submit_tag "Submit", :class =>
-    'btn btn-success'%>
+    <%= submit_tag "Submit", :class => 'btn btn-success'%>
     <div class="forgot">
       <%= link_to 'Forgot password', :action =>'forgot_password', :controller => 'prelogins' %></div>
     <% $end -%></div>
@@ -78,7 +76,7 @@
     <h3 class="FH">Login</h3>
   </div>
   <%= form_tag :action => "post_contact" %>
-
+<div class="modal-body">
   <div class="field">
     <br />
     <label for="contact_email">Email:</label><br/>
@@ -92,27 +90,8 @@
     <br />
     <%= text_area_tag "contact", "message" %></div>
   <div class="actions">
-    <%= submit_tag "DERRRRRRRRRRRRRRRRRR" %></div>
+    <%= submit_tag "Submit", :class => 'btn btn-success' %></div>
   <% $end %></div>
-<!-- ******************************************************************************** -->
-<!-- ******************************************************************************** -->
-<div id="myModal" class="modal hide fade">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal">&times;</button>
-    <h3 class="FH">CONTACT FORM</h3>
-  </div>
-  <div class="modal-body">
-    <div class="centerF">
-      <form action="mail.php" method="POST">
-        <p>Name</p>
-        <input type="text" name="name">
-        <p>Email</p>
-        <input type="text" name="email">
-        <p>Message</p>
-        <textarea name="message" rows="6" cols="25"></textarea>
-        <br />
-        <input type="submit" value="Send" class="btn">
-        <input type="reset" value="Clear" class="btn"></form>
-    </div>
-  </div>
 </div>
+<!-- ******************************************************************************** -->
+<!-- ******************************************************************************** -->
