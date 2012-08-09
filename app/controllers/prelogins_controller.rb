@@ -1,6 +1,4 @@
 class PreloginsController < ApplicationController
-
-
 # ensures that the login_required method is run before the hidden and welcome actions.
 # Processing of these actions only continues if this filter returns true. The 
 # login_required method returns true if session[:user] is set i.e. if the user is 

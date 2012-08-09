@@ -21,6 +21,5 @@
 //=require jquery-fileupload/jquery.fileupload-fp
 //=require jquery-fileupload/jquery.fileupload-ui
 //=require jquery-fileupload/locale
-//= require rails.validations
 //= require twitter/bootstrap
 //= require_tree .
