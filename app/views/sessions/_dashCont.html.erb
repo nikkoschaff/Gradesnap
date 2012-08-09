@@ -112,7 +112,7 @@
               <table class="table table-striped table-bordered">
                 <thead>
                   <% newarray.each do |id| %>
-                  <% @s = Student.where("course_id = ?", id).to_a %>
+                    <% @s = Student.where("course_id = ?", id).to_a %>
                   <% end %>
                   <tr>
                     <th>First Name</th>
@@ -121,16 +121,18 @@
                     <th>Overall Grade</th>
                   </tr>
                 </thead>
-<% @s.each do |student| %>
-                <tbody>
-                  <tr>
-                    <td><%= student.first_name %></td>
-                    <td><%= student.last_name %></td>
-                    <td><%= Course.where("id = ?",student.course_id).to_a.last.name %></td>
-                    <td><%= student.grade %></td>
-                  </tr>
-                </tbody>
-  <% end %>
+            <% unless @s == nil %>
+              <% @s.each do |student| %>
+                  <tbody>
+                    <tr>
+                      <td><%= student.first_name %></td>
+                      <td><%= student.last_name %></td>
+                      <td><%= Course.where("id = ?",student.course_id).to_a.last.name %></td>
+                      <td><%= student.grade %></td>
+                    </tr>
+                  </tbody>
+              <% end %>
+            <% end %>
               </table>
 <% else%>
  <p>No stuednts.
