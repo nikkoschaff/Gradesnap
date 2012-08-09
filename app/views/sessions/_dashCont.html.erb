@@ -96,7 +96,16 @@
           <!-- /stat-container -->
 
        
+          
+
+
+
+
           <!-- /widget -->
+          <% newarray.each do |id| %>
+                    <% @s = Student.where("course_id = ?", id).to_a %>
+                  <% end %>
+                  <% if @s != nil %>
 
           <div class="widget widget-table">
 
@@ -109,10 +118,6 @@
             <div class="widget-content">
               <table class="table table-striped table-bordered">
                 <thead>
-                  <% newarray.each do |id| %>
-                    <% @s = Student.where("course_id = ?", id).to_a %>
-                  <% end %>
-                  <% if @s != nil %>
                   <tr>
                     <th>First Name</th>
                     <th>Last Name</th>
@@ -120,8 +125,6 @@
                     <th>Overall Grade</th>
                   </tr>
                 </thead>
-<<<<<<< HEAD
-<% unless @s == nil %>
 <% @s.each do |student| %>
                 <tbody>
                   <tr>
@@ -132,27 +135,13 @@
                   </tr>
                 </tbody>
 <% end %>
-  <% end %>
-=======
-            <% unless @s == nil %>
-              <% @s.each do |student| %>
-                  <tbody>
-                    <tr>
-                      <td><%= student.first_name %></td>
-                      <td><%= student.last_name %></td>
-                      <td><%= Course.where("id = ?",student.course_id).to_a.last.name %></td>
-                      <td><%= student.grade %></td>
-                    </tr>
-                  </tbody>
-              <% end %>
-            <% end %>
->>>>>>> a7b96dc31c3ffd388ac606bd26b1d0ea762b2d2b
               </table>
 <% else%>
  <p>No stuednts.
 </p>
 <% end %>
-            </div>
+</div>
+
             <!-- /widget-content -->
 
           </div>

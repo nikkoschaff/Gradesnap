@@ -2,7 +2,7 @@ class ContactsController < ApplicationController
 
   #before_filter :login_required, :only => [:show, :edit, :update, :destroy]
 
-  before_filter :admin_required, :only => [:show, :index, :edit, :update, :destroy]
+  before_filter :admin_required, :only => [:show, :index, :destroy]
   
   # GET /contacts
   # GET /contacts.json
@@ -30,7 +30,6 @@ class ContactsController < ApplicationController
   # GET /contacts/new.json
   def new
     @contact = Contact.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @contact }
@@ -45,9 +44,14 @@ class ContactsController < ApplicationController
   # POST /contacts
   # POST /contacts.json
   def create
+    Rails.logger.info("~~~~~~~~~~~~~~~~~~~~PARAMS: #{params}")   
     @contact = Contact.new(params[:contact])
-    @contact.save
+Rails.logger.info("~::::::::::::::::::::::::::::::PARAMS: #{params}")
+	if @contact.save
     redirect_to :action => "thanks", :controller => "prelogins"
+  	else
+	redirect_to :action => "home", :controller => "prelogins" 
+	end
   end
 
   # DELETE /contacts/1
@@ -55,7 +59,6 @@ class ContactsController < ApplicationController
   def destroy
     @contact = Contact.find(params[:id])
     @contact.destroy
-
     respond_to do |format|
       format.html { redirect_to contacts_url }
       format.json { head :no_content }
