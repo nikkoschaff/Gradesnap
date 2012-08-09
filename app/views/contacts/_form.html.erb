@@ -2,12 +2,12 @@
 <div id="login-container">
   <div id="login-header">
     
-    <h3>Contact Form</h3>
+    <h3>Contact Us!</h3>
     
   </div> <!-- /login-header -->
   
   <div id="login-content" class="clearfix">
-  
+	<p>Gradesnap was built on feedback from teachers.  Send us a line, and we'll get back to you in one business day.</p>  
 <%= form_for(@contact) do |f| %>
   <% if @contact.errors.any? %>
     <div id="error_explanation">
@@ -34,7 +34,7 @@
     <%= f.text_area :message, :class => 'fuckingBitch' %>
   </div>
   <div class="actions">
-    <%= f.submit :class => 'btn btn-info'%>
+    <%= f.submit "Send Feedback", :class => 'btn btn-info' %>
   </div>
 <% end %>
       
