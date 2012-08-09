@@ -15,7 +15,7 @@
           <li>
             <%= link_to 'About Us',:action =>'about',:controller => 'prelogins' %></li>
           <li>
-            <%= link_to 'Contact', :action =>'new',:controller => 'contacts' %></li>
+            <a data-toggle="modal" href="#contactForm">Contact</a>
           </li>
           <li>
             <%= link_to 'Legal',:action =>'legal',:controller => 'prelogins' %></li>
@@ -31,7 +31,7 @@
     <ul class="signUp">
       <ul class="nav">
         <li>
-          <a data-toggle="modal" href="#myModal2">Login</a>
+          <a data-toggle="modal" href="#login">Login</a>
         </li>
       </ul>
     </ul>
@@ -39,7 +39,7 @@
 </div>
 
 <!-- ********************************************************************************** -->
-<div id="myModal2" class="modal hide fade">
+<div id="login" class="modal hide fade">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">&times;</button>
     <h3 class="FH">Login</h3>
@@ -68,9 +68,45 @@
     'btn btn-success'%>
     <div class="forgot">
       <%= link_to 'Forgot password', :action =>'forgot_password', :controller => 'prelogins' %></div>
-    <% $end -%>
-  </div>
+    <% $end -%></div>
 </div>
+<!-- ******************************************************************************** -->
+<!-- ******************************************************************************** -->
+<div id="contactForm" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h3 class="FH">Login</h3>
+  </div>
+  <%= form_for(@contact) do |f| %>
+  <% if @contact.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@contact.errors.count, "error") %>prohibited this contact from being saved:</h2>
+
+    <ul>
+      <% @contact.errors.full_messages.each do |msg| %>
+      <li>
+        <%= msg %></li>
+      <% end %></ul>
+  </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :email %>
+    <br />
+    <%= f.text_field :email %></div>
+  <div class="field">
+    <%= f.label :subject %>
+    <br />
+    <%= f.text_field :subject %></div>
+  <div class="field">
+    <%= f.label :message %>
+    <br />
+    <%= f.text_area :message %></div>
+  <div class="actions">
+    <%= f.submit %></div>
+  <% end %></div>
+<!-- ******************************************************************************** -->
 <!-- ******************************************************************************** -->
 <div id="myModal" class="modal hide fade">
   <div class="modal-header">
