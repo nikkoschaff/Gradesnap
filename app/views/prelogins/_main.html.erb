@@ -1,3 +1,4 @@
+<div class="navWrap">
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
@@ -20,8 +21,6 @@
             <%= link_to 'Legal',:action =>'legal',:controller => 'prelogins' %></li>
           <li>
             <%= link_to 'Pricing',:action =>'pricing',:controller => 'prelogins' %></li>
-          <li>
-            <%= link_to 'Registration',:action =>'registration',:controller => 'prelogins' %></li>
         </ul>
       </div>
     </div>
@@ -29,10 +28,16 @@
   <div class="container">
     <ul class="signUp">
       <ul class="nav">
+      <div class="btn btn-success">
+        <li><%= link_to 'Sign Up!',:action =>'signup',:controller => 'prelogins'%></li>
+      </div>
+          <div class="btn btn-info">
         <li>
          <%= link_to 'Login',:action =>'login',:controller => 'prelogins' %>
         </li>
+      </div>
       </ul>
     </ul>
   </div>
+</div>
 </div>
