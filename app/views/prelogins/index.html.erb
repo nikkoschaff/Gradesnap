@@ -47,8 +47,12 @@
           Buys You Time
           <%= image_tag('/assets/icon1.png') %></p>
         <p class="B">
-          Gradesnap allows teachers to stop wasting time with multiple choice grading and more time teaching their students or relaxing on their free time.
-          <ul>
+          Gradesnap allows teachers to stop wasting time with multiple choice grading and more time teaching their students or relaxing on their free time.   </p>
+          <p class="B">To stay up to date on just how much time Gradesnap saves you and more subscrbive to our newsletter by submitting your email.</p>
+          <div class="input-append overRight">
+              <input class="span2" id="newsletter" size="16" type="text" placeholder="Your Email Here"><button class="btn btn-info" type="button">Submit</button>
+          </div>
+          <!-- <ul>
             <li>
               <a href="#">Developers Blog</a>
             </li>
@@ -61,8 +65,7 @@
             <li>
               <a href="#">Features Of Gradesnap</a>
             </li>
-          </ul>
-        </p>
+          </ul> -->
       </div>
       <!-- -->
       <div class="span4">
@@ -71,7 +74,7 @@
           <%= image_tag('/assets/icon2.png') %></p>
         <p class="B">
           With Gradesnap you can take advantage of technology. With future plans to incorporate online testing portals, Gradesnap will be the platform that tracks your students for years to come.
-        <p class="B">Always stay up to date by checking our <a href="//grade-snap.com/devblog" target="_blank" class="btn">blog!</a></p>
+        <p class="B">Always stay up to date by checking our <a href="//grade-snap.com/devblog" target="_blank">blog!</a></p>
         </p>
       </div>
       <!-- -->
@@ -83,7 +86,7 @@
           Built For Teachers
           <p class="B">By making sure we listen to teachers, we are able to give them a product that they want and need. Don't be forced into doing something that just doesn't work for you.</p>
           <div class="whiteB">
-            <%= button_to 'Give Us Feedback',:action =>'new',:controller => 'contacts' %>
+            <%= link_to 'Give Us Feedback',:action =>'new',:controller => 'contacts' %>
         </div>
    
         </p>
