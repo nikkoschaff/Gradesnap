@@ -1,11 +1,12 @@
 <div class="container">
 	<%= render :partial => 'logo' %>
 	<br />
+
 	<div class="widget">
 
 		<div class="widget-content">
-
-			<div class="pricing-plans plans-3">
+<div class="btn btn-danger gsBeta"><span style="font-weight: 600; padding: 2px;border-radius: 3px;"><%= link_to "Gradesnap is currently running BETA - Sign up here for FREE!", :action => 'signup', :controller => 'prelogins', :class => "btn" %></span></div>
+			<div class="pricing-plans plans-2">
 
 				<div class="plan-container">
 					<div class="plan">
@@ -21,9 +22,62 @@
 								<span class="note">$</span>
 								9.99
 								<span class="term">per month</span>
-								<span class="term">or</span>
+							</div>
+							<!-- /plan-price -->
+
+						</div>
+						<!-- /plan-header -->
+
+						<div class="plan-features">
+							<ul>
+								<li>
+									Grade
+									<strong>unlimited</strong>
+									tests
+								</li>
+								<li>
+									Electronic gradebook
+								</li>
+								<li>
+									Generate statistics
+								</li> 
+								<li>
+									Subsection analysis
+								</li>
+								<li>
+									Export to 
+									<strong>Excel, Word, PDF, </strong>
+									and much more!
+								</li>
+							</ul>
+						</div>
+						<!-- /plan-features -->
+
+						<div class="plan-actions">
+							<a href="javascript:;" class="btn">
+								<span style="color: #ff0000; font-weight: 600; padding: 2px;border-radius: 3px;">Coming Soon</span>
+							</a>
+						</div>
+						<!-- /plan-actions -->
+
+					</div>
+					<!-- /plan -->
+				</div>
+				<!-- /plan-container -->
+
+				<div class="plan-container">
+					<div class="plan">
+						<div class="plan-header">
+
+							<div class="plan-title">
+								Gradesnap (per year)
+								
+							</div>
+							<!-- /plan-title -->
+
+							<div class="plan-price">
 								<span class="note">$</span>
-								 100
+								100
 								<span class="term">per year</span>
 							</div>
 							<!-- /plan-price -->
@@ -60,7 +114,6 @@
 							<a href="javascript:;" class="btn">
 								<span style="color: #ff0000; font-weight: 600; padding: 2px;border-radius: 3px;">Coming Soon</span>
 							</a>
-							<span style="color: #ff0000; font-weight: 600; padding: 2px;border-radius: 3px;"><%= link_to "BETA - Sign up", :action => 'signup', :controller => 'prelogins', :class => "btn" %></span>
 						</div>
 						<!-- /plan-actions -->
 

@@ -1,11 +1,9 @@
 <% if @assignment %>
-  <%= "Assignment: " + @assignment.name %>
-
-  <ul class="exporting">
-    <li>
-    <%= link_to 'View students and grades',:action => 'new',:controller => 'exportsheets', :id => @assignment.id %>
-    </li>
-  </ul>
+ <div class="titleAss"> <%= "Assignment: " + @assignment.name %></div>
+<br />
+<div class="btn pleaseDown">
+    <%= link_to 'View this assignments students and grades',:action => 'new',:controller => 'exportsheets', :id => @assignment.id %>
+</div>
 
   <!-- Error report if any files could not be read -->
   <div class="unreadables">
@@ -40,6 +38,7 @@
       <p><%= "Mean: #{theMean}%" %></p>
       <p><%= "Median: #{theMedian}%"  %><br /></p>
       <p><%= "Mode: #{theMode.first} - #{(theMode.second * 100).round(2)}%" %><br /></p>
+    <hr>
       <p><%= "Number of A's #{ gradeDist["A"] }" %><br /></p>
       <p><%= "Number of B's #{ gradeDist["B"] }" %><br /></p>
       <p><%= "Number of C's #{ gradeDist["C"] }" %><br /></p>
@@ -53,11 +52,10 @@
       <% incAnsKey = incorrectAccuracy[count].keys[0]  %>
       <% incAnsVal = (incorrectAccuracy[count][incAnsKey] * 100).round(2) %>
       <% incKeyStr = incAnsKey.to_a.join %>
-
-  <div class="number">
-    <span><%= "Question number:  #{count+1}" %></span>
-    <br />
-    <br />
+<div class="row">
+<div class="span3">
+  <div class="number btn">
+    <span><%= "Question number:  #{count+1}" %></span><br />
         <%= "Correct Answer: '#{answerKeyArray[count]}'" %>
         <br/>
         <%= "Average score for question: #{avgScore}%"%>
@@ -68,13 +66,15 @@
         <br/>
       <% count +=1 %>
     </div>
+  </div>
+</div>
+    <br />
     <% end %>
   <% end %>
 
-
   <div class="studentResults">
-    <h1>Student Results</h1>
-
+    <div class="titleAss">Student Results</div>
+<br />
     <% students = @show_hash_assignment[:students].to_a %>
     <% ass_students = @show_hash_assignment[:assignmentstudents].to_a %>
 
@@ -83,7 +83,8 @@
       <%= link_to "#{student.first_name} #{student.middle_name} #{student.last_name}", :action => 'show', :controller => 'students' %>  
       <%= "Grade: #{ass_student.grade}" %>
       <%= link_to "Image", :action => 'show', :controller => 'scansheets', :id => ass_student.scansheet_id %>
-      
+      <br />
+      <br />
     <% end %>
   </div>
 

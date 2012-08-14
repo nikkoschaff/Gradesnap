@@ -128,6 +128,7 @@ ActiveRecord::Schema.define(:version => 20120808202533) do
     t.datetime "created_at"
     t.string   "confirmation_code"
     t.boolean  "confirmed"
+    t.boolean  "eula"
     t.integer  "subscribed"
   end
 
