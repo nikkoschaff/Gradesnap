@@ -1,18 +1,10 @@
 <div class="container">
   <% render :partial => 'logo' %>
-   <div class="alert alert-info"> <strong>Login |</strong>
-      below to access your dashboard.
-    </div>
   </div>
 <div class="preLogin">
   <div class="container">
       <%= form_tag :action=> "login", :validate => true %>
-      <h3>Login</h3>
-      <h4><% if session[:user] != nil %>
-        <%= session[:user].email %>
-      <% else %>
-        <%=h "There is currently no one logged in" %>
-      <% end %></h4>
+      <h3>Login</h3><br />
       <label for="user_login">Email:</label><br/>
       <%= text_field "user", "email", :size => 20 %><br/>
       <label for="user_password">Password:</label><br/>
@@ -20,65 +12,12 @@
       <%= submit_tag "Submit", :class =>'btn btn-success'%>
       <div class="forgot">
         <%= link_to 'Forgot password', :action => 'forgot_password', :controller => 'prelogins' %>
-      </div>
+      </div> 	
+	<div class="newToGradesnap">
+		<p> 
+		<%= link_to "New to Gradesnap? Sign up today!", :action => 'signup', :controller => 'prelogins' %>
+		</p>
+	</div>
       <% $end -%>
     </div>
-  </div>
-  <div class="datHeader">
-    <div class="container">
-       <div class="row">
-        <!-- -->
-         <div class="span4">
-          <p>
-          </p>
-          <p>
-          </p>
-        </div>
-        <!-- -->
-         <div class="span4">
-          <p>
-            <p></p>
-          </p>
-          <p>
-          </p>
-        </div>
-        <!-- -->
-         <div class="span4">
-          <p>
-           
-          </p>
-       
-        </div>
-        <!-- -->
-       </div>
-      </div>
-  </div>
-<div class="datHeader">
-    <div class="container">
-       <div class="row">
-        <!-- -->
-         <div class="span4">
-          <p>
-          </p>
-          <p>
-          </p>
-        </div>
-        <!-- -->
-         <div class="span4">
-          <p>
-            <p></p>
-          </p>
-          <p>
-          </p>
-        </div>
-        <!-- -->
-         <div class="span4">
-          <p>
-           
-          </p>
-       
-        </div>
-        <!-- -->
-       </div>
-      </div>
   </div>

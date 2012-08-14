@@ -1,65 +1,11 @@
 <div class="container">
-	<%= render :partial =>
-	'logo' %>
+	<%= render :partial => 'logo' %>
 	<br />
 	<div class="widget">
-
-		<div class="widget-header">
-			<h3>Available Plans For Gradesnap</h3>
-		</div>
-		<!-- /widget-header -->
 
 		<div class="widget-content">
 
 			<div class="pricing-plans plans-3">
-
-				<div class="plan-container">
-					<div class="plan">
-						<div class="plan-header">
-
-							<div class="plan-title">Gradesnap Trial <span style="font-weight: 600;">BETA</span></div>
-							<!-- /plan-title -->
-
-							<div class="plan-price">
-								<span class="note">$</span>
-								0.00
-								<span class="term">All BETA users will get 50% Gradesnap's full release</span>
-							</div>
-							<!-- /plan-price -->
-
-						</div>
-						<!-- /plan-header -->
-
-						<div class="plan-features">
-							<ul>
-								<li> <strong>No</strong>
-									monthly fee
-								</li>
-								<li> <strong>60</strong>
-									day free trial
-								</li>
-								<li>
-									<strong>Grade</strong>
-									ulimited tests
-								</li>
-								<li>
-									<strong>Full suite</strong>
-									of statistics
-								</li>
-								<li>
-									<strong>Full</strong>
-									support
-								</li>
-							</ul>
-						</div>
-						<!-- /plan-features -->
-					<div class="plan-actions fuckIt">
-							<%= link_to 'Registration',:action =>'registration',:controller => 'prelogins', :class => 'btn' %>
-					</div>
-					</div>
-					<!-- /plan -->
-				</div>
-				<!-- /plan-container -->
 
 				<div class="plan-container">
 					<div class="plan">
@@ -74,7 +20,11 @@
 							<div class="plan-price">
 								<span class="note">$</span>
 								9.99
-								<span class="term">Per Month For</span>
+								<span class="term">per month</span>
+								<span class="term">or</span>
+								<span class="note">$</span>
+								 100
+								<span class="term">per year</span>
 							</div>
 							<!-- /plan-price -->
 
@@ -84,24 +34,23 @@
 						<div class="plan-features">
 							<ul>
 								<li>
-									<strong>Full</strong>
-									Features
+									Grade
+									<strong>unlimited</strong>
+									tests
 								</li>
 								<li>
-									<strong></strong>
-									Pay per month
+									Electronic gradebook
 								</li>
 								<li>
-									<strong>Grade</strong>
-									ulimited tests
+									Generate statistics
+								</li> 
+								<li>
+									Subsection analysis
 								</li>
 								<li>
-									<strong>Full suite</strong>
-									of statistics
-								</li>
-								<li>
-									<strong>Full</strong>
-									support
+									Export to 
+									<strong>Excel, Word, PDF, </strong>
+									and much more!
 								</li>
 							</ul>
 						</div>
@@ -111,64 +60,7 @@
 							<a href="javascript:;" class="btn">
 								<span style="color: #ff0000; font-weight: 600; padding: 2px;border-radius: 3px;">Coming Soon</span>
 							</a>
-						</div>
-						<!-- /plan-actions -->
-
-					</div>
-					<!-- /plan -->
-				</div>
-				<!-- /plan-container -->
-
-				<div class="plan-container">
-					<div class="plan orange">
-						<div class="plan-header">
-
-							<div class="plan-title">
-								Gradesnap Pro
-								
-							</div>
-							<!-- /plan-title -->
-
-							<div class="plan-price">
-								<span class="note">$</span>
-								29.99
-								<span class="term">Per Month</span>
-							</div>
-							<!-- /plan-price -->
-
-						</div>
-						<!-- /plan-header -->
-
-						<div class="plan-features">
-							<ul>
-								<li>
-									<strong>All Gradesnap</strong>
-									Features
-								</li>
-								<li>
-									<strong>Grade</strong>
-									ulimited tests
-								</li>
-								<li>
-									<strong>Full suite</strong>
-									of statistics
-								</li>
-								<li>
-									<strong>Student</strong>
-									portal
-								</li>
-								<li>
-									<strong>Parent</strong>
-									portal
-								</li>
-							</ul>
-						</div>
-						<!-- /plan-features -->
-
-						<div class="plan-actions">
-							<a href="javascript:;" class="btn">
-								<span style="color: #ff0000; font-weight: 600; background-color: #ffffff; padding: 2px;border-radius: 3px;">Coming Soon</span>
-							</a>
+							<span style="color: #ff0000; font-weight: 600; padding: 2px;border-radius: 3px;"><%= link_to "BETA - Sign up", :action => 'signup', :controller => 'prelogins', :class => "btn" %></span>
 						</div>
 						<!-- /plan-actions -->
 
