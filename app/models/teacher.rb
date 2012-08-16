@@ -4,5 +4,5 @@ class Teacher < ActiveRecord::Base
   validates :name, :presence => true
 
   has_one :user
-  has_many :courses
+  has_many :courses, :dependent => :destroy
 end

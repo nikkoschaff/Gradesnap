@@ -6,11 +6,11 @@ class Student < ActiveRecord::Base
     :grade
 
   #many-many connection with courses
-  has_many :course_students, :foreign_key => "student_id"
+  has_many :course_students, :foreign_key => "student_id", :dependent => :destroy
   has_many :courses, :through => :course_students
 
   #many-many connection with assignments
-  has_many :assignment_students, :foreign_key => "student_id"
+  has_many :assignment_students, :foreign_key => "student_id", :dependent => :destroy
   has_many :assignments, :through => :assignment_students
 
   #Validations

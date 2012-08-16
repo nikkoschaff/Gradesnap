@@ -21,8 +21,9 @@ class Assignment < ActiveRecord::Base
   accepts_nested_attributes_for :scansheets, :allow_destroy => true
 
   #many-many connection with students
-  has_many :assignment_students, :foreign_key => ":assignment_id"
+  has_many :assignment_students, :foreign_key => ":assignment_id", :dependent => :destroy
   has_many :students, :through => :assignment_students
+
 
   belongs_to :course, :foreign_key => ":course_id"
   belongs_to :user  

@@ -2,10 +2,10 @@ class Course < ActiveRecord::Base
   attr_accessible :name, :teacher_id
 
   belongs_to :teacher, :foreign_key => ":teacher_id"
-  has_many :assignments
+  has_many :assignments, :dependent => :destroy
 
   #Many-many connection with students
-  has_many :course_students, :foreign_key => ":course_id"
+  has_many :course_students, :foreign_key => ":course_id", :dependent => :destroy
   has_many :students, :through => :course_students
 
   #Validations

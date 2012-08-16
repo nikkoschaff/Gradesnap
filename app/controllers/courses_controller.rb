@@ -69,25 +69,8 @@ class CoursesController < ApplicationController
   # DELETE /courses/1
   # DELETE /courses/1.json
   def destroy
-    course_id = params[:id]
-    # find course to destroy
-    @course = Course.find(course_id)
-    #find assignments to destory
-    Assignment.delete_all(:course_id => course_id)
-
-    #find students to delete
-    #find assignment_students to delete
-    students = Student.where("course_id=?", @course.id).to_a
-    students.each{ |s|
-      if s.courses.size == 1 then
-        Student.delete(:id => s.id)
-        AssignmentStudents.delete(:id => s.id)
-      end
-    }
-
-    #destroy course
+    @course = Course.find(params[:id])
     @course.delete
-
     respond_to do |format|
       format.html { redirect_to courses_url }
       format.json { head :no_content }
