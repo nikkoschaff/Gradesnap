@@ -1,6 +1,6 @@
 Gradesnap::Application.routes.draw do
   resources :contacts
-
+ 
   resources :exportsheets
 
   resources :scansheets 
