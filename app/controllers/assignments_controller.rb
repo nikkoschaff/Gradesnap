@@ -17,7 +17,6 @@ class AssignmentsController < ApplicationController
         # that hash to be used to write to the exportsheet record
         @students_hash = Hash.new
         dem_students = Student.where("course_id = ?", @assignment.course_id)
-        Rails.logger.info("qwy: #{dem_students}")
         counter = 0
         @show_hash_assignment[:assignmentstudents].each{ |ass_stdnt|
           s = dem_students[counter]
@@ -30,7 +29,6 @@ class AssignmentsController < ApplicationController
           end
           counter += 1
         }
-        Rails.logger.info("qwz2: #{@students_hash}")
       end
     end
     respond_to do |format|
@@ -40,6 +38,12 @@ class AssignmentsController < ApplicationController
 
   def index
     @assignments = Assignment.where("email=?", session[:user].email).to_a
+    @courseAssignments = Array.new()
+    @courses = Course.where("teacher_id=?",session[:user].teacher_id)
+    @courses.each { |course|
+	@courseAssignments.push [course, Assignment.where("course_id=?",course.id).to_a]
+    }    
+
     respond_to do |format|
       format.html #index.html.erb
     end

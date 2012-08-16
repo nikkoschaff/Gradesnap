@@ -11,9 +11,12 @@
         </ul>
       </div>
     <% end %>
+	<% unless @courses %>
+		<% @courses = Course.where("teacher_id=?", session[:user].teacher_id) %>
+	<% end %>
 
     <div class="field">
-      <%= f.collection_select(:course_id, @courses,:id, :name, :prompt => "select" ) %>
+      <%= f.collection_select(:course_id, @courses,:id, :name, :prompt => "(Select Course)" ) %>
     </div>
 
     <div class="field">

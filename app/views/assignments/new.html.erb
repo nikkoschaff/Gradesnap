@@ -1,6 +1,8 @@
 <div class="bodyWrapper">
   <div class="container">
-
+        <% unless @courses %>
+                <% @courses = Course.where("teacher_id=?",session[:user].teacher_id) %>
+        <% end %>
   	<% if @courses.size > 0 %>
   		<%= render "newChunk" %>
   	<% else %>

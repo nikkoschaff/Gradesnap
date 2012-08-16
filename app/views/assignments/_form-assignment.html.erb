@@ -4,7 +4,7 @@
 	<%= f.hidden_field :email, :value => session[:user].email  %>
 
 	<%= f.label :course_id, "Select Course" %>
-	<%= f.collection_select(:course_id, @courses, :id, :name, :prompt => "Select Course" ) %>
+	<%= f.collection_select(:course_id, @courses, :id, :name, :prompt => "(Select Course)" ) %>
 
 	<%= f.label :name, "Assignment Name:" %>
     <%= f.text_field :name %><br />

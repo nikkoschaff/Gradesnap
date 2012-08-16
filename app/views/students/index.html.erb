@@ -1,21 +1,23 @@
 <div class="bodyWrapper">
   <div class="container">
-    <h1 class="courseH">Listing students</h1>
-    <h2>Name</h2>
+    <h1 class="courseH">All Students</h1>
       <ul class="nav nav-tabs nav-stacked">
       <li></li>
-    </ul>
-    <% if @students %>
-        <% @students.each do |student| %>
+    </ul> 
+
+    <% if @courseStudents %>
+	<% @courseStudents.each do |course| %>
+	<h2><%= "#{course.first.name}" %></h2> 
+        
+        <% course.last.each do |student| %>
         <p>
         <tr>
           <td><%= link_to "#{student.first_name}  #{student.middle_name}  #{student.last_name}", student %></td> | 
-          <td><%= link_to "Statistics", :action => 'show', :controller => 'stats', :id => student.id, :code => "student" %></td> |   
           <b>Current grade:</b> <%= student.grade %>
         </tr>
         </p>
         <% end %>
-
+	<% end %>
         <br />
     <% else %>
       <p>
@@ -29,7 +31,9 @@
           </li>
           <li><%= link_to 'Add students', :action => 'new', :controller => 'students' %>
           </li>
-        </ul>
+	  <li><%= link_to 'Import students', :action => 'import', :controller => 'importsheets' %>
+          </li>
+	</ul>
       </div>
   </div>
 </div>

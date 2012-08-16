@@ -39,9 +39,9 @@ end
 
 # Gem calls javascript code and manipulate javascript objects from ruby. 
 gem 'therubyracer', :platform => :ruby 
-# Gem is necessary to transfer information from apache to browser.
+# Necessary to transfer information from nginx to browser.
 gem 'passenger'
-# Gem is dependency for rails.
+# Dependency for rails.
 gem 'rack'
 # Gem is what allows 'easy' error messaging.
 gem 'dynamic_form'

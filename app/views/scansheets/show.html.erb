@@ -4,7 +4,8 @@
   	<p>
   	<% unless params[:student_id] == nil %>
   		Student:
-	  	<%= link_to "#{params[:student_name]}", :action => 'show', :controller => 'students', :id => params[:student_id] %>
+	<% student = Student.find(params[:student_id]) %>
+	  	<%= link_to "#{student.first_name} #{student.middle_name} #{student.last_name}", :action => 'show', :controller => 'students', :id => params[:student_id] %>
 	<% else %>
 		(Key Image)
 	<% end %>

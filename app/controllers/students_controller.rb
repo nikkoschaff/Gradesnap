@@ -2,23 +2,17 @@ class StudentsController < ApplicationController
   # GET /students
   # GET /students.json
   def index
-    #courseid = Course.find(params[:courseid])
-    #Go from teacher to list of students
+    #Creates an array of courses and students, where each object is a 
+    #2-part array: First part is the course, second is array of students in it
 
-    @students = Array.new
     @courses = Course.where("teacher_id=?",session[:user].teacher_id).to_a
-    student_ids = Array.new
+    @courseStudents = Array.new()
     @courses.each{ |c|
-      sIds = Student.where("course_id=?",c.id)
-      student_ids.push(sIds)
+      cs = Array.new()
+      cs.push(c)
+      cs.push( Student.where("course_id=?",c.id).to_a )
+      @courseStudents.push(cs)      
     }
-    student_ids.each{ |array|
-      array.each{ |student|
-        @students.push(student)
-      }
-    }
-    @students.uniq!
-
 
     respond_to do |format|
       format.html #students.html.erb
@@ -50,6 +44,7 @@ class StudentsController < ApplicationController
 
   # GET /students/1/edit
   def edit
+    @courses = Course.where("teacher_id=?", session[:user].teacher_id)
     @student = Student.find(params[:id])
   end
 
