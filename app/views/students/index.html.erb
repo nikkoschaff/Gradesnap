@@ -1,39 +1,41 @@
 <div class="bodyWrapper">
   <div class="container">
     <h1 class="courseH">All Students</h1>
-      <ul class="nav nav-tabs nav-stacked">
+    <ul class="nav nav-tabs nav-stacked">
       <li></li>
-    </ul> 
-
+    </ul>
+    <!-- -->
     <% if @courseStudents %>
-	<% @courseStudents.each do |course| %>
-	<h2><%= "#{course.first.name}" %></h2> 
-        
-        <% course.last.each do |student| %>
-        <p>
-        <tr>
-          <td><%= link_to "#{student.first_name}  #{student.middle_name}  #{student.last_name}", student %></td> | 
-          <b>Current grade:</b> <%= student.grade %>
-        </tr>
-        </p>
-        <% end %>
-	<% end %>
-        <br />
-    <% else %>
-      <p>
-        The information necessary to process this page was not recieved. Please navigate the site through its links.
-      </p>
+    <% @courseStudents.each do |course| %>
+    <div class="widget-header">
+              <i class="icon-th-list"></i>
+              <h3><%= "#{course.first.name}" %></h3>
+            </div>
+ 
+
+    <% course.last.each do |student| %>
+    <ul class="nav nav-tabs nav-stacked">
+        <li><%= link_to "#{student.first_name}  #{student.middle_name}  #{student.last_name}", student %></li>
+        <li><span class="btn">Current grade: <%= student.grade*(100) %> %</span></li>
+ </ul>
+      <br />
     <% end %>
-      <div class="backB">
-        <ul>
-          <li>
-            <%= link_to 'Back', :action => 'dashboard', :controller => 'sessions' %>
-          </li>
-          <li><%= link_to 'Add students', :action => 'new', :controller => 'students' %>
-          </li>
-	  <li><%= link_to 'Import students', :action => 'import', :controller => 'importsheets' %>
-          </li>
-	</ul>
-      </div>
+    <% end %>
+    <br />
+    <% else %>
+    <p>
+      The information necessary to process this page was not recieved. Please navigate the site through its links.
+    </p>
+    <% end %>
+    <div class="backB">
+      <ul>
+        <li>
+          <%= link_to 'Back', :action =>'dashboard', :controller => 'sessions' %></li>
+        <li>
+          <%= link_to 'Add students', :action =>'new', :controller => 'students' %></li>
+        <li>
+          <%= link_to 'Import students', :action =>'import', :controller => 'importsheets' %></li>
+      </ul>
+    </div>
   </div>
 </div>

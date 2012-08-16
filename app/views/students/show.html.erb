@@ -18,9 +18,15 @@
           <b>Current grade:</b>
           <%= @student.grade * 100 %>%
         </p>
-        <%= link_to 'Back', :action => 'show', :controller => "courses", :id => @student.course_id %> |
-        <td><%= link_to 'Edit', edit_student_path(@student) %></td> |
-        <td><%= link_to 'Destroy', @student, method: :delete, data: { confirm: 'Are you sure?' }, :courseid => @student.course_id %></td>
+      <div class="backB">
+        <ul>
+          <li><%= link_to 'Back', :action => 'show', :controller => "courses", :id => @student.course_id %></li>
+          <li><%= link_to 'Edit', edit_student_path(@student) %></li>
+      </ul>
+    </div>
+     <ul style="list-style: none; margin-left: 0px; margin-top: 20px;">
+        <li><%= link_to 'Delete Student', @student, method: :delete, :class => 'btn btn-danger', data: { confirm: 'Are you sure?' }, :courseid => @student.course_id %></li>
+    </ul>
       <% else %>
         <p>
           The information necessary to process this page was not recieved. Please navigate the site through its links.
