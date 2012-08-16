@@ -95,11 +95,36 @@
           </div>
           <!-- /stat-container -->
 
+  <!-- graph will go here 
+        <script type="text/javascript">
+          $(function(){
+            new Highcharts.Chart({
+              chart: {
+                renderTo: "orders_chart"
+              },
+              title: {
+                text: "Your Students Progress"
+              },
+              xAxis: {
+                type: "datetime"
+              },
+              yAxis: {
+                title: {
+                  text: "Student"
+                },
+                series: [{
+                  data: [1, 2, 5, 7, 3]
+                }]
+              }
+            });
+          });
+        </script>
+          <div id="orders_chart" style="width:560px; height:300px;"></div>
        
-          
-
-
-
+          -->
+      <div style="margin-top: -20px;">
+        <%= image_tag "chartsPic.png" %>
+      </div>
 
           <!-- /widget -->
           <% newarray.each do |id| %>
