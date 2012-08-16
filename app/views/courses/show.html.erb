@@ -37,15 +37,18 @@
                         <% end %>
                 </p>
 
-
-               <%= link_to 'Back', courses_path %> |
-                <%= link_to 'Edit', edit_course_path(@course) %> |
-                <td><%= link_to 'Destroy', @course, :method => :delete, 
-                    :data => { :confirm => 'Are you sure?' }, :key => "value" %></td> |
-                <%= link_to 'Add student', :action => 'new', :controller => 'students', :course => @course.id %> |
-
-                <%= link_to 'Import students', :action => 'import', :controller => 'importsheets', :course_id => @course.id %> 
-                <% else %>
+<div class="backB">
+        <ul>
+            <li><%= link_to 'Back', courses_path %></li>
+            <li><%= link_to 'Edit', edit_course_path(@course) %></li>
+            <li><%= link_to 'Add student', :action => 'new', :controller => 'students', :course => @course.id %></li>
+            <li><%= link_to 'Import students', :action => 'import', :controller => 'importsheets', :course_id => @course.id %></li>
+        </ul>
+    </div>
+    <ul style="list-style: none; margin-left: 0px; margin-top: 20px;">
+        <li>  <%= link_to 'Delete Course', @course, :method => :delete, :class => 'btn btn-danger', :data => { :confirm => 'Are you sure?' }, :key => "value"%></li>
+    </ul>
+        <% else %>
                     <p>
                         The information necessary to render this page did not come through. Please navigate the site through its links.
                     </p>
