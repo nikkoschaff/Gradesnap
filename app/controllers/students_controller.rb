@@ -90,7 +90,6 @@ class StudentsController < ApplicationController
   # DELETE /students/1.json
   def destroy
     @student = Student.find(params[:id])
-    courseid = @student.course_id
     @student.destroy
 
     respond_to do |format|
