@@ -30,13 +30,16 @@
             </p>
             
         <% end %>
-        <%= link_to 'Back', :action => 'index', :controller => 'assignments' %> |
-
-        <%= link_to 'Destroy', @show_hash_assignment[:assignment], :method => :delete, data: { confirm: 'Are you sure?' }  %> |
-
-        <%= link_to 'Spreadsheet', :action => 'new', :controller => 'exportsheets', :id => @show_hash_assignment[:assignment].id %> |
-
-        <%= link_to "Statistics", :action => 'show', :controller => 'stats', :id => @show_hash_assignment[:assignment].id, :code => "assignment" %>
+    <div class="backB">
+        <ul>
+            <li><%= link_to 'Back', :action => 'index', :controller => 'assignments' %></li>
+            <li><%= link_to 'Spreadsheet', :action => 'new', :controller => 'exportsheets', :id => @show_hash_assignment[:assignment].id %></li>
+            <li><%= link_to "Statistics", :action => 'show', :controller => 'stats', :id => @show_hash_assignment[:assignment].id, :code => "assignment" %></li>
+        </ul>
+    </div>
+       <ul style="list-style: none; margin-left: 0px; margin-top: 20px;">
+        <li><li><%= link_to 'Delete This Assignment', @show_hash_assignment[:assignment], :class => 'btn btn-danger', :method => :delete, data: { confirm: 'Are you sure?' }  %></li></li>
+    </ul>
         <!-- Currently empty until detailed editing features placed in -->
         <!-- <%= link_to 'Edit', edit_course_path(@assignment) %> | -->
   </div>

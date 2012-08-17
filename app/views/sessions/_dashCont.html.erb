@@ -144,7 +144,8 @@
               <table class="table table-striped table-bordered">
                 <thead>
                   <tr>
-                    <th>Name</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
                     <th>In Course</th>
                     <th>Overall Grade</th>
                   </tr>
@@ -152,16 +153,18 @@
 <% @s.each do |student| %>
                 <tbody>
                   <tr>
-                    <td><%= student.full_name %></td>
+                    <td><%= student.first_name %></td>
+                    <td><%= student.last_name %></td>
                     <td><%= Course.where("id = ?",student.course_id).to_a.last.name %></td>
-                    <td><%= student.grade * 100 %>%</td>
+                    <td><%= student.grade %></td>
                   </tr>
                 </tbody>
 <% end %>
               </table>
 <% else%>
- <p>No stuednts.
-</p>
+ <p>No students yet.</p>
+ <span class="btn btn-info"><%= link_to 'Add Students Here',:action =>'index',:controller => 'students'%></span> or 
+ <span class="btn btn-info"><%= link_to 'Create A Course',:action =>'index',:controller => 'courses', :style => 'color:white'%></span>
 <% end %>
 </div>
 

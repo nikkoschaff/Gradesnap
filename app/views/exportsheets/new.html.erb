@@ -1,33 +1,46 @@
 <div class="bodyWrapper">
   <div class="container">
     <% if @assignment %>
-      <h1>New exportsheet</h1>
-        <p>
-          Download:
-            <%= link_to "CSV", exportsheets_path(format: "csv"), :id => @assignment.id %> |
-            <%= link_to "Excel", exportsheets_path(format: "xls"), :id => @assignment.id %>
-        </p>
-        <% if @students_hash %>
-          <table border="1">
-            <tr>
-              <th>Student</th>
-              <th>Grade</th>
-            </tr>
-            <% counter = 1 %>
-            <% @students_hash.each do |s, a| %>
-              <tr>
-                <td><%= s.first_name %></td>
-                <td><%= a.grade %></td>
-              </tr>
-              <% counter += 1 %>
-            <% end %>
-          </table>
-    	  <% end %>
-    <% else %>
-      <p>
-        The information necessary to render this page did not come through. Please navigate the site through its links.
-       </p>
+        <div class="widget-header" style="margin-bottom: 15px; margin-top: 15px;">
+              <i class="icon-th-list"></i>
+              <h3>New exportsheet</h3>
+            </div>
+    <p>
+     <span style="border-bottom: 1px dotted #333333; padding-bottom: 5px;"><strong>Download Spreadsheet:</strong></span>
+     <br />
+     <br />
+      <%= link_to "CSV",exportsheets_path(format: "csv"), :id =>
+      @assignment.id, :class => 'btn btn-success'%>
+      <%= link_to "Excel", exportsheets_path(format: "xls"), :id =>@assignment.id, :class => 'btn btn-info'%></p>
+    <% if @students_hash %>
+    <table border="1" cellpadding="10">
+      <tr>
+        <th>Student</th>
+        <th>Grade</th>
+      </tr>
+      <% counter = 1 %>
+      <% @students_hash.each do |s, a| %>
+      <tr>
+        <td>
+          <%= s.first_name %></td>
+        <td>
+          <%= a.grade %></td>
+      </tr>
+      <% counter += 1 %>
+      <% end %></table>
     <% end %>
-<%= link_to "Back", :action => 'show', :controller => 'stats', :id => @assignment.id, :code => "assignment" %>
+    <% else %>
+    <p>
+      The information necessary to render this page did not come through. Please navigate the site through its links.
+    </p>
+    <% end %>
+  <div class="backB">
+    <ul>
+      <li>
+    <%= link_to "Back", :action =>
+    'show', :controller => 'stats', :id => @assignment.id, :code => "assignment" %>
+  </li>
+</ul>
+</div>
   </div>
 </div>

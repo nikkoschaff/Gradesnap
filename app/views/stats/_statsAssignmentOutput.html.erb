@@ -4,9 +4,10 @@
 <div class="btn pleaseDown">
     <%= link_to 'Spreadsheet',:action => 'new',:controller => 'exportsheets', :id => @assignment.id %>
 </div>
-
+<br />
+<br />
   <!-- Error report if any files could not be read -->
-  <div class="unreadables">
+  <div class="btn btn-danger">
       <% unreadables = unreadableFiles(@assignment) %>
       <% errs = errorsHash %>
       <% if unreadables.size > 0 %>
@@ -19,6 +20,7 @@
         <% } %>
       <% end %>
   </div><br />
+  <br />
 
 
   <% keyString = @assignment.answer_key %> 
@@ -75,16 +77,18 @@
   <div class="studentResults">
     <div class="titleAss">Student Results</div>
 <br />
-    <% students = @show_hash_assignment[:students].to_a %>
-    <% ass_students = @show_hash_assignment[:assignmentstudents].to_a %>
 
-    <% ass_students.each do |ass_student| %>
-      <% student = Student.where("id = ?", ass_student.student_id).last %>
-      <%= link_to "#{student.first_name} #{student.middle_name} #{student.last_name}", :action => 'show', :controller => 'students' %>  
-      <%= "Grade: #{ass_student.grade}" %>
-      <%= link_to "Image", :action => 'show', :controller => 'scansheets', :id => ass_student.scansheet_id, :student_id => student.id %>
-      <br />
-      <br />
+<% students = @show_hash_assignment[:students].to_a %>
+<% ass_students = @show_hash_assignment[:assignmentstudents].to_a %>
+<% ass_students.each do |ass_student| %>
+
+<ul class="studentResults">
+<li><% student = Student.where("id = ?", ass_student.student_id).last %>
+<span class="btn"><%= link_to "#{student.full_name}", :action => 'show', :controller => 'students'%> </span> |
+<span class="btn btn-success"><%= "Grade: #{ass_student.grade}" %></span> |
+<span class="btn btn-info"><%= link_to "Image", :action => 'show', :controller => 'scansheets', :id => ass_student.scansheet_id, :student_id => student.id %></span></li>
+</ul>
+
     <% end %>
   </div>
 
