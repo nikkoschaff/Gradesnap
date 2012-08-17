@@ -144,8 +144,7 @@
               <table class="table table-striped table-bordered">
                 <thead>
                   <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
+                    <th>Name</th>
                     <th>In Course</th>
                     <th>Overall Grade</th>
                   </tr>
@@ -153,10 +152,9 @@
 <% @s.each do |student| %>
                 <tbody>
                   <tr>
-                    <td><%= student.first_name %></td>
-                    <td><%= student.last_name %></td>
+                    <td><%= student.full_name %></td>
                     <td><%= Course.where("id = ?",student.course_id).to_a.last.name %></td>
-                    <td><%= student.grade %></td>
+                    <td><%= student.grade * 100 %>%</td>
                   </tr>
                 </tbody>
 <% end %>

@@ -29,7 +29,7 @@
                         <% @students.each do  |student| %>
                         <p>
                       <tr>
-                        <td><%= link_to "#{student.first_name}  #{student.middle_name}  #{student.last_name}", student %></td>
+                        <td><%= link_to "#{student.full_name}", student %></td>
                   <b>Current grade:</b>
                   <%= student.grade %>
                       </tr>
@@ -46,7 +46,7 @@
         </ul>
     </div>
     <ul style="list-style: none; margin-left: 0px; margin-top: 20px;">
-        <li>  <%= link_to 'Delete Course', @course, :method => :delete, :class => 'btn btn-danger', :data => { :confirm => 'Are you sure?' }, :key => "value"%></li>
+        <li>  <%= link_to 'Delete Course', @course, :method => :delete, :class => 'btn btn-danger', :data => { :confirm => 'Are you sure?  All students and assignments of this course will be deleted as well.' }, :key => "value"%></li>
     </ul>
         <% else %>
                     <p>

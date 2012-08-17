@@ -14,6 +14,6 @@
   	<% path = "/assets/uploads/scansheet/image/#{params[:id]}/#{filename}" %>
   	<%= image_tag(path) %>
 
-  	<%= link_to "Back", :action => 'show', :controller => 'stats', :id => assignmentFromScansheetId.id, :code => 2 %>
+  	<%= link_to "Back", :action => 'show', :controller => 'stats', :id => assignmentFromScansheetId.id, :code => "assignment" %>
   </div>
 </div>

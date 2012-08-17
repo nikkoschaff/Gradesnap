@@ -28,6 +28,6 @@
         The information necessary to render this page did not come through. Please navigate the site through its links.
        </p>
     <% end %>
-    <%= link_to 'Back', :action => 'index', :controller => 'assignments' %>
+<%= link_to "Back", :action => 'show', :controller => 'stats', :id => @assignment.id, :code => "assignment" %>
   </div>
 </div>

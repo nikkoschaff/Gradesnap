@@ -2,7 +2,7 @@
  <div class="titleAss"> <%= "Assignment: " + @assignment.name %></div>
 <br />
 <div class="btn pleaseDown">
-    <%= link_to 'View this assignments students and grades',:action => 'new',:controller => 'exportsheets', :id => @assignment.id %>
+    <%= link_to 'Spreadsheet',:action => 'new',:controller => 'exportsheets', :id => @assignment.id %>
 </div>
 
   <!-- Error report if any files could not be read -->

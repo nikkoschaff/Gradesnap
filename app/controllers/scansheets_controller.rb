@@ -40,6 +40,10 @@ class ScansheetsController < ApplicationController
 
   def destroy
     @scansheet = Scansheet.find(params[:id])
+    @issues = Issue.where("tablename=? AND row_id=?","Scansheet",@scansheet.id)
+    @issues.each { |issue|
+	issue.destroy
+    }
     @scansheet.destroy
     render :json => true
   end
