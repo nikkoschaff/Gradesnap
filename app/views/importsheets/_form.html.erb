@@ -5,7 +5,6 @@
 <% end %>
 
 <%= form_for @importsheet ,:html => { :multipart => true, :id => "fileupload"  }, :validate => true do |f| %>
-    <% Rails.logger.info "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#{params[:course_id]}" %>
 
     <%= f.hidden_field :course_id, :value => params[:course_id] %>
 <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->

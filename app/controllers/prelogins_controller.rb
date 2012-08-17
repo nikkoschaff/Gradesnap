@@ -44,13 +44,11 @@ class PreloginsController < ApplicationController
     reset_session
     if request.post?
      if session[:user] =  User.authenticate(params[:user][:email], params[:user][:password])
-        Rails.logger.info("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
         flash[:message]  = "Login successful"
         #go to dash if log in success
         redirect_to :action => "dashboard", :controller => 'sessions'        
         #redirect_to_stored 
      else
-        Rails.logger.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         respond_to do |format|
           format.html
         end
@@ -138,12 +136,9 @@ class PreloginsController < ApplicationController
   # finds user to set the eula marker to trueeeeeeeeeeee
   def confirm_eula
     @user = User.all.last
-    Rails.logger.info("~~~~~~2~~~~~~~~#{@user}")
     if @user != nil
       @user.eula = true
-      Rails.logger.info("~~~~~~~3~~~~~~~~#{@user.eula}")
       if @user.save
-        Rails.logger.info("~~~~~~~4~~~~~~~~#{@user.eula}")
         redirect_to :action => "dashboard", :controller => "sessions"
       end
     end

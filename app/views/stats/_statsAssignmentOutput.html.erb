@@ -76,11 +76,11 @@
     <div class="titleAss">Student Results</div>
 <br />
     <% students = @show_hash_assignment[:students].to_a %>
-    <% ass_students = @show_hash_assignment[:assignmentstudents].to_a %>
+    <% ass_students = @show_hash_assignment[:assignmentsstudents].to_a %>
 
     <% ass_students.each do |ass_student| %>
       <% student = Student.where("id = ?", ass_student.student_id).last %>
-      <%= link_to "#{student.first_name} #{student.middle_name} #{student.last_name}", :action => 'show', :controller => 'students' %>  
+      <%= link_to "#{student.full_name}", :action => 'show', :controller => 'students' %>  
       <%= "Grade: #{ass_student.grade}" %>
       <%= link_to "Image", :action => 'show', :controller => 'scansheets', :id => ass_student.scansheet_id, :student_id => student.id %>
       <br />

@@ -10,8 +10,8 @@ class ChangeStringToText < ActiveRecord::Migration
 	change_column :scansheets, :answers_string, :text, :limit => nil
 	change_column :scansheets, :assignment_student_id, :text, :limit => nil
 
-	change_column :assignment_students, :results, :text, :limit => nil
-	change_column :assignment_students, :answer_key, :text, :limit => nil
+	change_column :assignments_students, :results, :text, :limit => nil, :name => "temp_index_1"
+	change_column :assignments_students, :answer_key, :text, :limit => nil, :name => "temp_index_2"
   end
 
   def down

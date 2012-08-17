@@ -21,9 +21,8 @@ class Assignment < ActiveRecord::Base
   accepts_nested_attributes_for :scansheets, :allow_destroy => true
 
   #many-many connection with students
-  has_many :assignment_students, :foreign_key => ":assignment_id", :dependent => :destroy
-  has_many :students, :through => :assignment_students
-
+  has_many :students, :through => :assignments_students
+  has_many :assignments_students, :foreign_key => ":assignment_id", :dependent => :destroy
 
   belongs_to :course, :foreign_key => ":course_id"
   belongs_to :user  
@@ -119,7 +118,6 @@ class Assignment < ActiveRecord::Base
     strAmbig = sheet.translateAllAmbig( decResults )
     sheet.ambiguous_answers = strAmbig
     unless strAmbig == "" then
-      Rails.logger.info("&*(((*(^&(*^*^&(*&^*&^(&(*%&(*&%(^&(^&*^&*&^*^)))))))))))))}")
       course = Course.find(self.course_id)
       teacher_id = Teacher.find(course.teacher_id)
       ambigIssue = Issue.new( :code => 1, :resolved => false,
@@ -138,7 +136,7 @@ class Assignment < ActiveRecord::Base
     grade = gradeStudent( strResults, self.answer_key )  
     # If found, then handle data from here.
     unless theStudent == nil then
-      @newAssignmentStudent = AssignmentStudents.new({ :assignment_id => self.id,
+      @newAssignmentStudent = AssignmentsStudents.new({ :assignment_id => self.id,
         :student_id => theStudent.id, :scansheet_id => sheet.id,
         :grade => grade,:results => strResults, :answer_key => self.answer_key })
       theStudent.grade = theStudent.compileGrade
@@ -155,7 +153,7 @@ class Assignment < ActiveRecord::Base
         :middle_name => ("~" + nameArr[1]), :last_name => ("~" + nameArr[2]), :grade => grade,
         :course_id => self.course_id )
       @newStudent.save
-      @newAssignmentStudent = AssignmentStudents.new({ :assignment_id =>  self.id,
+      @newAssignmentStudent = AssignmentsStudents.new({ :assignment_id =>  self.id,
         :student_id => @newStudent.id, :scansheet_id => sheet.id, :grade => grade,
         :results => strResults, :answer_key => self.answer_key} )
     end
@@ -268,7 +266,7 @@ class Assignment < ActiveRecord::Base
   ### GETTER HELPERS ###
 
   def grades()
-    all_ass_stdnts = AssignmentStudents.where(" assignment_id = ?", self.id)
+    all_ass_stdnts = AssignmentsStudents.where(" assignment_id = ?", self.id)
     gradeArr = Array.new()
     all_ass_stdnts.each { |student|
       gradeArr.push(student.grade)
@@ -279,7 +277,7 @@ class Assignment < ActiveRecord::Base
 
   def studentStringArray()
     studentStringArray = Array.new
-    all_ass_stdnts = AssignmentStudents.where("assignment_id=?", self.id)
+    all_ass_stdnts = AssignmentsStudents.where("assignment_id=?", self.id)
     all_ass_stdnts.each{ |stdnt|
          studentStringArray.push(stdnt.results)
         }
@@ -295,15 +293,15 @@ class Assignment < ActiveRecord::Base
     showHash = Hash.new()
     showHash[:assignment] = self
     showHash[:students] = Student.where("course_id=?",self.course_id)
-    showHash[:assignmentstudents] = AssignmentStudents.where("assignment_id=?",self.id)
+    showHash[:assignmentsstudents] = AssignmentsStudents.where("assignment_id=?",self.id)
     showHash
   end
 
-  def updateAssignmentStudents(assignment_info_hash, id)
+  def updateAssignmentsStudents(assignment_info_hash, id)
     assignment_info_hash[:students].each{ |s|
-      as = AssignmentStudents.where("student_id=?", s.id).to_a.first
+      as = AssignmentsStudents.where("student_id=?", s.id).to_a.first
       if as == nil
-        a = AssignmentStudents.new({
+        a = AssignmentsStudents.new({
               :assignment_id => id, 
               :student_id => s.id,
               :grade => 0.0 })

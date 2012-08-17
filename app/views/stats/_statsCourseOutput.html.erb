@@ -2,8 +2,7 @@
   <div class="studentResults">
     <h1>Course Results</h1>
     <% @show_hash_course[:students].each do |student| %>
-      <%= link_to "#{student.first_name} #{student.middle_name} #{student.last_name}",
-        :action => 'show', :controller => 'students' %>  
+      <%= link_to "#{student.full_name}", :action => 'show', :controller => 'students' %>  
       <%= "Grade: #{student.grade}" %>
     <% end %>
   </div>

@@ -44,9 +44,7 @@ class ContactsController < ApplicationController
   # POST /contacts
   # POST /contacts.json
   def create
-    Rails.logger.info("~~~~~~~~~~~~~~~~~~~~PARAMS: #{params}")   
     @contact = Contact.new(params[:contact])
-Rails.logger.info("~::::::::::::::::::::::::::::::PARAMS: #{params}")
 	if @contact.save
     redirect_to :action => "thanks", :controller => "prelogins"
   	else

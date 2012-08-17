@@ -39,7 +39,7 @@ Gradesnap::Application.routes.draw do
   end
   resources :assignments
   resources :notifications
-  resources :assignment_students do
+  resources :assignments_students do
     collection do
       get 'mod'
       post 'mod'

@@ -1,4 +1,4 @@
-class AssignmentStudents < ActiveRecord::Base
+class AssignmentsStudents < ActiveRecord::Base
 
   # grade is a float of recorded grade
   # results is a results-style string of results

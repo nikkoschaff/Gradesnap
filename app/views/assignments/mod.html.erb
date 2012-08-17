@@ -12,15 +12,12 @@
 	        	<div>
 	        		<% s.hidden_field :ass, :value => ass_stdnt %>
 
-	        		<% Rails.logger.info(":ass1 #{ass_stdnt.grade}") %>
-	        		<%= link_to "#{stdnt.first_name}  #{stdnt.middle_name}  #{stdnt.last_name}", stdnt %>
+	        		<%= link_to "#{stdnt.full_name}", stdnt %>
 	        		<%= s.text_field :grade, :value => ass_stdnt.grade %>
-	        		<% Rails.logger.info(":ass2 #{ass_stdnt.grade}") %>
 
 	        	</div>
         	<p>
         	<%= s.submit "Update" %>
-        	<% Rails.logger.info(":ass3 #{ass_stdnt.grade}") %>
 
         	</p>
         	<% end %>

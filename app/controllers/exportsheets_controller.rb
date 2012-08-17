@@ -32,13 +32,12 @@ class ExportsheetsController < ApplicationController
     #query students and assignments
     @assignment = Assignment.where("id = ?", params[:id]).to_a.first
     if @assignment
-      @ass_students  = AssignmentStudents.where(" assignment_id = ?", params[:id]).to_a
+      @ass_students  = AssignmentsStudents.where(" assignment_id = ?", params[:id]).to_a
       
       # assemble student => ass_stdnt hash 
       # that hash to be used to write to the exportsheet record
       @students_hash = Hash.new
       dem_students = Student.where("course_id = ?", @assignment.course_id)
-      Rails.logger.info("qwy: #{dem_students}")
       counter = 0
       @ass_students.each{ |ass_stdnt|
         s = dem_students[counter]

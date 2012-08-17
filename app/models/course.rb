@@ -5,8 +5,8 @@ class Course < ActiveRecord::Base
   has_many :assignments, :dependent => :destroy
 
   #Many-many connection with students
-  has_many :course_students, :foreign_key => ":course_id", :dependent => :destroy
-  has_many :students, :through => :course_students
+  has_many :courses_students, :foreign_key => ":course_id", :dependent => :destroy
+  has_many :students, :through => :courses_students
 
   #Validations
   validates :name, :presence => true

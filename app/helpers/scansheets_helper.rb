@@ -1,7 +1,7 @@
 module ScansheetsHelper
 
 	def studentFromScansheetId
-		@assignmentStudent = AssignmentStudents.where("scansheet_id=?",params[:id]).to_a.last
+		@assignmentStudent = AssignmentsStudents.where("scansheet_id=?",params[:id]).to_a.last
 		@student = Student.find(@assignmentStudent.student_id)
 		@student
 	end

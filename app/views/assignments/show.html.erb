@@ -16,7 +16,7 @@
             <% @students_hash.each do |s, as| %>
                 <p>
                 <tr>
-                <td><%= link_to "#{s.first_name}  #{s.middle_name}  #{s.last_name}", s %></td>
+                <td><%= link_to "#{s.full_name}", s %></td>
                   <b>Grade recieved:</b>
                   <%= as.grade * 100 %>
                 </tr>
@@ -37,7 +37,5 @@
         <%= link_to 'Spreadsheet', :action => 'new', :controller => 'exportsheets', :id => @show_hash_assignment[:assignment].id %> |
 
         <%= link_to "Statistics", :action => 'show', :controller => 'stats', :id => @show_hash_assignment[:assignment].id, :code => "assignment" %>
-        <!-- Currently empty until detailed editing features placed in -->
-        <!-- <%= link_to 'Edit', edit_course_path(@assignment) %> | -->
   </div>
 </div>

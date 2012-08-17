@@ -5,7 +5,7 @@
 	<p>
 	  <b>Student:</b>
 	  <% stdnt = @student %>
-	  <%= link_to "#{stdnt.first_name}  #{stdnt.middle_name}  #{stdnt.last_name}", stdnt %>
+	  <%= link_to "#{stdnt.full_name}", stdnt %>
 	</p>
 
 	<p>
@@ -15,7 +15,7 @@
 
 
 	<%= link_to 'Edit grade', edit_assignment_student_path(@assignment_student) %> |
-	<%= link_to 'Back', assignment_students_path %>
+	<%= link_to 'Back', assignments_students_path %>
 <% else %>
 	 <p>
 		The information necessary to render this page did not come through. Please navigate the site through its links.

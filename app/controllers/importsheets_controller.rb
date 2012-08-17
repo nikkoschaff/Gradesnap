@@ -71,7 +71,7 @@ class ImportsheetsController < ApplicationController
   end
 
   def destroy
-    @importsheet = AssignmentStudents.find(params[:id])
+    @importsheet = AssignmentsStudents.find(params[:id])
     @importsheet.destroy
 
     respond_to do |format|
