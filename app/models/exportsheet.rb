@@ -8,7 +8,6 @@ class Exportsheet < ActiveRecord::Base
     CSV.generate(options) do |csv_row|
       csv_row << column_names
       all.each do |product|
-	#TODO check to see what the name of the column is, then specify
         csv_row << product.attributes.values_at(*column_names)
       end
     end

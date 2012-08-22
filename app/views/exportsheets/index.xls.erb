@@ -6,8 +6,8 @@
         <% counter = 1 %>
         <% @students_hash.each do |s, a| %>
           <tr>
-            <td><%= s.first_name %></td>
-            <td><%= a.grade %></td>
+            <td><%= s.full_name %></td>
+            <td><%= s.grade * 100 %></td>
           </tr>
           <% counter += 1 %>
         <% end %>

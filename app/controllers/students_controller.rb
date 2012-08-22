@@ -57,6 +57,7 @@ class StudentsController < ApplicationController
       if @student.middle_name == nil
         @student.middle_name = " "
       end
+	@student.grade = 0.0
 	@student.save
       respond_to do |format|
       	format.html { redirect_to @student, notice: 'Student was successfully created.' }

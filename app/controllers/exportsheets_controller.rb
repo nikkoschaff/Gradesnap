@@ -59,8 +59,8 @@ class ExportsheetsController < ApplicationController
           break
         end
         @exportsheet = Exportsheet.new({
-        :student => stdnt.first_name,
-        :grade => ass_stdnt.grade.to_i,
+        :student => stdnt.full_name,
+        :grade => ass_stdnt.grade * 100,
         :assignment_id => @assignment.id
         })
         @exportsheet.save
@@ -72,7 +72,7 @@ class ExportsheetsController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.csv { send_data @exportsheet.to_csv }
-      format.xls {  send_data @exportsheet.to_csv(col_sep: "\t")  }
+      format.xls # {  send_data @exportsheet.to_csv(col_sep: "\t")  }
       #format.xls {  @students }
 
     end
