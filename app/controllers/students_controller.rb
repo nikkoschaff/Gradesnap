@@ -35,6 +35,7 @@ class StudentsController < ApplicationController
   def new
     @student = Student.new
     @courses = Course.where("teacher_id=?", session[:user].teacher_id)
+    @grade = 0.0
 
     respond_to do |format|
       format.html # new.html.erb
@@ -53,7 +54,6 @@ class StudentsController < ApplicationController
   def create
     @student = Student.new(params[:student])
     if @student.save
-      @student.grade = 0
       if @student.middle_name == nil
         @student.middle_name = " "
       end

@@ -18,15 +18,14 @@ class Importsheet < ActiveRecord::Base
 
     counter = 0
     sheet = book.worksheet counter
-    Rails.logger.info("dafuq #{course==nil}")
     if course
       unless sheet == nil
         sheet.each{ |row|
           s = Student.new( :first_name  => row[0],
                            :middle_name => row[1],
                            :last_name => row[2], 
-                           :course_id => course)
-          Rails.logger.info("dafuq #{s}")
+                           :course_id => course,
+			   :grade => 0.0)
           s.save
         }
       counter += 1
