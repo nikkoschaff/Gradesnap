@@ -90,11 +90,14 @@ class StudentsController < ApplicationController
   # DELETE /students/1
   # DELETE /students/1.json
   def destroy
-    Student.destroy(params[:id])
+    @student = Student.find(params[:id])
+    @student.courses_students.each(&:destroy)
+    @student.assignments_students.each(&:destroy)
+    @student.destroy
+
 
     respond_to do |format|
-      format.html { redirect_to :action => 'show', :controller => 'courses',
-        :id => courseid }
+      format.html { redirect_to :action => 'index', :controller => 'students' }
       format.json { head :no_content }
     end
   end

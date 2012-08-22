@@ -22,7 +22,7 @@ class Assignment < ActiveRecord::Base
 
   #many-many connection with students
   has_many :students, :through => :assignments_students
-  has_many :assignments_students, :foreign_key => ":assignment_id", :dependent => :destroy
+  has_many :assignments_students, :foreign_key => ":assignment_id"
 
   belongs_to :course, :foreign_key => ":course_id"
   belongs_to :user  
@@ -33,6 +33,10 @@ class Assignment < ActiveRecord::Base
                             :inclusion => { :in => 1..100 },
                             :numericality => { :only_integer => true }
   validates :course_id, :presence => true
+
+  def assignments_students
+	return AssignmentsStudents.where("assignment_id=?",self.id)
+  end
 
 
 ### READ INTERPRETATION FUNCTIONS ###

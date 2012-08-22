@@ -114,7 +114,11 @@ class AssignmentsController < ApplicationController
   # DELETE /assignments/1
   # DELETE /assignments/1.json
   def destroy
-    Assignment.destroy(params[:id])
+    @assignment = Assignment.find(params[:id])
+    @assignment.assignments_students.each(&:destroy)
+    @assignment.destroy    
+
+
     respond_to do |format|
       format.html { redirect_to assignments_url }
       format.json { head :no_content }
