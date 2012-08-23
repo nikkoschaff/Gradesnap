@@ -35,6 +35,7 @@ class StudentsController < ApplicationController
   def new
     @student = Student.new
     @courses = Course.where("teacher_id=?", session[:user].teacher_id)
+    @grade = 0.0
 
     respond_to do |format|
       format.html # new.html.erb
@@ -53,10 +54,10 @@ class StudentsController < ApplicationController
   def create
     @student = Student.new(params[:student])
     if @student.save
-      @student.grade = 0
       if @student.middle_name == nil
         @student.middle_name = " "
       end
+	@student.grade = 0.0
 	@student.save
       respond_to do |format|
       	format.html { redirect_to @student, notice: 'Student was successfully created.' }
@@ -90,11 +91,13 @@ class StudentsController < ApplicationController
   # DELETE /students/1.json
   def destroy
     @student = Student.find(params[:id])
+    @student.courses_students.each(&:destroy)
+    @student.assignments_students.each(&:destroy)
     @student.destroy
 
+
     respond_to do |format|
-      format.html { redirect_to :action => 'show', :controller => 'courses',
-        :id => courseid }
+      format.html { redirect_to :action => 'index', :controller => 'students' }
       format.json { head :no_content }
     end
   end

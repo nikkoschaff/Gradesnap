@@ -27,7 +27,7 @@ module IssuesHelper
   		@showHash[:ambiguous_answers] = ambigHash
 		
 
-  		assignment_student = AssignmentStudents.where("scansheet_id=?",scansheet.id).to_a.last
+  		assignment_student = AssignmentsStudents.where("scansheet_id=?",scansheet.id).to_a.last
   		unless assignment_student == nil
 			@showHash[:student] = Student.find(assignment_student.student_id)
 			@showHash[:assignment_student_id] = assignment_student.id
@@ -47,7 +47,7 @@ module IssuesHelper
 		assignment = Assignment.find(assignment_id)
 		astu = nil
 		unless assignment_student_id == ""
-			astu = AssignmentStudents.find(assignment_student_id)
+			astu = AssignmentsStudents.find(assignment_student_id)
 			resultsArr = astu.results.split("~")
 		else 
 			resultsArr = assignment.answer_key.split("~")
@@ -78,7 +78,7 @@ module IssuesHelper
 			student.save!
 		else
 			assignment.answer_key = newResults
-			assignmentStudents = AssignmentStudents.where("assignment_id=?",assignment.id)
+			assignmentStudents = AssignmentsStudents.where("assignment_id=?",assignment.id)
 			assignmentStudents.each { |assStu|
 				assStu.grade = gradeStudent( assStu.results, newResults )
 				assStu.save!
@@ -116,7 +116,7 @@ module IssuesHelper
   		students.each { |student|
   			#Keep out the obviously unmatched "fake" students
   			unless student.first_name[0] == "~"
-  				gradedAssignmentStudent = AssignmentStudents.where("student_id=? AND assignment_id", student.id, assignment.id)
+  				gradedAssignmentStudent = AssignmentsStudents.where("student_id=? AND assignment_id", student.id, assignment.id)
   				# Add if there doesnt exist a record for this student on this assignmen
   				if gradedAssignmentStudent == nil
   					unmatchedStudents.push(student)
@@ -125,7 +125,7 @@ module IssuesHelper
   		}
 
   		@showHash[:students] = unmatchedStudents
-  		assignmentStudent = AssignmentStudents.where("scansheet_id=?",scansheet.id).to_a.last
+  		assignmentStudent = AssignmentsStudents.where("scansheet_id=?",scansheet.id).to_a.last
 		@showHash[:student] = Student.find(assignmentStudent.student_id)
 		
 		@showHash[:assignmentStudent] = assignmentStudent
@@ -135,7 +135,7 @@ module IssuesHelper
 
 
 	def doNameVerify(student_id, assignment_student_id, delpath)
-		assignmentStudent = AssignmentStudents.find(assignment_student_id)
+		assignmentStudent = AssignmentsStudents.find(assignment_student_id)
 		student = Student.find(student_id)
 		oldStudent = assignmentStudent.student_id
 		assignmentStudent.student_id = student_id

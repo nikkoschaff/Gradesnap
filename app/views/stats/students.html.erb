@@ -7,7 +7,7 @@
 		<% else %>
 			<% @students.each do |student| %>
 			<p>
-			<%= link_to "#{student.first_name} #{student.middle_name} #{student.last_name}", :action => 'show', :controller => 'stats', :id => assignment.id, :code => "student" %> 
+			<%= link_to "#{student.full_name}", :action => 'show', :controller => 'stats', :id => assignment.id, :code => "student" %> 
 			</p>	
 			<% end %>
 		<% end %>

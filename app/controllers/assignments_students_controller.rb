@@ -1,11 +1,11 @@
-class AssignmentStudentsController < ApplicationController
+class AssignmentsStudentsController < ApplicationController
 
   before_filter :login_required
   # GET /assignment_students
   # GET /assignment_students.json
   def index
 
-    @ass_students = AssignmentStudents.where("assignment_id=?", request.fullpath[-1,1].to_i).to_a
+    @ass_students = AssignmentsStudents.where("assignment_id=?", request.fullpath[-1,1].to_i).to_a
 
     if !@ass_students.empty?
       @assignment = Assignment.where("id = ?", @ass_students.to_a.first.assignment_id).to_a.first
@@ -29,14 +29,14 @@ class AssignmentStudentsController < ApplicationController
     end 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @assignment_students }
+      format.json { render json: @assignments_students }
     end
   end
 
   # GET /assignment_students/1
   # GET /assignment_students/1.json
   def show
-    @assignment_student = AssignmentStudents.find(params[:id])
+    @assignment_student = AssignmentsStudents.find(params[:id])
     @student = Student.where("id=?", @assignment_student.student_id).first
     respond_to do |format|
       format.html # show.html.erb
@@ -47,7 +47,7 @@ class AssignmentStudentsController < ApplicationController
   # GET /assignment_students/new
   # GET /assignment_students/new.json
   def new
-    @assignment_student = AssignmentStudents.new
+    @assignment_student = AssignmentsStudents.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -57,13 +57,13 @@ class AssignmentStudentsController < ApplicationController
 
   # GET /assignment_students/1/edit
   def edit
-    @assignment_student = AssignmentStudents.find(params[:id])
+    @assignment_student = AssignmentsStudents.find(params[:id])
   end
 
   # POST /assignment_students
   # POST /assignment_students.json
   def create
-    @assignment_student = AssignmentStudents.new(params[:assignment_student])
+    @assignment_student = AssignmentsStudents.new(params[:assignment_student])
 
     respond_to do |format|
       if @assignment_student.save
@@ -79,7 +79,7 @@ class AssignmentStudentsController < ApplicationController
   # PUT /assignment_students/1
   # PUT /assignment_students/1.json
   def update
-    @assignment_student = AssignmentStudents.find(params[:id])
+    @assignment_student = AssignmentsStudents.find(params[:id])
 
     respond_to do |format|
       if @assignment_student.update_attributes(params[:assignment_student])
@@ -95,19 +95,17 @@ class AssignmentStudentsController < ApplicationController
   # DELETE /assignment_students/1
   # DELETE /assignment_students/1.json
   def destroy
-    @assignment_student = AssignmentStudents.find(params[:id])
+    @assignment_student = AssignmentsStudents.find(params[:id])
     @assignment_student.destroy
 
     respond_to do |format|
-      format.html { redirect_to assignment_students_url }
+      format.html { redirect_to assignments_students_url }
       format.json { head :no_content }
     end
   end
 
   #Function handles/begins the assignment modification process
   def mod
-    Rails.logger.info("point4 #{@list_of_grades}" )
-    Rails.logger.info("point5 #{params}" )
 
     # get the grade params
 
@@ -124,11 +122,11 @@ class AssignmentStudentsController < ApplicationController
     }
 
     grade_params.each{ |key,value|
-      as = AssignmentStudents.find(key.to_i)
+      as = AssignmentsStudents.find(key.to_i)
       as.grade = value
       as.save
     } 
-    redirect_to :action => 'index', :controller => 'assignment_students'
+    redirect_to :action => 'index', :controller => 'assignments_students'
   end
 
 end

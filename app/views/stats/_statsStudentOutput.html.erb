@@ -1,7 +1,7 @@
 <div class="studentResults">
   <h1>Student Results</h1>
   <% if @student %>
-  <h2><%= "#{@student.first_name} #{@student.middle_name} #{@student.last_name}" %></h2>
+  <h2><%= "#{@student.full_name}" %></h2>
     <%= "Grade: #{@student.grade}" %>
   <% else %>
   <h2>Student could not be found</h2>

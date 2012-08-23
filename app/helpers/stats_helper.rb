@@ -327,7 +327,7 @@ end
   def unreadableFiles( assignment )
     unreadables = Hash.new()
     allSheets = Scansheet.where("assignment_id=?", assignment.id ).to_a
-    allAssignmentStudents = AssignmentStudents.where("assignment_id=?", assignment.id).to_a
+    allAssignmentStudents = AssignmentsStudents.where("assignment_id=?", assignment.id).to_a
     gradedSheets = Array.new()
     gradedSheets.push(assignment.answer_scansheet.id)
     allAssignmentStudents.each{ |student|
@@ -370,13 +370,13 @@ end
       when "course"
         showHash[:course] = model
         showHash[:students] = Student.where("course_id=?",model.id).to_a
-        showHash[:coursestudents] = CourseStudents.where("course_id=?",model.id).to_a
+        showHash[:coursesstudents] = CoursesStudents.where("course_id=?",model.id).to_a
         return showHash
 
       when "assignment"
         showHash[:assignment] = model
         showHash[:students] = Student.where("course_id=?",model.course_id).to_a
-        showHash[:assignmentstudents] = AssignmentStudents.where("assignment_id=?",model.id).to_a
+        showHash[:assignmentsstudents] = AssignmentsStudents.where("assignment_id=?",model.id).to_a
         return showHash
 
       when "student" 

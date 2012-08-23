@@ -32,13 +32,12 @@ class ExportsheetsController < ApplicationController
     #query students and assignments
     @assignment = Assignment.where("id = ?", params[:id]).to_a.first
     if @assignment
-      @ass_students  = AssignmentStudents.where(" assignment_id = ?", params[:id]).to_a
+      @ass_students  = AssignmentsStudents.where(" assignment_id = ?", params[:id]).to_a
       
       # assemble student => ass_stdnt hash 
       # that hash to be used to write to the exportsheet record
       @students_hash = Hash.new
       dem_students = Student.where("course_id = ?", @assignment.course_id)
-      Rails.logger.info("qwy: #{dem_students}")
       counter = 0
       @ass_students.each{ |ass_stdnt|
         s = dem_students[counter]
@@ -60,8 +59,8 @@ class ExportsheetsController < ApplicationController
           break
         end
         @exportsheet = Exportsheet.new({
-        :student => stdnt.first_name,
-        :grade => ass_stdnt.grade.to_i,
+        :student => stdnt.full_name,
+        :grade => ass_stdnt.grade * 100,
         :assignment_id => @assignment.id
         })
         @exportsheet.save
@@ -73,7 +72,7 @@ class ExportsheetsController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.csv { send_data @exportsheet.to_csv }
-      format.xls {  send_data @exportsheet.to_csv(col_sep: "\t")  }
+      format.xls # {  send_data @exportsheet.to_csv(col_sep: "\t")  }
       #format.xls {  @students }
 
     end

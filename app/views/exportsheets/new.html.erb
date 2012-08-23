@@ -22,9 +22,9 @@
       <% @students_hash.each do |s, a| %>
       <tr>
         <td>
-          <%= s.first_name %></td>
+          <%= s.full_name %></td>
         <td>
-          <%= a.grade %></td>
+          <%= s.grade * 100 %></td>
       </tr>
       <% counter += 1 %>
       <% end %></table>

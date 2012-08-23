@@ -11,22 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120808202533) do
-
-  create_table "assignment_students", :force => true do |t|
-    t.integer  "assignment_id"
-    t.integer  "student_id"
-    t.integer  "scansheet_id"
-    t.float    "grade"
-    t.text     "results"
-    t.text     "answer_key"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-  end
-
-  add_index "assignment_students", ["assignment_id", "student_id"], :name => "index_assignment_students_on_assignment_id_and_student_id", :unique => true
-  add_index "assignment_students", ["assignment_id"], :name => "index_assignment_students_on_assignment_id"
-  add_index "assignment_students", ["student_id"], :name => "index_assignment_students_on_student_id"
+ActiveRecord::Schema.define(:version => 20120817172440) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "num_questions"
@@ -39,6 +24,21 @@ ActiveRecord::Schema.define(:version => 20120808202533) do
     t.datetime "updated_at",       :null => false
   end
 
+  create_table "assignments_students", :force => true do |t|
+    t.integer  "assignment_id"
+    t.integer  "student_id"
+    t.integer  "scansheet_id"
+    t.float    "grade"
+    t.text     "results"
+    t.text     "answer_key"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "assignments_students", ["assignment_id", "student_id"], :name => "index_assignment_students_on_assignment_id_and_student_id", :unique => true
+  add_index "assignments_students", ["assignment_id"], :name => "index_assignment_students_on_assignment_id"
+  add_index "assignments_students", ["student_id"], :name => "index_assignment_students_on_student_id"
+
   create_table "contacts", :force => true do |t|
     t.string   "email"
     t.string   "subject"
@@ -47,23 +47,23 @@ ActiveRecord::Schema.define(:version => 20120808202533) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "course_students", :force => true do |t|
-    t.integer  "course_id"
-    t.integer  "student_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "course_students", ["course_id", "student_id"], :name => "index_course_students_on_course_id_and_student_id", :unique => true
-  add_index "course_students", ["course_id"], :name => "index_course_students_on_course_id"
-  add_index "course_students", ["student_id"], :name => "index_course_students_on_student_id"
-
   create_table "courses", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.integer  "teacher_id"
     t.datetime "updated_at", :null => false
   end
+
+  create_table "courses_students", :force => true do |t|
+    t.integer  "course_id"
+    t.integer  "student_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "courses_students", ["course_id", "student_id"], :name => "index_course_students_on_course_id_and_student_id", :unique => true
+  add_index "courses_students", ["course_id"], :name => "index_course_students_on_course_id"
+  add_index "courses_students", ["student_id"], :name => "index_course_students_on_student_id"
 
   create_table "exportsheets", :force => true do |t|
     t.string   "student"
@@ -128,6 +128,7 @@ ActiveRecord::Schema.define(:version => 20120808202533) do
     t.datetime "created_at"
     t.string   "confirmation_code"
     t.boolean  "confirmed"
+    t.boolean  "eula"
     t.integer  "subscribed"
   end
 

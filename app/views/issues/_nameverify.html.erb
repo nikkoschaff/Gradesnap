@@ -4,7 +4,7 @@
 
     <p>
     Student:
-    <%= link_to "#{@showHash[:student].first_name} #{@showHash[:student].middle_name} #{@showHash[:student].last_name}", :action => 'show', :controller => 'students', :id => @showHash[:student].id %>
+    <%= link_to "#{@showHash[:student].full_name}", :action => 'show', :controller => 'students', :id => @showHash[:student].id %>
     </p>
 
     <p>Welcome to the Answer Name page.  If you're here, then it means the name read from the sheet doesn't match any of your students in your records.</p>  

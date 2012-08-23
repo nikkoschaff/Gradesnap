@@ -9,11 +9,8 @@ class ChangeStringToText < ActiveRecord::Migration
 	change_column :scansheets, :name, :text, :limit => nil
 	change_column :scansheets, :answers_string, :text, :limit => nil
 	change_column :scansheets, :assignment_student_id, :text, :limit => nil
-
-	change_column :assignment_students, :results, :text, :limit => nil
-	change_column :assignment_students, :answer_key, :text, :limit => nil
   end
-
+ 
   def down
   	#remove_index(:assignment_students, :name => "add_index_to_assignment_students")
   end

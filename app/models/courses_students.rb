@@ -1,8 +1,8 @@
-class CourseStudents < ActiveRecord::Base
+class CoursesStudents < ActiveRecord::Base
   attr_accessible :course_id, :student_id
 
-  belongs_to :course, class_name: "Course"
-  belongs_to :student, class_name: "Student"
+  belongs_to :courses
+  belongs_to :students
 
   validates :course_id, :presence => true
   validates :student_id, :presence => true

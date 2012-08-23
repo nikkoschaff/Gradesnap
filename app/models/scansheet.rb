@@ -12,7 +12,7 @@ class Scansheet < ActiveRecord::Base
 		:image_cache,
 		:assignment_id
 
-	belongs_to :assignment_student
+	belongs_to :assignments_student
   belongs_to :assignment, :foreign_key => ":assignment_id"
 
   validates :image, :presence => true

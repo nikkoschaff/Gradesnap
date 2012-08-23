@@ -11,14 +11,14 @@ class AssignmentsController < ApplicationController
     if @assignment = Assignment.find(params[:id].to_i)    
       @show_hash_assignment = showHash("assignment" , @assignment)
 
-      if !@show_hash_assignment[:assignmentstudents].empty?
+      if !@show_hash_assignment[:assignmentsstudents].empty?
         
         # assemble student => ass_stdnt hash 
         # that hash to be used to write to the exportsheet record
         @students_hash = Hash.new
         dem_students = Student.where("course_id = ?", @assignment.course_id)
         counter = 0
-        @show_hash_assignment[:assignmentstudents].each{ |ass_stdnt|
+        @show_hash_assignment[:assignmentsstudents].each{ |ass_stdnt|
           s = dem_students[counter]
           if !@students_hash.key?(s)  and s != nil then
             h = Hash.new
@@ -115,7 +115,16 @@ class AssignmentsController < ApplicationController
   # DELETE /assignments/1.json
   def destroy
     @assignment = Assignment.find(params[:id])
-    @assignment.delete
+    @assignment.assignments_students.each(&:destroy)
+    @scansheets = Scansheet.where("assignment_id=?",@assignment.id)
+    @scansheets.each { |sheet|
+        @issues = Issue.where("tablename=? AND row_id=?","Scansheet",sheet.id)
+        @issues.each { |issue|
+                issue.destroy unless @issues == [] or @issues == nil
+        }
+    }
+    @assignment.destroy 
+    
     respond_to do |format|
       format.html { redirect_to assignments_url }
       format.json { head :no_content }

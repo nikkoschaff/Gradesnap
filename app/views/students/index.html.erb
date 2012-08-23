@@ -16,7 +16,9 @@
     <% course.last.each do |student| %>
     <ul class="nav nav-tabs nav-stacked">
         <li><%= link_to "#{student.full_name}", student %></li>
-        <li><span class="btn">Current grade: <%= student.grade*(100) %> %</span></li>
+	<% Rails.logger.info("Student grade: #{student.full_name} #{student.grade} ") %>
+    <li><span class="btn">Current grade: <%= student.grade*(100) %> %</span></li>
+
  </ul>
       <br />
     <% end %>
