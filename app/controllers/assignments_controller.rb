@@ -116,9 +116,15 @@ class AssignmentsController < ApplicationController
   def destroy
     @assignment = Assignment.find(params[:id])
     @assignment.assignments_students.each(&:destroy)
-    @assignment.destroy    
-
-
+    @scansheets = Scansheet.where("assignment_id=?",@assignment.id)
+    @scansheets.each { |sheet|
+        @issues = Issue.where("tablename=? AND row_id=?","Scansheet",sheet.id)
+        @issues.each { |issue|
+                issue.destroy unless @issues == [] or @issues == nil
+        }
+    }
+    @assignment.destroy 
+    
     respond_to do |format|
       format.html { redirect_to assignments_url }
       format.json { head :no_content }
