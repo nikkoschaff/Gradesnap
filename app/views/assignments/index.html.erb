@@ -15,21 +15,20 @@
                 </ul>
         </div>
 <div class="span8">
-<h2>All Assignments:</h2>
+<h2>Showing all assignments for:</h2>
 <% if @assignments == [] %>
 (You currently have no assignments)
 <% else %>
+<ul class="nav nav-tabs nav-stacked">
 <% @courseAssignments.each do |course| %>
 <h2><%= course.first.name %></h2>
 <% course.last.each do |assignment| %>
-<ul class="nav nav-tabs nav-stacked">
 <li><%= link_to "#{assignment.name}", :action =>
 'show', :controller => 'assignments', :id => assignment.id %></li>
-
+<% end %>
+<% end %>
+<% end %>
 </ul>
-<% end %>
-<% end %>
-<% end %>
 </div>
 </div>
 <hr class="soften">

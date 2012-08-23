@@ -7,10 +7,11 @@
 <br />
 <br />
   <!-- Error report if any files could not be read -->
-  <div class="btn btn-danger">
+
       <% unreadables = unreadableFiles(@assignment) %>
       <% errs = errorsHash %>
       <% if unreadables.size > 0 %>
+      <div class="btn btn-danger">
         <p>The following files were unreadable:</p>
         <% unreadableCount = 0 %>
         <% unreadables.each { |key,value| %>

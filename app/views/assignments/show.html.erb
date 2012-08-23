@@ -1,29 +1,24 @@
 <div class="bodyWrapper">
-  <div class="container">
-    <p id="notice"><%= notice %></p>
-        <p>
-        <b>Name:</b>
-        <%= @show_hash_assignment[:assignment].name %>
-        </p>
-
-        <p>
-        <b>Average:</b>
-        <%= mean(@show_hash_assignment[:assignment].grades) * 100 %>%
-        </p>
-        <b>Students:</b><p>
-
-        <% if @students_hash != nil %>
-            <% @students_hash.each do |s, as| %>
-                <p>
-                <tr>
-                <td><%= link_to "#{s.first_name}  #{s.middle_name}  #{s.last_name}", s %></td>
-                  <b>Grade recieved:</b>
-                  <%= as.grade * 100 %>
-                </tr>
-                </p>
-            <% end %>
-            </p>
-
+<div class="container">
+<p id="notice"><%= notice %></p>
+<h1 class="courseH"><%= @assignment.name %></h1>
+<h3>Combined Stats</h3>
+<div class="courseStats">
+<ul class="courseStatsList">
+<li><span>Name: </span><%= @show_hash_assignment[:assignment].name %></li>
+<li><span>Average: </span><%= mean(@show_hash_assignment[:assignment].grades) * 100 %>%</li>
+</ul>
+</div>
+<h3>Students:</h3>
+<% if @students_hash != nil %>
+<table cellpadding="5" class="tastyTables">
+<% @students_hash.each do |s, as| %>
+<tr>
+<td><%= link_to "#{s.first_name}  #{s.middle_name}  #{s.last_name}", s %></td>
+<td><strong>Grade recieved: </strong><%= as.grade * 100 %></td>
+</tr>
+<% end %>
+</table>
         <% else%>
             <p>
                 No students.
