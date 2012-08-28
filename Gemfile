@@ -10,9 +10,8 @@ gem 'ps'
 gem 'activerecord-postgresql-adapter'
 # Gem is necessary to include captcha in our sign-up form.
 gem 'ruby-recaptcha'
-# Paypal recurring payment handling
-gem 'paypal-recurring'
-
+# Handles credit card payments
+gem 'stripe'
 
 # Gems used only for assets and not required
 # in production environments by default.

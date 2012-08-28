@@ -11,7 +11,7 @@ class PreloginsController < ApplicationController
      @teacher = Teacher.new(:name => @user.name)
      @user.teacher = @teacher
      if request.post?  
-       if validate_recap(params, @user.errors) #captcha line
+       if validate_recap(params, @user.errors) #captcha line 
          if @user.save 
            if @teacher.save
              @user.teacher_id = @teacher.id
@@ -28,7 +28,7 @@ class PreloginsController < ApplicationController
          #  @user.errors.add("something went wrong")
          #  redirect_to :action => "signup", :controller => 'prelogins'
          end
-       end
+	end
      end
    end
 

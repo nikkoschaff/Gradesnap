@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120817172440) do
+ActiveRecord::Schema.define(:version => 20120827000852) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "num_questions"
@@ -130,6 +130,8 @@ ActiveRecord::Schema.define(:version => 20120817172440) do
     t.boolean  "confirmed"
     t.boolean  "eula"
     t.integer  "subscribed"
+    t.string   "stripe_customer_token"
+    t.integer  "plan_id"
   end
 
 end
