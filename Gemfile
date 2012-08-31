@@ -10,12 +10,9 @@ gem 'ps'
 gem 'activerecord-postgresql-adapter'
 # Gem is necessary to include captcha in our sign-up form.
 gem 'ruby-recaptcha'
-<<<<<<< HEAD
 
-=======
 # Handles credit card payments
 gem 'stripe'
->>>>>>> d7ec838b505584b92016d70e1794c1f03bf7d6ab
 
 # Gems used only for assets and not required
 # in production environments by default.
