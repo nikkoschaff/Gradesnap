@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :admin_required, :only => [:show, :index, :destroy]
+  before_filter :admin_required, :only => [:show, :index, :destroy, :edit]
 
   # GET /users
   # GET /users.json
@@ -27,26 +27,7 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.json
   def new
-    @user = User.new(params[:user])
-    @teacher = Teacher.new(:name => @user.name)
-     @user.teacher = @teacher
-     if request.post?
-       if validate_recap(params, @user.errors) #captcha line 
-         if @user.save
-           if @teacher.save
-             @user.teacher_id = @teacher.id
-             @user.save
-             # MAILER FUNCTIONS THIS SHIT BREAKS IF THE MAILERS BREAK IF THE SSL CERT BREAKS
-             #UserMailer.welcome_email(@user).deliver
-             flash[:notice] = "Signup successful"
-             # go to home is sign up success
-             session[:user] = User.authenticate(@user.email, @user.password)
-             redirect_to :action => "eula", :controller => 'prelogins'
-             #redirect_to :action => "confirm_it", :controller => 'prelogins' 
-           end
-         end
-        end
-      end
+    @user = User.new
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @user }
@@ -62,14 +43,20 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render json: @user, status: :created, location: @user }
+    @teacher = Teacher.new(:name => @user.name)
+    @user.teacher = @teacher
+    if request.post? and validate_recap(params, @user.errors) and @user.save_with_payment and @teacher.save!
+        @user.teacher_id = @teacher.id
+        @user.save!
+        #: MAILER FUNCTIONS THIS SHIT BREAKS IF THE MAILERS BREAK IF THE SSL CERT BREAKS
+        #UserMailer.welcome_email(@user).deliver
+        session[:user] = User.authenticate(@user.email, @user.password)
+        Rails.logger.info("#############################")
+        redirect_to '/dashboard', :controller => 'sessions'
       else
-        format.html { render action: "new" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        respond_to do |format|    
+          format.html { render action: "new" }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
