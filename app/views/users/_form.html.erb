@@ -17,18 +17,18 @@
 <!-- User signup information -->
 
         <label for="user_password"><strong>Name</strong></label>
-        <%= text_field "user", "name", :size => 20 %><br/>
+        <%= f.text_field :name, :size => 20 %><br/>
         <%= flash[:notice] %>
 
         <label for="user_email"><strong>Email</strong></label>
-        <%= text_field "user", "email", :size => 20 %><br/>
+        <%= f.text_field :email, :size => 20 %><br/>
 
         <label for="user_password"><strong>Password</strong></label>
-        <%= password_field "user", "password", :size => 20 %>
+        <%= f.password_field  :password, :size => 20 %>
         <%= flash[:notice] %>
 
         <label for="user_password_confirmation"><strong>Password Confirmation</strong></label>
-        <%= password_field "user", "password_confirmation", :size => 20 %>
+        <%= f.password_field :password_confirmation, :size => 20 %>
 
         <div class="reCaptcha">
           <%= raw(get_captcha(:ssl => true, :options => {:theme => 'white', :tabindex => 10})) %>
@@ -39,9 +39,9 @@
 
 <!-- Billing for Stripe -->
 
-  <strong>Plan</strong>
-  <%# plans = ["$4.99/month","$49.99/year"] %>
-  <%#= f.collection_select(:plan_id, plans, :id, :name, :prompt => "(Select Plan)" ) %>
+  <strong>Select Plan</strong>
+  <% @plans = Plan.all.to_a  %>
+  <%= f.collection_select(:plan_id, @plans, :id, :name, :prompt => "(Select Plan)" ) %>
 
   <%= f.hidden_field :stripe_card_token %>
 
@@ -70,7 +70,7 @@
 
 <%= render :partial => 'eula' %>
 
-<%= f.submit "Join Gradesnap" %>
+<%= f.submit "Sign up" %>
 <% end %>
 
 

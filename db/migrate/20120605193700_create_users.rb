@@ -8,8 +8,6 @@ class CreateUsers < ActiveRecord::Migration
       t.column :teacher_id,       :integer
   		t.column :created_at,       :datetime
       t.column :confirmation_code, :string
-      t.column :confirmed,         :boolean
-      t.column :eula,             :boolean
   	end
   end
 
