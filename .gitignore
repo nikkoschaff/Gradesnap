@@ -30,6 +30,9 @@ app/assets/uploads/
 app/assets/images/uploads
 vendor/bundle/
 
+#Ignore Stripe info
+config/initializers/stripe.rb
+
 # Ignore bundler config
 /.bundle
 

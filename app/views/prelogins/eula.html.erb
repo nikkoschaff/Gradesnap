@@ -190,13 +190,14 @@ Customizations:				to be determined
 </p>
 
 
-
-<%= form_tag :action => "confirm_eula", :validate => true %>
-	<%= hidden_field_tag "params" ,params %>
-<%= submit_tag "Confirm", :class =>'btn btn-success'%>
-<button class="btn btn-danger shitMeng">
-<%= link_to "Do Not Accept", :action => "index", :controller => "prelogins"%>
+<button class='btn btn-success'>
+<%= link_to "I accept", :action => "new", :controller => "users", :confirmed => true %>
 </button>
+<button class="btn btn-danger shitMeng">
+<%= link_to "I Do NOT Accept", :action => "index", :controller => "prelogins"%>
+</button>
+<%= link_to "I accept", :action => "new", :controller => "users", :confirmed => true %> | 
+<%= link_to "I Do NOT Accept", :action => "index", :controller => "prelogins"%>
 </div>
 </div>
 </div>

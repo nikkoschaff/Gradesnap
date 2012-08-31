@@ -3,6 +3,7 @@ Gradesnap::Application.routes.draw do
  
   resources :exportsheets
 
+  resources :users
   resources :scansheets 
   resources :assignments do
     collection do
@@ -23,8 +24,6 @@ Gradesnap::Application.routes.draw do
       get 'thanks'
       post 'confirm_eula'
       get 'eula'
-      get 'signup'
-      post 'signup'
       get 'login'
       post 'login'
       get 'forgot_password'
