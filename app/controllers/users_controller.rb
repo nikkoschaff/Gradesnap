@@ -45,7 +45,6 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     @teacher = Teacher.new(:name => @user.name)
     @user.teacher = @teacher
-    respond_to do |format|
     if request.post? and validate_recap(params, @user.errors) and @user.save_with_payment and @teacher.save!
         @user.teacher_id = @teacher.id
         @user.save!
@@ -53,10 +52,11 @@ class UsersController < ApplicationController
         #UserMailer.welcome_email(@user).deliver
         session[:user] = User.authenticate(@user.email, @user.password)
         Rails.logger.info("#############################")
-        redirect_to '//www.gradesnap.com/dashboard'
+        redirect_to '/dashboard', :controller => 'sessions'
       else
-        format.html { render action: "new" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        respond_to do |format|    
+          format.html { render action: "new" }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
