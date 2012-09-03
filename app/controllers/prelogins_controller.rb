@@ -5,34 +5,6 @@ class PreloginsController < ApplicationController
 # logged in. Otherwise it stores the page to return to in the session and redirects 
 # to the login page. 
 
-   # Function invoked to sign-up a new user
-   def signup
-     @user = User.new(params[:user])
-     @teacher = Teacher.new(:name => @user.name)
-     @user.teacher = @teacher
-     if request.post?  
-       if validate_recap(params, @user.errors) #captcha line 
-         if @user.save 
-           if @teacher.save
-             @user.teacher_id = @teacher.id
-             @user.save
-             # MAILER FUNCTIONS THIS SHIT BREAKS IF THE MAILERS BREAK IF THE SSL CERT BREAKS
-             #UserMailer.welcome_email(@user).deliver
-             flash[:notice] = "Signup successful"
-             # go to home is sign up success
-             session[:user] = User.authenticate(@user.email, @user.password)
-             redirect_to :action => "eula", :controller => 'prelogins'
-             #redirect_to :action => "confirm_it", :controller => 'prelogins' 
-           end
-         #elsif ! @user.save
-         #  @user.errors.add("something went wrong")
-         #  redirect_to :action => "signup", :controller => 'prelogins'
-         end
-	end
-     end
-   end
-
-  # Function invoked to authenticate a user in login 
   #
   # Signup action creates a new user using the parameters it receives. 
   # It is a post request (the form was submitted) it tries to save the 
@@ -112,38 +84,20 @@ class PreloginsController < ApplicationController
     end  
   end
 
-  #Nikko pls
-  def registration
-    respond_to do |format|
-      format.html
-    end  
-  end
-
-  #Conor pls
-  def eula
-    respond_to do |format|
-      format.html
-    end
-  end
-
   #Conor pls
   def thanks
     respond_to do |format|
       format.html
     end
   end
-  
-  # finds user to set the eula marker to trueeeeeeeeeeee
-  def confirm_eula
-    @user = User.all.last
-    if @user != nil
-      @user.eula = true
-      if @user.save
-        redirect_to :action => "dashboard", :controller => "sessions"
-      end
-    end
+ 
+  def pricing
+	respond_to do |format|
+	  format.html
+	end
   end
 
+ 
   # MAILER FUNCTION:
   # generates a confirmation code 
   def random_code(len)
