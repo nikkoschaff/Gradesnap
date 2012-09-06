@@ -5,7 +5,6 @@
 	<div class="widget">
 
 		<div class="widget-content">
-<div class="btn btn-danger gsBeta"><span style="font-weight: 600; padding: 2px;border-radius: 3px;"><%= link_to "Gradesnap is currently running BETA - Sign up here for FREE!", :action => 'new', :controller => 'users', :class => "btn" %></span></div>
 			<div class="pricing-plans plans-2">
 
 				<div class="plan-container">
@@ -20,7 +19,7 @@
 
 							<div class="plan-price">
 								<span class="note">$</span>
-								9.99
+								4.99
 								<span class="term">per month</span>
 							</div>
 							<!-- /plan-price -->
@@ -54,9 +53,9 @@
 						<!-- /plan-features -->
 
 						<div class="plan-actions">
-							<a href="javascript:;" class="btn">
-								<span style="color: #ff0000; font-weight: 600; padding: 2px;border-radius: 3px;">Coming Soon</span>
-							</a>
+							<div class="btn">
+								<%= link_to 'Sign Up For Our Monthly Plan!',:action =>'new',:controller => 'users'%>
+							</div>
 						</div>
 						<!-- /plan-actions -->
 
@@ -77,7 +76,7 @@
 
 							<div class="plan-price">
 								<span class="note">$</span>
-								9.99 or 100
+								49.99
 								<span class="term">per year</span>
 							</div>
 							<!-- /plan-price -->
@@ -111,9 +110,9 @@
 						<!-- /plan-features -->
 
 						<div class="plan-actions">
-							<a href="javascript:;" class="btn">
-								<span style="color: #ff0000; font-weight: 600; padding: 2px;border-radius: 3px;">Coming Soon</span>
-							</a>
+							<div class="btn">
+								<%= link_to 'Sign Up For With A Yearly Fee!',:action =>'new',:controller => 'users'%>
+							</div>
 						</div>
 						<!-- /plan-actions -->
 
