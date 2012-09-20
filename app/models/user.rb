@@ -14,7 +14,8 @@ class User < ActiveRecord::Base
   attr_protected :id, :salt
   attr_accessor :password, :password_confirmation, :confirmation_code, :confirmed
   attr_accessor :stripe_card_token
-  belongs_to :teacher, :foreign_key => ":teacher_id"
+  belongs_to :teacher, :foreign_key => "teacher_id"
+  attr_writer :teacher
   accepts_nested_attributes_for :teacher
 
   # Stripe payment validation
