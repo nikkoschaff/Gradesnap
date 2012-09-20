@@ -46,8 +46,8 @@ class UsersController < ApplicationController
     @teacher = Teacher.new(:name => @user.name)
     @user.teacher = @teacher
     if request.post? and validate_recap(params, @user.errors) and @user.save_with_payment and @teacher.save!
-        @user.teacher_id = @teacher.id
         @user.save!
+	@user.teacher_id = @teacher.id
         #: MAILER FUNCTIONS THIS SHIT BREAKS IF THE MAILERS BREAK IF THE SSL CERT BREAKS
         #UserMailer.welcome_email(@user).deliver
         session[:user] = User.authenticate(@user.email, @user.password)

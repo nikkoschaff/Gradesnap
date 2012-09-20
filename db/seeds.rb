@@ -8,5 +8,7 @@
 
 Plan.create!(:name => "Gradesnap Monthly (4.99/month)", :price => 4.99)
 Plan.create!(:name => "Gradesnap Yearly (49.99/year)", :price => 49.99)
-User.create!(:name => "Admin", :email => "admin@gradesnap.com", :hashed_password => "adminatgradesnap", :password => "adminatgradesnap", :plan_id => 1, :password_confirmation => "adminatgradesnap")
-User.create!(:name => "Guest", :email => "guest@gradesnap.com", :hashed_password => "guest1", :password => "guest1", :password_confirmation => "guest1", :plan_id => 1, :teacher_id => 1)
+Teacher.create!(:name => "Admin")
+Teacher.create(:name => "Guest")
+User.create!(:name => "Admin", :email => "admin@gradesnap.com", :hashed_password => "adminatgradesnap", :password => "adminatgradesnap", :plan_id => 1, :password_confirmation => "adminatgradesnap", :teacher_id => 1)
+User.create!(:name => "Guest", :email => "guest@gradesnap.com", :hashed_password => "guest1", :password => "guest1", :password_confirmation => "guest1", :plan_id => 1, :teacher_id => 2)
