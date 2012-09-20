@@ -36,7 +36,8 @@
   <!-- Billing for Stripe -->
 
   <strong>Select Plan</strong>
-  <% @plans = Plan.all.to_a  %>
+  <% @plans = Plan.all.to_a %>
+  <% @plans = @plans[0..1].to_a %>
   <%= f.collection_select(:plan_id, @plans, :id, :name, :prompt => "(Select Plan)" ) %>
 
   <%= f.hidden_field :stripe_card_token %>
