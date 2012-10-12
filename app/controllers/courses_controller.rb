@@ -6,7 +6,7 @@ class CoursesController < ApplicationController
   # GET /courses.json
   def index
     @courses = Course.where("teacher_id=?", session[:user].teacher_id)
-
+    Rails.logger.info("Session user: #{session[:user].teacher_id}")
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @courses }

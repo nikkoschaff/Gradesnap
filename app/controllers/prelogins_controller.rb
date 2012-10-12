@@ -17,6 +17,7 @@ class PreloginsController < ApplicationController
     if request.post?
      if session[:user] =  User.authenticate(params[:user][:email], params[:user][:password])
         flash[:message]  = "Login successful"
+	Rails.logger.info("TEACHERID #{session[:user].teacher_id}")
         #go to dash if log in success
         redirect_to :action => "dashboard", :controller => 'sessions'        
         #redirect_to_stored 
