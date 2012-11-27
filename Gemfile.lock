@@ -169,8 +169,6 @@ GEM
     rdoc (3.12)
       json (~> 1.4)
     remotipart (1.0.2)
-    rest-client (1.6.7)
-      mime-types (>= 1.16)
     roo (1.10.1)
       choice (>= 0.1.4)
       google-spreadsheet-ruby (>= 0.1.5)
@@ -195,9 +193,6 @@ GEM
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.6)
-    stripe (1.7.1)
-      multi_json (~> 1.1)
-      rest-client (~> 1.4)
     subexec (0.2.2)
     therubyracer (0.10.1)
       libv8 (~> 3.3.10)
@@ -250,7 +245,6 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   spreadsheet
   sqlite3
-  stripe
   therubyracer
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)
