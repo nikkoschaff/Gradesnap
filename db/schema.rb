@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120828211908) do
+ActiveRecord::Schema.define(:version => 20120808164543) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "num_questions"
@@ -92,13 +92,6 @@ ActiveRecord::Schema.define(:version => 20120828211908) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "plans", :force => true do |t|
-    t.string   "name"
-    t.decimal  "price"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "scansheets", :force => true do |t|
     t.text     "name"
     t.text     "ambiguous_answers"
@@ -121,7 +114,6 @@ ActiveRecord::Schema.define(:version => 20120828211908) do
   end
 
   create_table "teachers", :force => true do |t|
-    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -132,11 +124,8 @@ ActiveRecord::Schema.define(:version => 20120828211908) do
     t.string   "email"
     t.string   "salt"
     t.integer  "teacher_id"
-    t.datetime "created_at"
-    t.string   "confirmation_code"
-    t.integer  "subscribed"
-    t.string   "stripe_customer_token"
-    t.integer  "plan_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
 end

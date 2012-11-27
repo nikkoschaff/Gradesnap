@@ -43,11 +43,11 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
-    @teacher = Teacher.new(:name => @user.name)
+    @teacher = Teacher.new()
     @user.teacher = @teacher
-    if request.post? and validate_recap(params, @user.errors) and @user.save_with_payment and @teacher.save!
+    if request.post? and validate_recap(params, @user.errors) and @teacher.save!
         @user.teacher_id = @teacher.id
-	@user.save!
+	       @user.save!
         #: MAILER FUNCTIONS THIS SHIT BREAKS IF THE MAILERS BREAK IF THE SSL CERT BREAKS
         #UserMailer.welcome_email(@user).deliver
         session[:user] = User.authenticate(@user.email, @user.password)
