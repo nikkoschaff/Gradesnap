@@ -39,9 +39,5 @@ Gradesnap::Application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
  # config.force_ssl = true
   
-  # Dev (test) Stripe keys
-  Stripe.api_key = "sk_0Gt5p4EECxNxEKBj3WY6gP5GqqUEW"
-  STRIPE_PUBLIC_KEY = "pk_0Gt52x776GXqFbmEbGEJAHQ4hMEyI"
-
  # config.reload_plugins = true if RAILS_ENV == ‘development’
 end
