@@ -31,9 +31,6 @@ class AssignmentsController < ApplicationController
         }
       end
     end
-    respond_to do |format|
-      format.html #show.html.erb
-    end
   end
 
   def index
@@ -41,12 +38,8 @@ class AssignmentsController < ApplicationController
     @courseAssignments = Array.new()
     @courses = Course.where("teacher_id=?",session[:user].teacher_id)
     @courses.each { |course|
-	@courseAssignments.push [course, Assignment.where("course_id=?",course.id).to_a]
+	    @courseAssignments.push [course, Assignment.where("course_id=?",course.id).to_a]
     }    
-
-    respond_to do |format|
-      format.html #index.html.erb
-    end
   end
 
   def create
@@ -80,20 +73,12 @@ class AssignmentsController < ApplicationController
   def new
   	@assignment = Assignment.new
     @courses = Course.where( "teacher_id=?", session[:user].teacher_id )  
-
-  	respond_to do |format| 
-  		format.html
-  	end
   end
 
   # the GET side of the skeleton assignment creation
   def make
     @assignment = Assignment.new
     @courses = Course.where( "teacher_id=?", session[:user].teacher_id )  
-
-    respond_to do |format| 
-      format.html
-    end
   end
 
   # the POST side of the skeleton assignment creation
@@ -122,13 +107,11 @@ class AssignmentsController < ApplicationController
         @issues.each { |issue|
                 issue.destroy unless @issues == [] or @issues == nil
         }
+        sheet.destroy
     }
     @assignment.destroy 
     
-    respond_to do |format|
-      format.html { redirect_to assignments_url }
-      format.json { head :no_content }
-    end
+    redirect_to :action => :index
   end
 
 

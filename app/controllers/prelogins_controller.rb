@@ -16,16 +16,7 @@ class PreloginsController < ApplicationController
     reset_session
     if request.post?
      if session[:user] =  User.authenticate(params[:user][:email], params[:user][:password])
-        flash[:message]  = "Login successful"
-	Rails.logger.info("TEACHERID #{session[:user].teacher_id}")
-        #go to dash if log in success
         redirect_to :action => "dashboard", :controller => 'sessions'        
-        #redirect_to_stored 
-     else
-        respond_to do |format|
-          format.html
-        end
-        flash[:warning] = "Login unsuccessful"
       end
     end
   end
@@ -45,7 +36,6 @@ class PreloginsController < ApplicationController
     end
   end
 
-
   # MAILER FUNCTION:
   # THIS SHIT BREAKS IF THE MAILERS BREAK IF THE SSL CERT BREAKS
   def confirmed_it
@@ -64,41 +54,6 @@ class PreloginsController < ApplicationController
     redirect_to :action => "signup", :controller => 'prelogins'   
   end
 
-  #Nikko pls
-  def home
-    respond_to do |format|
-      format.html
-    end
-  end
-
-  #Nikko pls
-  def features
-    respond_to do |format|
-      format.html
-    end 
-  end
-
-  #Nikko pls
-  def legal
-    respond_to do |format|
-      format.html
-    end  
-  end
-
-  #Conor pls
-  def thanks
-    respond_to do |format|
-      format.html
-    end
-  end
- 
-  def pricing
-	respond_to do |format|
-	  format.html
-	end
-  end
-
- 
   # MAILER FUNCTION:
   # generates a confirmation code 
   def random_code(len)
@@ -108,9 +63,4 @@ class PreloginsController < ApplicationController
     1.upto(len) { |i| newcode << chars[rand(chars.size-1)] }
     return newcode
   end
-
-
-
-
-
 end

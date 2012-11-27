@@ -1,10 +1,8 @@
 class AssignmentsStudentsController < ApplicationController
 
   before_filter :login_required
-  # GET /assignment_students
-  # GET /assignment_students.json
-  def index
 
+  def index
     @ass_students = AssignmentsStudents.where("assignment_id=?", request.fullpath[-1,1].to_i).to_a
 
     if !@ass_students.empty?
@@ -27,88 +25,48 @@ class AssignmentsStudentsController < ApplicationController
         counter += 1
       }
     end 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @assignments_students }
-    end
   end
 
-  # GET /assignment_students/1
-  # GET /assignment_students/1.json
   def show
     @assignment_student = AssignmentsStudents.find(params[:id])
     @student = Student.where("id=?", @assignment_student.student_id).first
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @assignment_student }
-    end
   end
 
-  # GET /assignment_students/new
-  # GET /assignment_students/new.json
   def new
     @assignment_student = AssignmentsStudents.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @assignment_student }
-    end
   end
 
-  # GET /assignment_students/1/edit
   def edit
     @assignment_student = AssignmentsStudents.find(params[:id])
   end
 
-  # POST /assignment_students
-  # POST /assignment_students.json
   def create
     @assignment_student = AssignmentsStudents.new(params[:assignment_student])
-
-    respond_to do |format|
-      if @assignment_student.save
-        format.html { redirect_to @assignment_student, notice: 'Assignment student was successfully created.' }
-        format.json { render json: @assignment_student, status: :created, location: @assignment_student }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @assignment_student.errors, status: :unprocessable_entity }
-      end
+    if @assignment_student.save
+      redirect_to :action => :index
+    else
+      redirect_to :action => :new
     end
   end
 
-  # PUT /assignment_students/1
-  # PUT /assignment_students/1.json
   def update
     @assignment_student = AssignmentsStudents.find(params[:id])
 
-    respond_to do |format|
-      if @assignment_student.update_attributes(params[:assignment_student])
-        format.html { redirect_to @assignment_student, notice: 'Assignment student was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @assignment_student.errors, status: :unprocessable_entity }
-      end
+    if @assignment_student.update_attributes(params[:assignment_student])
+      redirect_to :action => :index
+    else
+      redirect_to :action => :edit
     end
   end
 
-  # DELETE /assignment_students/1
-  # DELETE /assignment_students/1.json
   def destroy
     @assignment_student = AssignmentsStudents.find(params[:id])
     @assignment_student.destroy
-
-    respond_to do |format|
-      format.html { redirect_to assignments_students_url }
-      format.json { head :no_content }
-    end
   end
 
   #Function handles/begins the assignment modification process
   def mod
-
     # get the grade params
-
     grade_params = Hash.new
     params.each{ |key, value|
       begin
@@ -120,7 +78,6 @@ class AssignmentsStudentsController < ApplicationController
           # ignore
       end
     }
-
     grade_params.each{ |key,value|
       as = AssignmentsStudents.find(key.to_i)
       as.grade = value

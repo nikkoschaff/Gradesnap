@@ -147,9 +147,9 @@ class Assignment < ActiveRecord::Base
       theStudent.save
     else 
       course = Course.find(self.course_id)
-      teacher_id = Teacher.find(course.teacher_id)
+      teacher = Teacher.find(course.teacher_id)
       nameIssue = Issue.new( :code => 2, :resolved => false,
-       :row_id => sheet.id, :tablename => "Scansheet", :teacher_id => teacher_id,
+       :row_id => sheet.id, :tablename => "Scansheet", :teacher_id => teacher.id,
        :name => "Name Not Found" )
       nameIssue.save      
       nameArr = name.split(",")
@@ -196,9 +196,9 @@ class Assignment < ActiveRecord::Base
       strAmbig = sheet.translateAllAmbig( decKey )
       unless strAmbig == "" then
         course = Course.find(self.course_id)
-        teacher_id = Teacher.find(course.teacher_id)
+        teacher = Teacher.find(course.teacher_id)
         ambigIssue = Issue.new( :code => 1, :resolved => false,
-         :row_id => sheet.id, :tablename => "Scansheet", :teacher_id => teacher_id,
+         :row_id => sheet.id, :tablename => "Scansheet", :teacher_id => teacher.id,
          :name => "Ambiguous Answers" )
         ambigIssue.save
       end

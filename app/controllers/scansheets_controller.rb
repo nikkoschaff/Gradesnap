@@ -32,7 +32,7 @@ class ScansheetsController < ApplicationController
 		    format.json {
 		      render :json => [ @scansheet.to_jq_upload ].to_json
 		    }
-	      end 
+	      end  
     else 
       render :json => [ @image.to_jq_upload.merge({ :error => "custom_failure" }) ].to_json
     end
@@ -41,8 +41,8 @@ class ScansheetsController < ApplicationController
   def destroy
     @scansheet = Scansheet.find(params[:id])
     @issues = Issue.where("tablename=? AND row_id=?","Scansheet",@scansheet.id)
-  @issues.each { |issue|
-	issue.destroy
+    @issues.each { |issue|
+	     issue.destroy
     }
     @scansheet.destroy
     render :json => true

@@ -6,20 +6,12 @@ class StatsController < ApplicationController
   # this brings the browser to the assignments.html page
   def assignments
     @assignments = Assignment.where("email=?",session[:user].email)
-
-    respond_to do |format|
-      format.html #assignments.html.erb
-    end
   end
 
   # html rendering function
   # this brings the browser to the courses.html page
   def courses
     @courses = Course.where("teacher_id=?",session[:user].teacher_id)
-    
-    respond_to do |format|
-      format.html #courses.html.erb
-    end
   end
 
   # html rendering function
@@ -36,23 +28,7 @@ class StatsController < ApplicationController
       }
     }
     @students.uniq!
-
-    respond_to do |format|
-      format.html #students.html.erb
-    end
   end
-
-######################################################################
-######################   I AM A BLOCK   ##############################
-######################################################################
-
-  def index
-    #@teacher = Teacher.where("id=?", session[:user].teacher_id).to_a.last
-    respond_to do |format|
-      format.html # index.html.erb
-    end    
-  end
-
 
   #Function called when a specific student, course, or assignment is selected for show
   def show 
@@ -67,9 +43,6 @@ class StatsController < ApplicationController
       when "student"
         @student = Student.find(params[:id].to_i)
         @show_hash_student = showHash(@code, @student) #hash of student stats
-    end
-    respond_to do |format|
-      format.html # show.html.erb
     end
   end
    

@@ -15,16 +15,10 @@ class IssuesController < ApplicationController
       when 2
         @showHash = prepNameverify(@issue)
     end
-    respond_to do |format|
-      format.html #resolve.html.erb
-    end
   end
 
   def index
     @issues = Issue.where("teacher_id=?",session[:user].teacher_id)
-    respond_to do |format|
-      format.html #index.html.erb
-    end
   end
 
   def create
@@ -32,7 +26,6 @@ class IssuesController < ApplicationController
   end
 
   def new
-    #leave empty
     redirect_to :action => 'index', :controller => 'issues'
   end
 
@@ -59,8 +52,6 @@ class IssuesController < ApplicationController
       doAnswerVerify(resolved_answers, assignment_student_id, delpath, ambiguous_answers, assignment_id)
       Issue.delete(issue_id)
       redirect_to :action => "index", :controller => 'issues'   
-    else
-      flash[:warning] = "Verification unsuccessful"
     end
   end
 
@@ -73,8 +64,6 @@ class IssuesController < ApplicationController
       doNameVerify(student_id, assignment_student_id, delpath)
       Issue.delete(issue_id)
       redirect_to :action => "index", :controller => 'issues'   
-    else
-      flash[:warning] = "Verification unsuccessful"
     end
   end
 

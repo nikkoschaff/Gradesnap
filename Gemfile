@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 #Gem is needed to interface with sqlite3.
-gem 'rails', '3.2.6'
+gem 'rails'
 # Gem is needed to interface with sqlite3.
 gem 'sqlite3'
 # Gem is needed to interface with postgresql.
@@ -36,6 +36,8 @@ group :assets do
   gem 'railties'
 end
 
+# Dependency for twitter-bootstrap
+gem 'less-rails'
 # Gem calls javascript code and manipulate javascript objects from ruby. 
 gem 'therubyracer', :platform => :ruby 
 # Necessary to transfer information from nginx to browser.

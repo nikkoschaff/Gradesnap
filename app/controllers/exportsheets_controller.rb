@@ -1,8 +1,7 @@
 class ExportsheetsController < ApplicationController
 
   before_filter :login_required
-  # GET /exportsheets
-  # GET /exportsheets.json
+
   def index
     @exportsheets = Exportsheet.order(:student)
 
@@ -13,8 +12,6 @@ class ExportsheetsController < ApplicationController
     end
   end
 
-  # GET /exportsheets/1
-  # GET /exportsheets/1.json
   def show
     @exportsheet = Exportsheet.find(params[:id])
 
@@ -50,7 +47,6 @@ class ExportsheetsController < ApplicationController
         end
         counter += 1
       }
-      Rails.logger.info("qwz: #{@students_hash}")
 
       #create exportsheets
       counter = 0
@@ -73,20 +69,11 @@ class ExportsheetsController < ApplicationController
       format.html # new.html.erb
       format.csv { send_data @exportsheet.to_csv }
       format.xls # {  send_data @exportsheet.to_csv(col_sep: "\t")  }
-      #format.xls {  @students }
-
     end
   end
 
-  # DELETE /exportsheets/1
-  # DELETE /exportsheets/1.json
   def destroy
     @exportsheet = Exportsheet.find(params[:id])
     @exportsheet.destroy
-
-    respond_to do |format|
-      format.html { redirect_to exportsheets_url }
-      format.json { head :no_content }
-    end
   end
 end
