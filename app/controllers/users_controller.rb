@@ -23,13 +23,12 @@ class UsersController < ApplicationController
     @teacher = Teacher.new()
     @user.teacher = @teacher
     if request.post? and validate_recap(params, @user.errors) and @teacher.save!
-        @user.teacher_id = @teacher.id
-	       @user.save!
-        #: MAILER FUNCTIONS THIS SHIT BREAKS IF THE MAILERS BREAK IF THE SSL CERT BREAKS
-        #UserMailer.welcome_email(@user).deliver
-        session[:user] = User.authenticate(@user.email, @user.password)
-        redirect_to  :action => :dashboard, :controller => :sessions
-      end
+      @user.teacher_id = @teacher.id
+      @user.save!
+      #: MAILER FUNCTIONS THIS SHIT BREAKS IF THE MAILERS BREAK IF THE SSL CERT BREAKS
+      #UserMailer.welcome_email(@user).deliver
+      session[:user] = User.authenticate(@user.email, @user.password)
+      redirect_to  :action => :dashboard, :controller => :sessions
     end
   end
 
