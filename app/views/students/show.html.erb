@@ -18,7 +18,7 @@
       </ul>
     </div>
      <ul style="list-style: none; margin-left: 0px; margin-top: 20px;">
-        <li><%= link_to 'Delete Student', @student, method: :delete, :class => 'btn btn-danger', data: { confirm: 'Are you sure?' }, :courseid => @student.course_id %></li>
+        <li><%= link_to 'Delete Student', @student, method: :delete, :class => 'btn btn-danger', data: { confirm: 'Are you sure?' }, :courseid => @student.course_id, :controller => :student %></li>
     </ul>
       <% else %>
         <p>

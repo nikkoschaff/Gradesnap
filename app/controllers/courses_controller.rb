@@ -43,6 +43,7 @@ class CoursesController < ApplicationController
     @course.courses_students.each(&:destroy)
     @course.assignments.each(&:destroy)
     @course.destroy
+    redirect_to :action => :index
   end
   
 end

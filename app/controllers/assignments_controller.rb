@@ -96,8 +96,6 @@ class AssignmentsController < ApplicationController
     end
   end
 
-  # DELETE /assignments/1
-  # DELETE /assignments/1.json
   def destroy
     @assignment = Assignment.find(params[:id])
     @assignment.assignments_students.each(&:destroy)
