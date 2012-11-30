@@ -66,6 +66,8 @@ gem 'docsplit'
 gem 'roo'
 # Dependency gem for fileuploader.
 gem "jquery-fileupload-rails"
+# Jquery UI - used in jquery fileupload
+gem "jquery-ui-rails"
 # Dependency gem for fileuploader.
 gem 'jquery-rails'
 

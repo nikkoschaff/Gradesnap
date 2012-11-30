@@ -33,7 +33,7 @@
         </ul>
     </div>
        <ul style="list-style: none; margin-left: 0px; margin-top: 20px;">
-        <li><li><%= link_to 'Delete This Assignment', @show_hash_assignment[:assignment], :class => 'btn btn-danger', :method => :delete, data: { confirm: 'Are you sure?' }  %></li></li>
+        <li><li><%= link_to 'Delete This Assignment', @show_hash_assignment[:assignment], :class => 'btn btn-danger', :method => :destroy, :controller => :assignment, data: { confirm: 'Are you sure?' }  %></li></li>
     </ul>
         <!-- Currently empty until detailed editing features placed in -->
         <!-- <%= link_to 'Edit', edit_course_path(@assignment) %> | -->

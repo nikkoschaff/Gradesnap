@@ -1,13 +1,6 @@
-<%= content_for :head do %>
-  <%= stylesheet_link_tag "//ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/base/jquery-ui.css", :id => "theme" %>
-  <%= javascript_include_tag "//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js" %>
-<% end %>
-
-<%= form_for Scansheet.new, :html => { :multipart => true, :id => "fileupload"  }, :validate => true do |f| %>
-<!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-        <!-- TODO hidden field for gs id -->
-	<%= f.hidden_field :assignment_id %>
-	<div class="row fileupload-buttonbar">
+<%= form_for Scansheet.new, :html => { :multipart => true, :id => "fileupload"  } do |f| %>
+        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+        <div class="row fileupload-buttonbar">
             <div class="span7">
                 <!-- The fileinput-button span is used to style the file input field as button -->
                 <span class="btn btn-success fileinput-button">
@@ -44,7 +37,4 @@
         </table>
 <% end %>
 
-<%= render :partial => "scansheets/upload-errors" %>
-<%= render :partial => "scansheets/template-upload" %>
-<%= render :partial => "scansheets/template-download" %>
-<%= render :partial => "scansheets/widget-library" %>                                         
+<%= render :partial => "scansheets/fileupload" %>                                      

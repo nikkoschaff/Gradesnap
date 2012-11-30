@@ -22,19 +22,18 @@ class ScansheetsController < ApplicationController
         sheets.push(@scansheet)
         @assignment.readImages( sheets )
       end
-
-	    respond_to do |format|
-		    format.html {
-		      render :json => [@scansheet.to_jq_upload].to_json,
-		             :content_type => 'text/html',
-		             :layout => false
-		    }
-		    format.json {
-		      render :json => [ @scansheet.to_jq_upload ].to_json
-		    }
-	      end  
+      respond_to do |format|
+        format.html {  
+          render :json => [@scansheet.to_jq_upload].to_json, 
+          :content_type => 'text/html',
+          :layout => false
+        }
+        format.json {  
+          render :json => [@scansheet.to_jq_upload].to_json     
+        }
+      end
     else 
-      render :json => [ @image.to_jq_upload.merge({ :error => "custom_failure" }) ].to_json
+      render :json => [{:error => "custom_failure"}], :status => 304
     end
   end
 

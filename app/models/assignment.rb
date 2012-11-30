@@ -123,9 +123,9 @@ class Assignment < ActiveRecord::Base
     sheet.ambiguous_answers = strAmbig
     unless strAmbig == "" then
       course = Course.find(self.course_id)
-      teacher_id = Teacher.find(course.teacher_id)
+      teacher = Teacher.find(course.teacher_id)
       ambigIssue = Issue.new( :code => 1, :resolved => false,
-       :row_id => sheet.id, :tablename => "Scansheet", :teacher_id => teacher_id, 
+       :row_id => sheet.id, :tablename => "Scansheet", :teacher_id => teacher.id, 
        :name => "Ambiguous Answers" )
       ambigIssue.save
     end

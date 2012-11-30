@@ -1,19 +1,13 @@
-<%= content_for :head do %>
-  <%= stylesheet_link_tag "//ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/base/jquery-ui.css", :id => "theme" %>
-  <%= javascript_include_tag "//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js" %>
-  <%= render :partial => "scansheets/widget-library" %>    
-<% end %>
 <% if @scansheet %>
 <%= form_for @scansheet, :html => { :multipart => true, :id => "fileupload"  } do |f| %>
-<!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-	<%= f.hidden_field :assignment_id %>
-	<div class="row fileupload-buttonbar">
+        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+        <div class="row fileupload-buttonbar">
             <div class="span7">
                 <!-- The fileinput-button span is used to style the file input field as button -->
                 <span class="btn btn-success fileinput-button">
                     <i class="icon-plus icon-white"></i>
                     <span>Add files...</span>
-                    <%= f.file_field :image, :multiple => true, name: "scansheets[image]" %>
+                    <%= f.file_field :image, :multiple => true, name: "scansheet[image]" %>
                 </span>
                 <button type="submit" class="btn btn-primary start">
                     <i class="icon-upload icon-white"></i>
@@ -43,6 +37,7 @@
         <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
         </table>
 <% end %>
+
 <% else %>
 <p>
     The information necessary to process this page did not come through. Please navigate the site through its links.
@@ -50,7 +45,4 @@
 
 <% end %>
 
-<%= render :partial => "scansheets/upload-errors" %>
-<%= render :partial => "scansheets/template-upload" %>
-<%= render :partial => "scansheets/template-download" %>
-
+<%= render :partial => "scansheets/fileupload" %>

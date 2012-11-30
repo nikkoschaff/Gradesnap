@@ -6,11 +6,11 @@ class Scansheet < ActiveRecord::Base
 	# name is a read-results-style string of the name
 	# ambig_ans is a read-results-style string for all ambiguous answers
 	attr_accessible :answers_string, 
-		:name, 
-		:ambiguous_answers,
-		:image,
-		:image_cache,
-		:assignment_id
+              		:name, 
+              		:ambiguous_answers,
+              		:image,
+              		:image_cache,
+              		:assignment_id
 
 	belongs_to :assignments_student
   belongs_to :assignment, :foreign_key => ":assignment_id"
@@ -19,7 +19,6 @@ class Scansheet < ActiveRecord::Base
   
   def to_jq_upload
     {
-      "id" => read_attribute(:id),
       "name" =>  read_attribute(:image),
       "size" => image.size,
       "url" => image.url,
