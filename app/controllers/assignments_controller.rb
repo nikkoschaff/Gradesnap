@@ -98,17 +98,7 @@ class AssignmentsController < ApplicationController
 
   def destroy
     @assignment = Assignment.find(params[:id])
-    @assignment.assignments_students.each(&:destroy)
-    @scansheets = Scansheet.where("assignment_id=?",@assignment.id)
-    @scansheets.each { |sheet|
-        @issues = Issue.where("tablename=? AND row_id=?","Scansheet",sheet.id)
-        @issues.each { |issue|
-                issue.destroy unless @issues == [] or @issues == nil
-        }
-        sheet.destroy
-    }
-    @assignment.destroy 
-    
+    @assignment.destroy
     redirect_to :action => :index
   end
 

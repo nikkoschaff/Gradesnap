@@ -32,11 +32,6 @@ class IssuesController < ApplicationController
   def resolveAnswerverify
     if request.post?  
       resolved_answers = Hash.new()
-      issue_id = params[:issue_id]
-      assignment_student_id = params[:assignment_student_id]
-      delpath = params[:delpath]
-      ambiguous_answers = params[:ambiguous_answers]
-      assignment_id = params[:assignment_id]
       paramArr = params.to_a
       paramArr.each do |p|
         parr = p.to_a
@@ -49,20 +44,16 @@ class IssuesController < ApplicationController
           resolved_answers[rownum] = resolved_answers[rownum] + parr.first.last
         end
       end
-      doAnswerVerify(resolved_answers, assignment_student_id, delpath, ambiguous_answers, assignment_id)
-      Issue.delete(issue_id)
+      doAnswerVerify(resolved_answers, params[:assignment_student_id], params[:delpath], params[:ambiguous_answers], params[:assignment_id])
+      Issue.delete(params[:issue_id])
       redirect_to :action => "index", :controller => 'issues'   
     end
   end
 
   def resolveNameverify
     if request.post?  
-      issue_id = params[:issue_id]
-      assignment_student_id = params[:assignment_student_id]
-      delpath = params[:delpath]
-      student_id = params[:student_id]
-      doNameVerify(student_id, assignment_student_id, delpath)
-      Issue.delete(issue_id)
+      doNameVerify(params[:student_id], params[:assignment_student_id], params[:delpath])
+      Issue.delete(params[:issue_id])
       redirect_to :action => "index", :controller => 'issues'   
     end
   end

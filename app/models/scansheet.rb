@@ -10,10 +10,16 @@ class Scansheet < ActiveRecord::Base
               		:ambiguous_answers,
               		:image,
               		:image_cache,
-              		:assignment_id
+              		:assignment_id,
+                  :issues,
+                  :issues_attributes
+
 
 	belongs_to :assignments_student
   belongs_to :assignment, :foreign_key => ":assignment_id"
+
+  has_many :issues, :dependent => :destroy
+  accepts_nested_attributes_for :issues, :allow_destroy => :true
 
   validates :image, :presence => true
   

@@ -22,7 +22,7 @@ class Assignment < ActiveRecord::Base
 
   #many-many connection with students
   has_many :students, :through => :assignments_students
-  has_many :assignments_students, :foreign_key => ":assignment_id"
+  has_many :assignments_students, :foreign_key => ":assignment_id", :dependent => :destroy
 
   belongs_to :course, :foreign_key => ":course_id"
   belongs_to :user  
@@ -35,9 +35,8 @@ class Assignment < ActiveRecord::Base
   validates :course_id, :presence => true
 
   def assignments_students
-	return AssignmentsStudents.where("assignment_id=?",self.id)
+	 return AssignmentsStudents.where("assignment_id=?",self.id)
   end
-
 
 ### READ INTERPRETATION FUNCTIONS ###
 
@@ -125,7 +124,7 @@ class Assignment < ActiveRecord::Base
       course = Course.find(self.course_id)
       teacher = Teacher.find(course.teacher_id)
       ambigIssue = Issue.new( :code => 1, :resolved => false,
-       :row_id => sheet.id, :tablename => "Scansheet", :teacher_id => teacher.id, 
+       :scansheet_id => sheet.id, :teacher_id => teacher.id, 
        :name => "Ambiguous Answers" )
       ambigIssue.save
     end
@@ -149,7 +148,7 @@ class Assignment < ActiveRecord::Base
       course = Course.find(self.course_id)
       teacher = Teacher.find(course.teacher_id)
       nameIssue = Issue.new( :code => 2, :resolved => false,
-       :row_id => sheet.id, :tablename => "Scansheet", :teacher_id => teacher.id,
+       :scansheet_id => sheet.id, :teacher_id => teacher.id,
        :name => "Name Not Found" )
       nameIssue.save      
       nameArr = name.split(",")
@@ -198,7 +197,7 @@ class Assignment < ActiveRecord::Base
         course = Course.find(self.course_id)
         teacher = Teacher.find(course.teacher_id)
         ambigIssue = Issue.new( :code => 1, :resolved => false,
-         :row_id => sheet.id, :tablename => "Scansheet", :teacher_id => teacher.id,
+         :scansheet_id => sheet.id, :teacher_id => teacher.id,
          :name => "Ambiguous Answers" )
         ambigIssue.save
       end

@@ -7,7 +7,7 @@ module IssuesHelper
 		@showHash[:issue] = issue
 		@showHash[:pagename] = issueCodeToPagename(issue.code)
   		
-  		scansheet = Scansheet.find(issue.row_id)
+  		scansheet = Scansheet.find(issue.scansheet_id)
   		@showHash[:scansheet] = scansheet		
 		
 		filename = scansheet.image.path.split("/").last
@@ -97,7 +97,7 @@ module IssuesHelper
 		@showHash[:issue] = issue
 		@showHash[:pagename] = issueCodeToPagename(issue.code)
   		
-  		scansheet = Scansheet.find(issue.row_id)
+  		scansheet = Scansheet.find(issue.scansheet_id)
 		
 		filename = scansheet.image.path.split("/").last
 		iproc = Imgproc.new
@@ -116,7 +116,7 @@ module IssuesHelper
   		students.each { |student|
   			#Keep out the obviously unmatched "fake" students
   			unless student.first_name[0] == "~"
-  				gradedAssignmentStudent = AssignmentsStudents.where("student_id=? AND assignment_id", student.id, assignment.id)
+  				gradedAssignmentStudent = AssignmentsStudents.where("student_id=? AND assignment_id=?", student.id, assignment.id).first
   				# Add if there doesnt exist a record for this student on this assignmen
   				if gradedAssignmentStudent == nil
   					unmatchedStudents.push(student)

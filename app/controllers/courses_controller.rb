@@ -40,8 +40,6 @@ class CoursesController < ApplicationController
 
   def destroy
     @course = Course.find(params[:id])
-    @course.courses_students.each(&:destroy)
-    @course.assignments.each(&:destroy)
     @course.destroy
     redirect_to :action => :index
   end

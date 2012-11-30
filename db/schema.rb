@@ -84,12 +84,11 @@ ActiveRecord::Schema.define(:version => 20120808164543) do
   create_table "issues", :force => true do |t|
     t.integer  "code"
     t.integer  "teacher_id"
-    t.string   "tablename"
-    t.integer  "row_id"
+    t.integer  "scansheet_id"
     t.boolean  "resolved"
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "scansheets", :force => true do |t|

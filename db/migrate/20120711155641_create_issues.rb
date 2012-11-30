@@ -3,8 +3,7 @@ class CreateIssues < ActiveRecord::Migration
     create_table :issues do |t|
       t.integer :code
       t.integer :teacher_id
-      t.string :tablename
-      t.integer :row_id
+      t.integer :scansheet_id
       t.boolean :resolved
       t.string :name
 

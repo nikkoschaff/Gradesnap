@@ -56,8 +56,6 @@ class StudentsController < ApplicationController
 
   def destroy
     @student = Student.find(params[:id])
-    @student.courses_students.each(&:destroy)
-    @student.assignments_students.each(&:destroy)
     @student.destroy
     redirect_to :action => :index
   end

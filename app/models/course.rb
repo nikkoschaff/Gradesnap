@@ -5,11 +5,12 @@ class Course < ActiveRecord::Base
   has_many :assignments, :dependent => :destroy
 
   #Many-many connection with students
-  has_many :courses_students, :foreign_key => ":course_id"
+  has_many :courses_students, :foreign_key => ":course_id", :dependent => :destroy
   has_many :students, :through => :courses_students
 
   #Validations
   validates :name, :presence => true
+
 
   def courses_students
 	return CoursesStudents.where("course_id=?",self.id)
@@ -27,5 +28,4 @@ class Course < ActiveRecord::Base
   def self.courseStudents
     students = Student.where("course_id=?", self.id).to_a
   end
-  
 end
