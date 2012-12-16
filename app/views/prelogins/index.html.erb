@@ -1,84 +1,104 @@
-<%= render :partial => 'logo' %>
-<%= render :partial => 'slider' %>
-<!-- first row -->
-<div class="lowerBody">
-  <div class="container">
-    <div class="rowMover">
-      <div class="row">
-        <div class="span4">
-          <p class="headerP">Grade your tests</p>
-          <p>
-            Print bubble sheets, scan them with any conventional scanner, upload them here. We'll grade them in seconds.
-            Our scan sheets are free for any member of Gradsnap.
-          </p>
-          <p>
-            We allow you to utilize all resources available to you. Making use of scanners and scrap paper is what Gradesnap is all about. Saving money, saving time.
-          </p>
+<div id="home"></div>
+<section class="container">
+    <nav class="navbar">
+        <div class="navbar-inner navbar-fixed-top ">
+            <div class="container borderBottom">
+                <a href="/" class="brand">Grade<span>snap</span><%= image_tag "logo.png"%></a>
+                <ul class="nav">
+                    <li><a href="#home">Home </a></li>
+                    <li><a href="#works">How It Works</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact" class="showContact">Contact</a></li>
+                    <li><a href="legal.html">Legal</a></li>
+                </ul>
+            </div>
         </div>
-        <!-- -->
-        <div class="span4">
-          <p class="headerP">Does the busy work</p>
-          <p>
-            Compiles full statistics, down to the most-frequently chosen wrong answer for each question. We understand that grading a test takes time.
-          </p>
-          <p>
-            However the issue doesn't necessarily lie in the grading. It's the statistics that you need from that grade. We create statistics for you. No manual input.
-          </p>
-        </div>
-        <!-- -->
-        <div class="span4">
-          <p class="headerP">Simplifies teaching</p>
-          <p>
-            Question banks, score comparison, and much more will let you focus on teaching without the time-consuming chores. Teaching is your passion. Grading is a chore. Don't waste your time with primitive, dated, and often times inaccurate grading methods
-          </p>
-          <p>Try Gradesnap and free yourself from grading.</p>
-        </div>
-        <!-- -->
-        <!--/row--> </div>
+    </nav>
+</section>
+<div class="container">
+    <div class="contactInfo">
+        contact@gradesnap.com
     </div>
-  </div>
-<!-- END first row -->
-<!-- second row -->
-  <div class="bodyWrapperL">
-    <div class="container"></div>
-    <div class="row">
-      <div class="span4">
-        <p class="headerPB">
-          Buys You Time
-          <%= image_tag('/assets/icon1.png') %></p>
-        <p class="B">
-          Gradesnap allows teachers to stop wasting time with multiple choice grading and more time teaching their students or relaxing on their free time.   </p>
-          <p class="B">To stay up to date on just how much time Gradesnap saves you and more subscribe to our newsletter by submitting your email.</p>
-          <div class="input-append overRight">
-              <input class="span2" id="newsletter" size="16" type="text" placeholder="Your Email Here"><button class="btn btn-info" type="button">Submit</button>
-          </div>
-      </div>
-      <!-- -->
-      <div class="span4">
-        <p class="headerPB">
-          Building The Future
-          <%= image_tag('/assets/icon2.png') %></p>
-        <p class="B">
-          With Gradesnap you can take advantage of technology. With future plans to incorporate online testing portals, Gradesnap will be the platform that tracks your students for years to come.
-        <p class="B">Always stay up to date by checking our <a href="//grade-snap.com/devblog" target="_blank">blog!</a></p>
-        </p>
-      </div>
-      <!-- -->
-      <div class="span4">
-        <p class="headerPB">
-          The Big Idea
-          <%= image_tag('/assets/icon3.png') %></p>
-        <p class="B">
-          Built For Teachers
-          <p class="B">By making sure we listen to teachers, we are able to give them a product that they want and need. Don't be forced into doing something that just doesn't work for you.</p>
-          <div class="whiteB">
-            <%= link_to 'Give Us Feedback',:action =>'new',:controller => 'contacts' %>
-        </div>
-   
-        </p>
-
-      </div>
-    </div>
-  </div>
 </div>
-<!-- END second row -->
+<script>
+    $(".showContact").click(function(){
+        $(".contactInfo").fadeToggle(250);
+    });
+</script>
+<section class="section-box">
+    <div class="container">
+        <div class="row">
+            <div class="ill">
+               <%= image_tag "ill_us.png"%>
+            </div>
+            <div class="expo">
+                <h2 class="expoLarge">Grading, The Way It Should Be</h2>
+
+                <p class="expoText">Print our multiple-choice tests sheets for free, scan the finished tests with a conventional scanner, upload the tests to your Gradesnap account, and we'll have them graded in seconds. It's that simple.</p>
+
+                <p class="promo">Gradesnap is currently in public beta and is free for all users for a limited time!</p>
+                <div class="dottedLine"></div>
+                <p class="expoText"><a href="#" class="big-btn">Sign Up!</a><a href="https://gradesnap.com/prelogins/login" class="big-btn2">Sign In</a></p>
+            </div>
+        </div>
+    </div>
+</section> 
+<section class="container">
+                        <h2 class="expoLarge">How Gradesnap Works</h2>
+    <div class="howItWorks">
+            <iframe width="650" height="488" src="http://www.youtube.com/embed/AiZRW4ZQoQY" frameborder="0" allowfullscreen></iframe>
+    </div>
+</section>
+<div class="container">       
+</div>
+<section class="section-box">
+    <div class="container">     
+                            <h2 class="expoLarge">So Gradesnap just grades my students tests?</h2>  
+        <div class="row">         
+            <article class="span4 center-align">                           
+                <h3>Statistics</h3>
+                <p>All the way from the class average down to the results for each question Gradesnap will keep you well-informed about your students' performance without have to lift a finger.</p>
+            </article>
+            <article class="span4 center-align">
+                <h3>Spreadsheets</h3>
+                <p>Gradesnap generates an Excel spreadsheet of your students' results, making it easy to plug directly into your gradebook, and compare with other classes.</p>
+            </article>
+            <article class="span4 center-align">
+                <h3>Error-Checking</h3>
+                <p>No more worry about students complaining that the machine read their test wrong. Smudgy answers will be flagged for a quick fix, handling the issue early.</p>
+            </article>                      
+      </div>
+        <div id="about"></div>
+    </div>   
+</section> 
+<section class="container">
+  <div class="row">
+        <div class="offset3 span6">
+            <hr class="shadow-line"/>
+        </div>
+    </div>
+  <div class="row">
+      <div class="highlight span12">
+            <h3><strong>Who</strong> is Grade<span class="thin">snap</span></h3> 
+            <h3 class="subhead">The Story...</h3> 
+            <p class="boxText">Gradesnap started with one very simple idea. How can grading be faster?In early 2011, our co-founder, Nikko Schaff, was sitting down to take a midterm, noticing that the multiple-choice bubbles were extremely wide. When asking why, the professor explained that his answer key is the same sheet with the right answers cut out, so he can lay it over a student's sheet and count the right answers quickly. "Taking a picture and grading with an iPhone app might work too," Nikko thought out loud. Thinking no more of it, he took his test and left.</p>
+
+            <p class="boxText">Two days later, upon coming into class, the professor approached Nikko and said, "Hey, yesterday I talked to five of my teacher-friends about the grading app idea, and we all want it!" That was more than enough to show him that teachers really wanted a simple way to grade their exams, so he formed a team to launch a company with one goal: to make teachers' lives better through software.</p>
+            <h3 class="subhead">The Team</h3> 
+            <span class="names">Nikko Schaff | CEO</span></p>
+            <span class="names">Ryan Rich | UX/UI Designer</span></p>
+            <span class="names">Conor Craig | Software Engineer</span></p>                                
+      </div>
+    </div>
+</section>
+<section class="container">
+    <div class="row">
+        <div class="highlight span12">
+        <div class="finalChance">
+            <h2 class="lighterColor2">Gradesnap is free for a limited time, so what are you waiting for? Sign up now!</h2>      
+            <p><a href="#" class="big-btn">Sign Up</a></p> 
+        </div> 
+    </div>
+    </div>
+</section>

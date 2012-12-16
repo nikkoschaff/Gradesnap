@@ -11,5 +11,6 @@
  *= require_self
  *= require jquery.ui.all
  *= require jquery.fileupload-ui
+ *= require masterStyles
  *= require_tree .
  */

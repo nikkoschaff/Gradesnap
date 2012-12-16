@@ -1,67 +1,17 @@
-<div class="footerWrapper">
-  <div class="container">
-    <div class="row">
-      <div class="span4">
-        <p class="headerPBW">Community</p>
-        <p class="B">
-          <ul>
-            <li>
-              <a href="#">Forums</a>
-            </li>
-            <li>
-              <%= link_to "Contact us", :action => 'new', :controller => 'contacts' %>
-            </li>
-          </ul>
-        </p>
-      </div>
-      <!-- -->
-      <div class="span4">
-        <p class="headerPBW">Site Links</p>
-        <p class="B">
-          <ul>
-            <li>
-              <% if session[:user] %>
-                <%= link_to "Dashboard", :action => "dashboard", :controller => "sessions" %>
-              <% else %>
-                <%= link_to "Home page", :action => "index", :controller => "prelogins" %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to "Features", :action => "features", :controller => "prelogins" %>
-            </li>
-            <li>
-              <%= link_to "About us", :action => "about", :controller => "prelogins" %>
-            </li>
-            <li>
-              <%= link_to "Contact", :action => 'new', :controller => 'contacts' %>
-            </li>
-            <li>
-              <%= link_to "Sign up", :action => 'new', :controller => 'users' %>
-            </li>
-            <li>
-              <%= link_to "Log in", :action => 'login', :controller => 'prelogins' %>
-            </li>      
-          </ul>
-        </p>
-      </div>
-      <!-- -->
-      <div class="span4">
-        <p class="headerPBW">Gradesnap</p>
-        <p class="BW">
-          Gradesnap LLC
-          <br />
-          125 Tech Park Drive
-          <br />
-          Rochester NY, 14623
-        </p>
-      </div>
-    </div>
-    <p class="center">Copyright Gradesnap LLC 2012
-<!--  GeoTrust QuickSSL [tm] Smart Icon tag. Do not edit. -->
-<SCRIPT  LANGUAGE="JavaScript" TYPE="text/javascript"
-SRC="//smarticon.geotrust.com/si.js"></SCRIPT>
-<!-- end  GeoTrust Smart Icon tag -->
-
-</p>
-  </div>
-</div>
+<footer class="container footer-box">   
+    <hr class="shadow-line" />         
+    <nav class="links">             
+        <a href="#home">Home </a>
+        <a href="#works">How It Works</a>
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="#legal">Legal</a>             
+    </nav>  
+    <nav class="links">   
+        <%= image_tag "twitter-icon.png"%>
+        <%= image_tag "facebook-icon.png"%>    
+    </nav>   
+        <p>For questions, comments and concerns email us at <span>contact@gradesnap.com</span></p>                 
+    <p>Copyright Gradesnap LLC 2012</p>        
+</footer>

@@ -12,6 +12,9 @@ class PreloginsController < ApplicationController
   # new user. If the save operation was successful the user is authenticated and 
   # redirected to the welcome screen. If we fail to save the user 
   # (e.g. if validation fails) we add a warning to the flash and the page renders again. 
+  def index 
+    #render :layout => 'masterStyles'
+  end
 
   def login
     reset_session
