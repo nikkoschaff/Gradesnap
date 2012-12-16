@@ -36,6 +36,8 @@ group :assets do
   gem 'railties'
 end
 
+# Mailer gem
+gem 'mail'
 # Dependency for twitter-bootstrap
 gem 'less-rails'
 # Gem calls javascript code and manipulate javascript objects from ruby. 

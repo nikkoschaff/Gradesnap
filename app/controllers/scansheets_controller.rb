@@ -1,3 +1,4 @@
+require 'mail'
 class ScansheetsController < ApplicationController
   
   before_filter :login_required

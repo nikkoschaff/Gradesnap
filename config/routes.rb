@@ -27,6 +27,7 @@ Gradesnap::Application.routes.draw do
       get 'login'
       post 'login'
       get 'forgot_password'
+      post 'forgot_password'
       get 'features'
       get 'about'
       get 'registration'
@@ -74,6 +75,7 @@ Gradesnap::Application.routes.draw do
   match '/dashboard' => 'sessions#dashboard'
   match '/logout' => 'sessions#logout'
   match '/change_password' => 'sessions#change_password'
+  match '/change_email' => 'sessions#change_email'
   match '/my_account' => 'sessions#myaccount'
   match '/payment' => 'sessions#payment'
 
@@ -83,8 +85,4 @@ Gradesnap::Application.routes.draw do
   #Issue pages
   match '/issues/resolveAnswerverify' => 'issues#resolveAnswerverify'
   match '/issues/resolveNameverify' => 'issues#resolveNameverify'
-
-
-  # This is a legacy line that should never be used or it de-RESTs the app
-  # match ':controller(/:action(/:id))(.:format)'
 end

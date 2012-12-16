@@ -1,3 +1,4 @@
+require 'mail'
 class PreloginsController < ApplicationController
 # ensures that the login_required method is run before the hidden and welcome actions.
 # Processing of these actions only continues if this filter returns true. The 
@@ -5,7 +6,7 @@ class PreloginsController < ApplicationController
 # logged in. Otherwise it stores the page to return to in the session and redirects 
 # to the login page. 
 
-  #
+
   # Signup action creates a new user using the parameters it receives. 
   # It is a post request (the form was submitted) it tries to save the 
   # new user. If the save operation was successful the user is authenticated and 
@@ -26,9 +27,9 @@ class PreloginsController < ApplicationController
   # If successful it redirect them to the login action.
   def forgot_password
     if request.post?
-      u = User.find_by_email(params[:user][:email])
-      if u
-        UserMailer.forgot_password(u).deliver
+      @user = User.find_by_email(params[:user][:email])
+      if @user
+        UserMailer.forgot_password(@user).deliver
         redirect_to :action => "index", :controller => 'prelogins'
       else
         flash[:warning]  = "Couldn't send password"

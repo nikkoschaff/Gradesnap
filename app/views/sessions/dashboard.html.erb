@@ -12,31 +12,16 @@
 
           <div class="account-container">
 
-            <div class="account-avatar">
-              <%= image_tag "placeholder_50x50.jpg" %>
-            </div>
-            <!-- /account-avatar -->
-
-            <div class="account-details">
-              <span class="account-name"><%= session[:user][:name] %></span>
-              <span class="account-role">K-12 Teacher</span>
-              <span class="account-actions dattt">
-              <%= link_to "My Account", :action=> 'myaccount' %>
-              </span>
-            </div>
-            <!-- /account-details --> 
-
+          <h1 class="page-title">
+            <% if session[:user] != nil %>
+              <%= "Account For: " + session[:user].email %>
+            <% end %>
+          </h1>
           </div>
           <!-- /account-container -->
 
           <hr />
-          <ul id="main-nav" class="nav nav-tabs nav-stacked">
-            <li><%= link_to 'Home',:action =>'dashboard',:controller => 'sessions' %></li>
-            <li><%= link_to 'Courses',:action =>'index',:controller => 'courses' %></li>
-            <li><%= link_to 'Assignments',:action =>'index',:controller => 'assignments' %></li>
-            <li><%= link_to 'Students',:action =>'index',:controller => 'students' %></li>
-            <li><%= link_to "My Account",:action =>'myaccount',:controller => 'sessions' %></li>
-          </ul>
+          <%= render :partial => 'leftNav' %>
           <hr /><br />
         </div>  
         <div class="span9">

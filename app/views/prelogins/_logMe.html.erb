@@ -1,23 +1,23 @@
 <div class="container">
   <% render :partial => 'logo' %>
-  </div>
+</div>
 <div class="preLogin">
   <div class="container">
-      <%= form_tag :action=> "login", :validate => true %>
-      <h3>Login</h3><br />
-      <label for="user_login">Email:</label><br/>
-      <%= text_field "user", "email", :size => 20 %><br/>
-      <label for="user_password">Password:</label><br/>
-      <%= password_field "user", "password", :size => 20 %><br/>
-      <%= submit_tag "Submit", :class =>'btn btn-success'%>
-      <div class="forgot">
-        <%= link_to 'Forgot password', :action => 'forgot_password', :controller => 'prelogins' %>
-      </div> 	
-	<div class="newToGradesnap">
-		<p> 
-		<%= link_to "New to Gradesnap? Sign up today!", :action => 'new', :controller => 'users' %>
-		</p>
-	</div>
-      <% $end -%>
-    </div>
+    <%= form_tag :action=> "login", :validate => true %>
+    <h3>Login</h3><br />
+    <%= label_tag "Email" %>
+    <%= text_field "user", "email", :size => 20 %>
+    <%= label_tag "Password:" %>
+    <%= password_field "user", "password", :size => 20 %><br/>
+    <%= submit_tag "Submit", :class =>'btn btn-success'%>
+    <div class="forgot">
+      <%= link_to 'Forgot password?', :action => 'forgot_password', :controller => 'prelogins' %>
+    </div> 	
+  	<div class="newToGradesnap">
+  		<p> 
+  		<%= link_to "New to Gradesnap? Sign up today!", :action => 'new', :controller => 'users' %>
+  		</p>
+  	</div>
+    <% $end -%>
   </div>
+</div>

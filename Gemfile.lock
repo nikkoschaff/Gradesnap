@@ -238,6 +238,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   less-rails
+  mail
   mini_magick
   passenger
   ps

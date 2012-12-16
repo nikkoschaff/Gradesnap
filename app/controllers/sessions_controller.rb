@@ -24,6 +24,17 @@ before_filter :login_required#, :only=>['change_password', 'logout', 'forgot_pas
     end
   end
 
+  def change_email
+    @user = session[:user]
+    if @user.update_attributes(:email => params[:email])
+      @user.save
+      flash[:message]="Password Changed"
+      redirect_to :dashboard
+    else 
+      render :account
+    end
+  end
+
   def dashboard
     render "dashboard"
   end
