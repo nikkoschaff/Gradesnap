@@ -1,17 +1,24 @@
 <footer class="container footer-box">   
     <hr class="shadow-line" />         
-    <nav class="links">             
-        <a href="#home">Home </a>
-        <a href="#works">How It Works</a>
-        <a href="#features">Features</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-        <a href="#legal">Legal</a>             
+    <nav class="links">          
+        <% if current_page?(root_url) %>
+            <a href="#home">Home </a>
+            <a href="#works">How It Works</a>
+            <a href="#features">Features</a>
+            <a href="#about">About</a>
+        <% else %>
+            <%= link_to "Home", :action => :index, :controller => :prelogins %>
+            <%= link_to "Works", :action => :index, :controller => :prelogins %>
+            <%= link_to "Features", :action => :index, :controller => :prelogins %>
+            <%= link_to "About", :action => :index, :controller => :prelogins %>
+        <% end %>
+            <a href="#contact">Contact</a>
+            <%= link_to "Legal", :action => :legal, :controller => :prelogins %>
     </nav>  
     <nav class="links">   
         <%= image_tag "twitter-icon.png"%>
         <%= image_tag "facebook-icon.png"%>    
     </nav>   
-        <p>For questions, comments and concerns email us at <span>contact@gradesnap.com</span></p>                 
+        <p>For questions, comments and concerns email us at <a href="mailto:contact@gradesnap.com">contact@gradesnap.com</a></p>                 
     <p>Copyright Gradesnap LLC 2012</p>        
 </footer>

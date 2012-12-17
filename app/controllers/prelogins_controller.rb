@@ -13,16 +13,27 @@ class PreloginsController < ApplicationController
   # redirected to the welcome screen. If we fail to save the user 
   # (e.g. if validation fails) we add a warning to the flash and the page renders again. 
   def index 
-    #render :layout => 'masterStyles'
+    render :layout => 'static_layout'
+  end
+
+  def legal
+    render :layout => 'static_layout'
+  end
+
+  def forgot_password
+    render :layout => 'static_layout'
   end
 
   def login
-    reset_session
+reset_session
     if request.post?
      if session[:user] =  User.authenticate(params[:user][:email], params[:user][:password])
         redirect_to :action => "dashboard", :controller => 'sessions'        
-      end
+      else 
+      render :layout => 'static_layout'
+	end
     end
+    
   end
 
   # The forgot password action finds a user using the email address

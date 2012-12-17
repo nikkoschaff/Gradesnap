@@ -1,0 +1,35 @@
+<section class="container">
+    <nav class="navbar">
+        <div class="navbar-inner navbar-fixed-top ">
+            <div class="container borderBottom">
+                <a href="/" class="brand">Grade<span>snap</span><%= image_tag "logo.png"%></a>
+                <ul class="nav">
+                    <% if current_page?(root_url) %>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#works">How It Works</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#about">About</a></li>
+                    <% else %>
+                        <li><%= link_to "Home", :action => :index, :controller => :prelogins %></li>
+                        <li><%= link_to "How It Works", :action => :index, :controller => :prelogins %></li>
+                        <li><%= link_to "Features", :action => :index, :controller => :prelogins %></li>
+                        <li><%= link_to "About", :action => :index, :controller => :prelogins %></li>
+                    <% end %>
+                        <li><a href="#contact" class="showContact">Contact</a></li>
+                    <li><%= link_to "Legal", :action => :legal, :controller => :prelogins %></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</section>
+
+<div class="container">
+    <div class="contactInfo">
+        contact@gradesnap.com
+    </div>
+</div>
+<script>
+    $(".showContact").click(function(){
+        $(".contactInfo").fadeToggle(250);
+    });
+</script>

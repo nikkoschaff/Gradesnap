@@ -1,31 +1,4 @@
 <div id="home"></div>
-<section class="container">
-    <nav class="navbar">
-        <div class="navbar-inner navbar-fixed-top ">
-            <div class="container borderBottom">
-                <a href="/" class="brand">Grade<span>snap</span><%= image_tag "logo.png"%></a>
-                <ul class="nav">
-                    <li><a href="#home">Home </a></li>
-                    <li><a href="#works">How It Works</a></li>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact" class="showContact">Contact</a></li>
-                    <li><a href="legal.html">Legal</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</section>
-<div class="container">
-    <div class="contactInfo">
-        contact@gradesnap.com
-    </div>
-</div>
-<script>
-    $(".showContact").click(function(){
-        $(".contactInfo").fadeToggle(250);
-    });
-</script>
 <section class="section-box">
     <div class="container">
         <div class="row">
@@ -39,11 +12,14 @@
 
                 <p class="promo">Gradesnap is currently in public beta and is free for all users for a limited time!</p>
                 <div class="dottedLine"></div>
-                <p class="expoText"><a href="#" class="big-btn">Sign Up!</a><a href="https://gradesnap.com/prelogins/login" class="big-btn2">Sign In</a></p>
+                <p class="expoText">
+                <%= link_to "Sign up!", { :action => :new, :controller => :users }, :class => "big-btn" %>
+                <%= link_to "Login", {:action => :login, :controller => :prelogins}, :class => "big-btn2" %>
             </div>
         </div>
     </div>
 </section> 
+<div id="works"></div>
 <section class="container">
                         <h2 class="expoLarge">How Gradesnap Works</h2>
     <div class="howItWorks">
@@ -52,13 +28,14 @@
 </section>
 <div class="container">       
 </div>
+<div id="features"></div>
 <section class="section-box">
     <div class="container">     
                             <h2 class="expoLarge">So Gradesnap just grades my students tests?</h2>  
-        <div class="row">         
+        <div class="row">        
             <article class="span4 center-align">                           
                 <h3>Statistics</h3>
-                <p>All the way from the class average down to the results for each question Gradesnap will keep you well-informed about your students' performance without have to lift a finger.</p>
+                <p>All the way from the class average to the results for each question Gradesnap will keep you well-informed about your students' performance without having to lift a finger.</p>
             </article>
             <article class="span4 center-align">
                 <h3>Spreadsheets</h3>
@@ -66,7 +43,7 @@
             </article>
             <article class="span4 center-align">
                 <h3>Error-Checking</h3>
-                <p>No more worry about students complaining that the machine read their test wrong. Smudgy answers will be flagged for a quick fix, handling the issue early.</p>
+                <p>No more worrying about students complaining that the machine read their test wrong. Smudgy answers will be flagged for a quick fix, handling the issue early.</p>
             </article>                      
       </div>
         <div id="about"></div>
@@ -96,8 +73,9 @@
     <div class="row">
         <div class="highlight span12">
         <div class="finalChance">
-            <h2 class="lighterColor2">Gradesnap is free for a limited time, so what are you waiting for? Sign up now!</h2>      
-            <p><a href="#" class="big-btn">Sign Up</a></p> 
+            <h2 class="lighterColor2">Gradesnap is free for a limited time, so what are you waiting for?</h2>      
+            <p><%= link_to "Sign up now!", { :action => :new, :controller => :users }, :class => "big-btn" %>
+</p> 
         </div> 
     </div>
     </div>

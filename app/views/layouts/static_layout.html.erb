@@ -3,7 +3,7 @@
 <head>
   <title>Gradesnap: The Future Of Grading</title>
   <%= favicon_link_tag "/favicon.ico" %>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag    "masterStyles", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,400italic' rel='stylesheet' type='text/css'>
@@ -23,10 +23,10 @@ SRC="//smarticon.geotrust.com/si.js"></SCRIPT>
 <!-- end  GeoTrust Smart Icon tag --> 
 
 <% getController %>
-	<%= render 'prelogins/static-nav' %>
+        <%= render 'prelogins/static-nav' %>
 <% elsif session[:user] and getController != 'prelogins' %>
-  	<p class="dashBoardUser">
-	<%= render 'shared/loginNave' %>
+        <p class="dashBoardUser">
+        <%= render 'shared/loginNave' %>
 <% end %>
 
 <%= yield %>
@@ -34,7 +34,7 @@ SRC="//smarticon.geotrust.com/si.js"></SCRIPT>
 </body>
 
 <footer>
-	<%= render 'shared/footer' %>
+        <%= render 'shared/footer' %>
 </footer>
 
 </html>

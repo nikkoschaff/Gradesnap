@@ -1,4 +1,7 @@
 Gradesnap::Application.routes.draw do
+   #prelogin page
+  root :to => 'prelogins#index'
+
   resources :contacts
  
   resources :exportsheets
@@ -21,20 +24,11 @@ Gradesnap::Application.routes.draw do
   end
   resources :prelogins do
     collection do
-      get 'thanks'
-      post 'confirm_eula'
-      get 'eula'
       get 'login'
       post 'login'
       get 'forgot_password'
       post 'forgot_password'
-      get 'features'
-      get 'about'
-      get 'registration'
       get 'legal'
-      get 'confirm_it'
-      get 'confirmed_it'
-      post 'confirmed_it'
     end
   end
   resources :assignments
@@ -67,10 +61,8 @@ Gradesnap::Application.routes.draw do
 
   match "/prelogins/:id/code" => "prelogins#confirmation_code"
 
-  #prelogin page
-  root :to => 'prelogins#index'
 
-  match '/pricing' => 'prelogins#pricing'
+
   #session pages
   match '/dashboard' => 'sessions#dashboard'
   match '/logout' => 'sessions#logout'
