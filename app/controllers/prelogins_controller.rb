@@ -20,18 +20,16 @@ class PreloginsController < ApplicationController
     render :layout => 'static_layout'
   end
 
-  def forgot_password
-    render :layout => 'static_layout'
-  end
-
   def login
-reset_session
+    reset_session
     if request.post?
-     if session[:user] =  User.authenticate(params[:user][:email], params[:user][:password])
+      if session[:user] =  User.authenticate(params[:user][:email], params[:user][:password])
         redirect_to :action => "dashboard", :controller => 'sessions'        
       else 
+        render :layout => 'static_layout'
+      end
+    else 
       render :layout => 'static_layout'
-	end
     end
     
   end
@@ -48,6 +46,8 @@ reset_session
       else
         flash[:warning]  = "Couldn't send password"
       end
+    else 
+      render :layout => 'static_layout'
     end
   end
 
