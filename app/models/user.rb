@@ -1,4 +1,4 @@
-require 'digest/sha1'
+require 'digest/sha3'
 
 class User < ActiveRecord::Base
   validates_length_of :password, :within => 5..40, :on => 'create'
@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   protected
 
   def self.encrypt(pass, salt)
-    Digest::SHA1.hexdigest(pass+salt)
+    Digest::SHA3.hexdigest(pass+salt)
   end
 
   def self.random_string(len)
