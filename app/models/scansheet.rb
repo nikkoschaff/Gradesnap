@@ -29,7 +29,10 @@ class Scansheet < ActiveRecord::Base
       "size" => image.size,
       "url" => image.url,
       "delete_url" => scansheet_path(:id => id),
-      "delete_type" => "DELETE" 
+      "delete_type" => "DELETE",
+      :file_size => { 
+        :maximum => 40.megabytes.to_i 
+      } 
     }
   end
 
