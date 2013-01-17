@@ -63,6 +63,7 @@ GEM
     coffee-script-source (1.4.0)
     commonjs (0.2.6)
     daemon_controller (1.1.0)
+    digest-sha3 (1.0.0)
     docsplit (0.6.4)
     dynamic_form (1.1.4)
     erubis (2.7.0)
@@ -228,6 +229,7 @@ DEPENDENCIES
   carrierwave
   carrierwave-sequel
   coffee-rails (~> 3.2.1)
+  digest-sha3
   docsplit
   dynamic_form
   fog

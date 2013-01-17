@@ -11,6 +11,7 @@ gem 'activerecord-postgresql-adapter'
 # Gem is necessary to include captcha in our sign-up form.
 gem 'ruby-recaptcha'
 
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -73,5 +74,8 @@ gem "jquery-ui-rails"
 # Dependency gem for fileuploader.
 gem 'jquery-rails'
 
+
+# To use sha3 encryption
+gem 'digest-sha3'
 # To use ActiveModel has_secure_password
  gem 'bcrypt-ruby', '~> 3.0.0'
