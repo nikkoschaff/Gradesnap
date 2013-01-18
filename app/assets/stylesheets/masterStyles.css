@@ -5,6 +5,18 @@ body {
 	background-image: url("/assets/bg.png");	
     font-family: 'Lato', sans-serif;
 }
+#fuckingWork{
+    display: none;
+}
+#works{
+    margin-top: 400px;
+    width: 100px;
+    height: 60px;
+}
+.videoTut{
+    width: 650px;
+    height: 488px;
+}
 .legal{
     width: 650px;
     margin: auto;
@@ -7097,8 +7109,29 @@ a.badge:hover {
     position: static;
   }
 }
-
+@media (max-width: 479px) {
+    .videoTut{
+        display: none;
+}
+#fuckingWork{
+    display: inline-block;
+    margin-left: 12%;
+}
+}
+@media (max-width: 680px) {
+    .videoTut{
+    width: 450px;
+    height: 338px;
+}
+}
 @media (max-width: 979px) {
+    p.expoText{
+        width: 100%;
+    }
+    .navbar{
+        margin-top: -125px;
+        margin-bottom: 40px;
+    }
   body {
     padding-top: 0;
   }
