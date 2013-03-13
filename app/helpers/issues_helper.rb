@@ -168,4 +168,9 @@ module IssuesHelper
 		row
 	end
 
+	def courseFromIssue(issue)
+		@course = Course.find(Assignment.find(Scansheet.find(issue.scansheet_id).assignment_id).course_id)
+		@course
+	end
+
 end

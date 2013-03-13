@@ -1,4 +1,6 @@
 <div class="newTest">
+	<p>Note: Courses must have student list available before grading</p>
+
 <%= form_for @assignment, :url => { :action => 'create' }, :validate => true  do |f| %>
 	<%= f.error_messages %>
 	<%= f.hidden_field :email, :value => session[:user].email  %>

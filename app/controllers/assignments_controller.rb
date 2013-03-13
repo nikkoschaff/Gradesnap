@@ -50,7 +50,11 @@ class AssignmentsController < ApplicationController
       @assignment.save
       flash[:assignment_id] = @assignment.id
       flash.keep
-  		render "key"
+      if Student.where("course_id=?", @assignment.course_id).to_a.size == 0
+        redirect_to :action => 'show', :controller => 'courses', :id => @assignment.course_id
+      else
+  		  render "key"
+      end
   	else 
       render "new"
     end

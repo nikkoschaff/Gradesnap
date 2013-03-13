@@ -1,52 +1,56 @@
 <div class="bodyWrapper">
-<div class="container">
-<% if @course %>
-<p id="notice"><%= notice %></p>
-<h1 class="courseH"><%= @course.name %></h1>
-<h3>Combined Stats</h3>
-<div class="courseStats">
-<ul class="courseStatsList">
-<li><span>Class Average:</span> <%= mean(@course.courseGrades)*(100) %></li>
-<li><span>Class Median:</span> <%= median(@course.courseGrades)*(100) %></li>
-<li><span class="last">Class Mode:</span> <%= mode(@course.courseGrades) %></li>
-</ul>
-</div>
-<!-- -->
-<% @students = Student.where("course_id=?", @course.id).to_a %>
-<h3>Students:</h3>
-<table cellpadding="5" class="tastyTables">
-<% @students.each do  |student| %>
-<tr>
-<td><%= link_to "#{student.full_name}" , student %></td>
-<td><%= "#{student.grade}" %></td>
-<tr>
-<% end %>
-</table>
-</ul>
+    <div class="container">
+        <% if @course %>
+        <p id="notice"><%= notice %></p>
+        <h1 class="courseH"><%= @course.name %></h1>
+        <h3>Combined Stats</h3>
+        <div class="courseStats">
+            <ul class="courseStatsList">
+            <li><span>Class Average:</span> <%= mean(@course.courseGrades)*(100) %></li>
+            <li><span>Class Median:</span> <%= median(@course.courseGrades)*(100) %></li>
+            <li><span class="last">Class Mode:</span> <%= mode(@course.courseGrades) %></li>
+            </ul>
+        </div>
 
-    <div class="backB">
-        <ul>
+        <% @students = Student.where("course_id=?", @course.id).to_a %>
+        <h3>Students:</h3>
+        <% if @students.size == 0 %>
+            <strong>You must add students before you can begin grading</strong>
+        <% end %>
+        <table cellpadding="5" class="tastyTables">
+        <% @students.each do  |student| %>
+        <tr>
+        <td><%= link_to "#{student.full_name}" , student %></td>
+        <td><%= "#{student.grade}" %></td>
+        <tr>
+        <% end %>
+        </table>
+        </ul>
+
+        <div class="backB">
+            <ul>
+                <li>
+                    <%= link_to 'Back', courses_path %></li>
+                <li>
+                    <%= link_to 'Edit', edit_course_path(@course) %></li>
+                <li>
+                    <%= link_to 'Add student', :action =>'new', :controller => 'students', :course => @course.id %></li>
+                <li>
+                    <%= link_to 'Import students', :action =>
+                    'import', :controller => 'importsheets', :course_id => @course.id %>
+                </li>
+            </ul>
+        </div>
+        <ul style="list-style: none; margin-left: 0px; margin-top: 20px;">
             <li>
-                <%= link_to 'Back', courses_path %></li>
-            <li>
-                <%= link_to 'Edit', edit_course_path(@course) %></li>
-            <li>
-                <%= link_to 'Add student', :action =>'new', :controller => 'students', :course => @course.id %></li>
-            <li>
-                <%= link_to 'Import students', :action =>
-                'import', :controller => 'importsheets', :course_id => @course.id %>
+                <%= link_to 'Delete Course', @course, :method =>
+                :delete, :class => 'btn btn-danger', :data => { :confirm => 'Are you sure?  All students and assignments of this course will be deleted as well.' }, :key => "value"%>
             </li>
         </ul>
+        <% else %>
+        <p>
+            The information necessary to render this page did not come through. Please navigate the site through its links.
+        </p>
+        <% end %>
     </div>
-    <ul style="list-style: none; margin-left: 0px; margin-top: 20px;">
-        <li>
-            <%= link_to 'Delete Course', @course, :method =>
-            :delete, :class => 'btn btn-danger', :data => { :confirm => 'Are you sure?  All students and assignments of this course will be deleted as well.' }, :key => "value"%>
-        </li>
-    </ul>
-    <% else %>
-    <p>
-        The information necessary to render this page did not come through. Please navigate the site through its links.
-    </p>
-    <% end %></div>
 </div>

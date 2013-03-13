@@ -13,7 +13,7 @@ class Course < ActiveRecord::Base
 
 
   def courses_students
-	return CoursesStudents.where("course_id=?",self.id)
+	 return CoursesStudents.where("course_id=?",self.id)
   end
 
   def courseGrades

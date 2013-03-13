@@ -3,7 +3,7 @@
     <h1>Name Verification</h1>
 
     <p>
-    Student:
+    Student name (from test sheet):
     <%= link_to "#{@showHash[:student].full_name}", :action => 'show', :controller => 'students', :id => @showHash[:student].id %>
     </p>
 
@@ -12,14 +12,15 @@
       <%= link_to 'Add a new student', :action => 'new', :controller => 'students' %>
     then return to this page to set things straight.</p>
 
-
+    <p>Existing student?  Match up here</p>
     <%= render :partial => 'form-nameSelect' %>
+
+    <p>New student?  Add the name here</p>
+    <%= render :partial => 'form-nameAdd' %>
 
     <div class="image">
       <%= image_tag(@showHash[:path]) %>
     </div>
-
-
 
     <%= link_to "Back", :action => 'index', :controller => 'issues' %>
   </div>

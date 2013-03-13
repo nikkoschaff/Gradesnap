@@ -1,0 +1,32 @@
+<%= form_for(@student = Student.new, :validate => true) do |f| %>
+  <% if @student.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
+
+      <ul>
+      <% @student.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% unless @courses %>
+  <% @courses = Course.where("teacher_id=?", session[:user].teacher_id) %>
+<% end %>
+
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+    <%= f.label :middle_name %><br />
+    <%= f.text_field :middle_name %>
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </div>
+
+
+  <%= f.hidden_field :course_id, :value => courseFromIssue(@showHash[:issue]) %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
