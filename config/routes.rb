@@ -1,6 +1,5 @@
 Gradesnap::Application.routes.draw do
-   #prelogin page
-  root :to => 'prelogins#index'
+  root :to => 'application#find_root_url'
 
   resources :contacts
  

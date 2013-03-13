@@ -121,7 +121,7 @@ class Scansheet < ActiveRecord::Base
 
   def ambiguous?( value )
       #TODO make ML component to adjust thresholdValue
-      high = 0.45
+      high = 0.4
       low = 0.35
       (value > low and value < high) ? true : false
   end

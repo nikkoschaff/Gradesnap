@@ -15,7 +15,16 @@ class ApplicationController < ActionController::Base
   # login_required is a filter that allows us to control access to actions. 
   # In the user controller we have three actions, welcome, hidden and 
   # forgot_password that can only be accessed by logged in users. 
-  
+
+  def find_root_url
+      if session[:user]
+        redirect_to :action => "dashboard", :controller => "sessions"
+      else
+        redirect_to :action => "index", :controller => "prelogins"
+      end
+  end
+
+
   def session_cleanup
     backup = session.data.clone
     reset_session

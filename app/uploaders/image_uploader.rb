@@ -55,12 +55,21 @@ class ImageUploader < CarrierWave::Uploader::Base
     #Change directory to the path.  Needed for docsplit or else
     #it extracts to the current directory (rails root by default)
     Dir.chdir(pathDirStr)
-    Docsplit.extract_images(oldPath, :format => [:jpg])
+
+    # OLD method - use extract_images to split and convert each image to jpg
+    # Replaced becasue of compatability issues with GhostScript 
+    #Docsplit.extract_images(oldPath, :format => [:jpg])
+
+
+    Docsplit.extract_pages(oldPath)
+
 
     num_pages.times do
       newSheet = Scansheet.new
       newPathArr = oldPath.split(".")
+      newPathStrPdf = "#{newPathArr[0]}_#{pg}.pdf"
       newPathStr = "#{newPathArr[0]}_#{pg}.jpg"
+      system("convert -density 175 #{newPathStrPdf} #{newPathStr}")
       newSheet.image = File.open(newPathStr)
       newSheet.assignment_id = assignmentID
       newSheet.save
@@ -81,9 +90,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   def goodImageFormat?( path )
     supported = ["bmp", "jpeg", "jpg",
       "png", "tiff", "tif" ]
-    pathArray = path.split(".")
-    extension = pathArray.last.downcase
-    supported.include?(extension) ? true : false
+    supported.include?(path.split(".").last.downcase) ? true : false
   end
 
   # setGoodImageFormat - Changes image to a readable jpeg extension
@@ -93,9 +100,8 @@ class ImageUploader < CarrierWave::Uploader::Base
     pathArray.pop
     pathArray.push( "jpg" )
     newPath = pathArray.join(".")
-    img = MiniMagick::Image.open(oldPath)
-    img.format "jpg"
-    img.write(newPath)
+    system("convert -density 175 #{oldPath} #{newPath}")
+    img = MiniMagick::Image.open(newPath)
     img.path = newPath
     File.delete(oldPath)
     img
