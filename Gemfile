@@ -50,7 +50,7 @@ gem 'rack'
 # Gem is what allows 'easy' error messaging.
 gem 'dynamic_form'
 # Gem is dependency for image processing.
-#gem 'gsimgproc', '0.0.1', :git => 'git@github.com:nikkoschaff/gsimgproc.git'
+gem 'gsimgproc', '0.0.2', :git => 'git@github.com:nikkoschaff/gsimgproc.git'
 # Gem is necessary for image uploading and attaching.
 gem 'carrierwave'
 # Gem makes possible the interaction between sequel database and carrierwave.
