@@ -24,4 +24,4 @@ production:
   database: Gradesnap_production
   pool: 5
   username: postgres
- # password: password
+  password: dstorm12
