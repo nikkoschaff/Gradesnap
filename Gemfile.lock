@@ -123,6 +123,8 @@ GEM
       rake (>= 0.8.1)
     pg (0.17.0)
     polyglot (0.3.3)
+    protected_attributes (1.0.5)
+      activemodel (>= 4.0.1, < 5.0)
     ps (0.0.8)
       ansi
     rack (1.5.2)
@@ -225,6 +227,7 @@ DEPENDENCIES
   mail
   mini_magick
   passenger
+  protected_attributes
   ps
   rack
   rails

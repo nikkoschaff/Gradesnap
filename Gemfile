@@ -11,6 +11,8 @@ gem 'activerecord-postgresql-adapter'
 # Gem is necessary to include captcha in our sign-up form.
 gem 'ruby-recaptcha'
 
+# To use old protected attributes
+gem 'protected_attributes'
 
 # Gems used only for assets and not required
 # in production environments by default.

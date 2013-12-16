@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   validates_presence_of :password_confirmation, :password, :on => 'create'
   validates_uniqueness_of :email
   validates_confirmation_of :password
-  validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :message => "Invalid email"  
+  validates_format_of :email, :with => /^([A@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})z/i, :message => "Invalid email", :multiline => true
   attr_protected :id, :salt
   attr_accessor :password, :password_confirmation, :confirmation_code, :confirmed
   belongs_to :teacher, :foreign_key => "teacher_id"
