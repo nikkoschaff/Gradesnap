@@ -11,14 +11,16 @@ gem 'activerecord-postgresql-adapter'
 # Gem is necessary to include captcha in our sign-up form.
 gem 'ruby-recaptcha'
 
+# To use old protected attributes
+gem 'protected_attributes'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
   # Gem is necessary to compile any CSS.
-  gem 'sass-rails',   '~> 3.2.3'
+  gem 'sass-rails' 
   # Gem is necessary to compile any/all javascript.
-  gem 'coffee-rails', '~> 3.2.1'
+  gem 'coffee-rails' 
   # ELIMINATE ELIMINATE DESTROY DESTROY
   gem 'annotate'
   # Gem is necessary to twitter implement twitter bootstrap
@@ -30,12 +32,15 @@ group :assets do
   # Gem is necessary to used to type direct code into the html.
   gem 'google-code-prettify-rails'
   # Gem is necessary to compress javascript when compiling.
-  gem 'uglifier', '>= 1.0.3'
+  gem 'uglifier'
   # UNKNOWN
   gem 'bson_ext'
   # It is what makes code in views work. Rails dependency gem.
   gem 'railties'
 end
+
+# Digital Ocean uses unicorn
+gem 'unicorn'
 
 # Mailer gem
 gem 'mail'
@@ -74,8 +79,10 @@ gem "jquery-ui-rails"
 # Dependency gem for fileuploader.
 gem 'jquery-rails'
 
+# to fix aws somehow
+gem 'unf'
 
 # To use sha3 encryption
 gem 'digest-sha3'
 # To use ActiveModel has_secure_password
- gem 'bcrypt-ruby', '~> 3.0.0'
+ gem 'bcrypt-ruby'

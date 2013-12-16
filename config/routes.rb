@@ -58,22 +58,22 @@ Gradesnap::Application.routes.draw do
     end
   end
 
-  match "/prelogins/:id/code" => "prelogins#confirmation_code"
+  get "/prelogins/:id/code" => "prelogins#confirmation_code"
 
 
 
   #session pages
-  match '/dashboard' => 'sessions#dashboard'
-  match '/logout' => 'sessions#logout'
-  match '/change_password' => 'sessions#change_password'
-  match '/change_email' => 'sessions#change_email'
-  match '/my_account' => 'sessions#myaccount'
-  match '/payment' => 'sessions#payment'
+  get '/dashboard' => 'sessions#dashboard'
+  get '/logout' => 'sessions#logout'
+  get '/change_password' => 'sessions#change_password'
+  get '/change_email' => 'sessions#change_email'
+  get '/my_account' => 'sessions#myaccount'
+  get '/payment' => 'sessions#payment'
 
   #assignments pages
-  match '/assignments/key' => 'assignments#key'
+  get '/assignments/key' => 'assignments#key'
 
   #Issue pages
-  match '/issues/resolveAnswerverify' => 'issues#resolveAnswerverify'
-  match '/issues/resolveNameverify' => 'issues#resolveNameverify'
+  get '/issues/resolveAnswerverify' => 'issues#resolveAnswerverify'
+  get '/issues/resolveNameverify' => 'issues#resolveNameverify'
 end
